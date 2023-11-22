@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+import { markCompleted } from "../../../reducers/task/taskSlice";
 import styled from "styled-components";
 
 const Content = styled.div.attrs((props) => ({
@@ -28,7 +30,7 @@ const CardDeadline = styled.span.attrs((props) => ({
 
 const CompleteButton = styled.span.attrs((props) => ({
   className: props.className || "",
-  completed: props.completed,
+  "data-completed": props.completed,
 }))`
   cursor: pointer;
   width: 100%;
@@ -46,12 +48,20 @@ const CompleteButton = styled.span.attrs((props) => ({
     background-color: #ffffff40;
   }
 `;
-export const CardContent = ({ title, due_date, completed }) => {
+// Boolean is not workin without this
+CompleteButton.shouldForwardProp = (prop) => prop !== "completed";
+
+export const CardContent = ({ title, due_date, completed, id }) => {
+  const dispatch = useDispatch();
+
   return (
     <Content className="content">
       <CardH5 className="card_title">{title}</CardH5>
       {due_date && <CardDeadline>⏱️ {due_date}</CardDeadline>}
-      <CompleteButton completed={completed}>
+      <CompleteButton
+        onClick={() => dispatch(markCompleted(id))}
+        completed={completed}
+      >
         {completed ? "completed" : "complete"}
       </CompleteButton>
     </Content>
