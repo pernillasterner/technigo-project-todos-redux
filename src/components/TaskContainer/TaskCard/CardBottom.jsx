@@ -5,6 +5,7 @@ const Bottom = styled.div.attrs((props) => ({
 }))`
   display: flex;
   justify-content: space-between;
+  margin-top: 0.5em;
 `;
 
 const CreatedAt = styled.p.attrs((props) => ({
