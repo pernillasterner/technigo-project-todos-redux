@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { tasks } from "../data/tasks";
+import { tasks } from "../../data/tasks";
 
 const initialState = {
   tasks: [],
@@ -19,17 +19,15 @@ export const taskSlice = createSlice({
     },
     removeTask: (state, action) => {
       const taskId = action.payload;
-      // Purpose: Removes a specific item from the shopping cart based on its id.
+      // Removes a specific item from the task list using the id
       state.tasks = state.tasks.filter((task) => task.id !== taskId);
     },
   },
 });
 
-// console.log(cartSlice);
-export const { clearCart, removeItem, increase, decrease, calculateTotals } =
-  cartSlice.actions;
+export const { clearTasks, addTask, removeTask } = taskSlice.actions;
 
-export default cartSlice.reducer;
+export default taskSlice.reducer;
 
 // ACTIONS
 /**
