@@ -26,11 +26,34 @@ const CardDeadline = styled.span.attrs((props) => ({
   margin-top: 0.5em;
 `;
 
-export const CardContent = ({ title, due_date }) => {
+const CompleteButton = styled.span.attrs((props) => ({
+  className: props.className || "",
+  completed: props.completed,
+}))`
+  cursor: pointer;
+  width: 100%;
+  border-radius: var(--border-radius-small);
+  border: 1px solid
+    ${(props) =>
+      props.completed ? "var(--clr-completed)" : "var(--clr-uncompleted)"};
+  color: ${(props) =>
+    props.completed ? "var(--clr-completed)" : "var(--clr-uncompleted)"};
+  text-align: center;
+  margin-top: 1.7em;
+  padding: 0.2em 0;
+
+  &:hover {
+    background-color: #ffffff40;
+  }
+`;
+export const CardContent = ({ title, due_date, completed }) => {
   return (
     <Content className="content">
       <CardH5 className="card_title">{title}</CardH5>
       {due_date && <CardDeadline>⏱️ {due_date}</CardDeadline>}
+      <CompleteButton completed={completed}>
+        {completed ? "completed" : "complete"}
+      </CompleteButton>
     </Content>
   );
 };

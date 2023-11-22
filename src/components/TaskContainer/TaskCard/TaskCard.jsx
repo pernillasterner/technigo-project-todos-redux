@@ -8,7 +8,7 @@ const CardWrapper = styled.div.attrs((props) => ({
 }))`
   background-color: var(--clr-primary-light);
   min-width: 375px;
-  height: 228px;
+  min-height: 228px;
   border-radius: var(--border-radius-large);
   margin: 15px 0;
   padding: var(--general-smaller-padding);
@@ -23,7 +23,11 @@ export const TaskCard = ({ tasks }) => {
       {tasks.map((task) => (
         <CardWrapper className="card_wrapper">
           <CardTop cats={task.categories} />
-          <CardContent title={task.title} due_date={task.due_date} />
+          <CardContent
+            title={task.title}
+            due_date={task.due_date}
+            completed={task.completed}
+          />
           <CardBottom created_at={task.created_at} />
         </CardWrapper>
       ))}

@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { TaskColumn } from "./TaskColumn";
 import styled from "styled-components";
 
