@@ -26,11 +26,11 @@ const CardDeadline = styled.span.attrs((props) => ({
   margin-top: 0.5em;
 `;
 
-export const CardContent = () => {
+export const CardContent = ({ title, due_date }) => {
   return (
     <Content className="content">
-      <CardH5 className="card_title">Fixa tvätten 🧦</CardH5>
-      <CardDeadline>⏱️ 3 okt</CardDeadline>
+      <CardH5 className="card_title">{title}</CardH5>
+      {due_date && <CardDeadline>⏱️ {due_date}</CardDeadline>}
     </Content>
   );
 };
