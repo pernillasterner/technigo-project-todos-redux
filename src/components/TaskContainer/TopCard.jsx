@@ -33,15 +33,11 @@ export const TopCard = () => {
     <StyledTopCard className="custom-class">
       <div className="avatar">
         {" "}
-        <img src="../../../public/avatars/uncompleted_orange.svg" alt="title" />
+        <img src="./avatars/uncompleted_orange.svg" alt="title" />
       </div>
       <H4>total task</H4>
       <TotalNum className="totalnum">16</TotalNum>
-      <img
-        src="../../../public/icons/arrow.svg"
-        alt="arrow"
-        style={{ width: "10px" }}
-      />
+      <img src="./icons/arrow.svg" alt="arrow" style={{ width: "10px" }} />
     </StyledTopCard>
   );
 };
