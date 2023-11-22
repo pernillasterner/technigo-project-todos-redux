@@ -27,13 +27,12 @@ const CardEdit = styled.span.attrs((props) => ({
   cursor: pointer;
 `;
 
-export const CardTop = () => {
+export const CardTop = ({ cats }) => {
   return (
     <Top className="top">
       {" "}
       <div className="cat">
-        <CardCat>hushåll</CardCat>
-        <CardCat>tvätt</CardCat>
+        {cats && cats.map((cat, index) => <CardCat key={index}>{cat}</CardCat>)}
       </div>
       <CardEdit>🖊️</CardEdit>
     </Top>
