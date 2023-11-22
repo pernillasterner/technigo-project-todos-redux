@@ -15,6 +15,8 @@ Variables
   --clr-grey-5: #7c7c7c;
   --clr-grey-10: #f1f5f8;
   --clr-white: #fff;
+  --clr-uncompleted: #eda989;
+  --clr-completed: #85c571;
   /* --clr-red-dark: hsl(360, 67%, 44%);
   --clr-red-light: hsl(360, 71%, 66%);
   --transition: all 0.3s linear;
