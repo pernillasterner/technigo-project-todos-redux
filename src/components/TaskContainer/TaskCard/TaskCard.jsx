@@ -23,8 +23,8 @@ export const TaskCard = ({ tasks }) => {
       {tasks.map((task) => (
         <CardWrapper className="card_wrapper">
           <CardTop cats={task.categories} />
-          <CardContent />
-          <CardBottom />
+          <CardContent title={task.title} due_date={task.due_date} />
+          <CardBottom created_at={task.created_at} />
         </CardWrapper>
       ))}
     </>
