@@ -1,19 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { App } from "./App.jsx";
-import "./index.css";
 import { Provider } from "react-redux";
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-
-const reducer = combineReducers({
-  task: task.reducer,
-  project: project.reducer,
-  filter: filter.reducer,
-});
-
-const store = configureStore({
-  reducer,
-});
+import { App } from "./App.jsx";
+import { store } from "./store";
+import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
