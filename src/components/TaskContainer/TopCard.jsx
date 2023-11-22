@@ -33,7 +33,7 @@ export const TopCard = () => {
     <StyledTopCard className="custom-class">
       <div className="avatar">
         {" "}
-        <img src="./avatars/uncompleted_orange.svg" alt="title" />
+        <img src="./avatars/uncompleted_orange.svg" alt="avatar" />
       </div>
       <H4>total task</H4>
       <TotalNum className="totalnum">16</TotalNum>

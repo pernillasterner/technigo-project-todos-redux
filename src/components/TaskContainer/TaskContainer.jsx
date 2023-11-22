@@ -1,6 +1,4 @@
-import { Completed } from "./Completed";
-import { Project } from "./Project";
-import { Uncompleted } from "./Uncompleted";
+import { TaskColumn } from "./TaskColumn";
 import styled from "styled-components";
 
 const StyledTaskContainer = styled.div.attrs((props) => ({
@@ -17,9 +15,7 @@ const StyledTaskContainer = styled.div.attrs((props) => ({
 export const TaskContainer = () => {
   return (
     <StyledTaskContainer className="task_container">
-      <Uncompleted />
-      <Completed />
-      <Project />
+      <TaskColumn />
     </StyledTaskContainer>
   );
 };
