@@ -28,14 +28,19 @@ const H4 = styled.div.attrs((props) => ({
   text-transform: uppercase;
 `;
 
-export const TopCard = () => {
+export const TopCard = ({ title }) => {
   return (
     <StyledTopCard className="custom-class">
       <div className="avatar">
         {" "}
-        <img src="./avatars/uncompleted_orange.svg" alt="avatar" />
+        {title && (
+          <img
+            src={`./avatars/${title.toLowerCase()}.svg`}
+            alt={`${title} avatar`}
+          />
+        )}
       </div>
-      <H4>total task</H4>
+      <H4>{title} tasks</H4>
       <TotalNum className="totalnum">16</TotalNum>
       <img src="./icons/arrow.svg" alt="arrow" style={{ width: "10px" }} />
     </StyledTopCard>

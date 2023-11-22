@@ -14,17 +14,14 @@ const StyledTaskContainer = styled.div.attrs((props) => ({
 `;
 
 export const TaskContainer = () => {
-  // TODO: Filter incompleted and completed tasks
   const tasks = useSelector((store) => store.task.tasks);
   const completedTasks = tasks.filter((task) => task.completed);
   const uncompletedTasks = tasks.filter((task) => !task.completed);
 
   return (
     <StyledTaskContainer className="task_container">
-      <TaskColumn title="Uncompleted Tasks" tasks={uncompletedTasks} />
-      <TaskColumn title="Completed Tasks" tasks={completedTasks} />
+      <TaskColumn title="uncompleted" tasks={uncompletedTasks} />
+      <TaskColumn title="completed" tasks={completedTasks} />
     </StyledTaskContainer>
   );
 };
-
-// const { cartItems, total, amount } = useSelector((store) => store.cart);

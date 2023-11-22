@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { tasks } from "../../data/tasks";
 
 const initialState = {
-  tasks: [],
+  tasks,
   total: 0,
   isLoading: true,
 };
