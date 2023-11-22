@@ -7,11 +7,25 @@ const Bottom = styled.div.attrs((props) => ({
   justify-content: space-between;
 `;
 
+const CreatedAt = styled.p.attrs((props) => ({
+  className: props.className || "",
+}))`
+  margin-bottom: 0;
+  color: var(--clr-grey-5);
+  font-size: 0.8em;
+`;
+
+const RemoveCard = styled.span.attrs((props) => ({
+  className: props.className || "",
+}))`
+  cursor: pointer;
+`;
+
 export const CardBottom = () => {
   return (
-    <div className="bottom">
-      <p>Created: 2023-10-03</p>
-      <span>🗑️</span>
-    </div>
+    <Bottom className="bottom">
+      <CreatedAt className="created_at">Created: 2023-10-03</CreatedAt>
+      <RemoveCard>🗑️</RemoveCard>
+    </Bottom>
   );
 };
