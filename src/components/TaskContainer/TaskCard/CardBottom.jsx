@@ -21,10 +21,10 @@ const RemoveCard = styled.span.attrs((props) => ({
   cursor: pointer;
 `;
 
-export const CardBottom = () => {
+export const CardBottom = ({ created_at }) => {
   return (
     <Bottom className="bottom">
-      <CreatedAt className="created_at">Created: 2023-10-03</CreatedAt>
+      <CreatedAt className="created_at">Created: {created_at}</CreatedAt>
       <RemoveCard>🗑️</RemoveCard>
     </Bottom>
   );
