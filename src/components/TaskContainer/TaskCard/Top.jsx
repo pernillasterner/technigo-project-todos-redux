@@ -1,27 +1,27 @@
 import styled from "styled-components";
 
-const StyledTop = styled.div.attrs((props) => ({
+const CardTop = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   display: flex;
   justify-content: space-between;
 `;
 
-const StyledCat = styled.span.attrs((props) => ({
+const CardCat = styled.span.attrs((props) => ({
   className: props.className || "",
 }))`
   background-color: #775ebf;
-  padding: 3px 8px;
+  padding: 0.1em 0.8em;
   margin: 0 5px;
-  font-size: 0.7rem;
-  border-radius: var(--border-radius);
+  font-size: 0.8rem;
+  border-radius: var(--border-radius-small);
 
   &:first-child {
     margin-left: 0;
   }
 `;
 
-const StyledEdit = styled.span.attrs((props) => ({
+const CardEdit = styled.span.attrs((props) => ({
   className: props.className || "",
 }))`
   cursor: pointer;
@@ -29,13 +29,13 @@ const StyledEdit = styled.span.attrs((props) => ({
 
 export const Top = () => {
   return (
-    <StyledTop className="top">
+    <CardTop className="top">
       {" "}
       <div className="cat">
-        <StyledCat>hushåll</StyledCat>
-        <StyledCat>tvätt</StyledCat>
+        <CardCat>hushåll</CardCat>
+        <CardCat>tvätt</CardCat>
       </div>
-      <StyledEdit>🖊️</StyledEdit>
-    </StyledTop>
+      <CardEdit>🖊️</CardEdit>
+    </CardTop>
   );
 };

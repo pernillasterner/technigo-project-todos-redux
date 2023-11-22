@@ -9,7 +9,7 @@ const StyledTaskCard = styled.div.attrs((props) => ({
   background-color: var(--clr-primary-light);
   min-width: 375px;
   height: 228px;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-large);
   margin: 15px 0;
   padding: var(--general-smaller-padding);
   display: flex;
