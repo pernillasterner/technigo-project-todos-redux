@@ -17,12 +17,16 @@ const CardWrapper = styled.div.attrs((props) => ({
   justify-content: space-between;
 `;
 
-export const TaskCard = () => {
+export const TaskCard = ({ tasks }) => {
   return (
-    <CardWrapper className="card_wrapper">
-      <CardTop />
-      <CardContent />
-      <CardBottom />
-    </CardWrapper>
+    <>
+      {tasks.map((task) => (
+        <CardWrapper className="card_wrapper">
+          <CardTop cats={task.categories} />
+          <CardContent />
+          <CardBottom />
+        </CardWrapper>
+      ))}
+    </>
   );
 };
