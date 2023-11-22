@@ -1,3 +1,9 @@
+import { Header } from "./components/Header/Header";
+
 export const App = () => {
-  return <div>Find me in App.jsx!</div>;
+  return (
+    <main>
+      <Header />
+    </main>
+  );
 };
