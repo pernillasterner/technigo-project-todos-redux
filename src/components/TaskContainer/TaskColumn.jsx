@@ -10,12 +10,12 @@ const StyledTaskColumn = styled.div.attrs((props) => ({
   flex-direction: column;
 `;
 
-export const TaskColumn = ({ title, tasks }) => {
+export const TaskColumn = ({ title, tasks, total }) => {
   const isCompleted = tasks.some((task) => task.completed);
 
   return (
     <StyledTaskColumn className="task_column">
-      <TopCard title={title} />
+      <TopCard title={title} total={total} />
       <TaskCard tasks={tasks} />
       {!isCompleted && <AddTask />}
     </StyledTaskColumn>

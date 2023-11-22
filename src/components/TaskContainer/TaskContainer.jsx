@@ -20,8 +20,16 @@ export const TaskContainer = () => {
 
   return (
     <StyledTaskContainer className="task_container">
-      <TaskColumn title="uncompleted" tasks={uncompletedTasks} />
-      <TaskColumn title="completed" tasks={completedTasks} />
+      <TaskColumn
+        title="uncompleted"
+        tasks={uncompletedTasks}
+        total={uncompletedTasks.length}
+      />
+      <TaskColumn
+        title="completed"
+        tasks={completedTasks}
+        total={completedTasks.length}
+      />
     </StyledTaskContainer>
   );
 };
