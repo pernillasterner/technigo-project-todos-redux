@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const CardContent = styled.div.attrs((props) => ({
+const Content = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   display: flex;
@@ -26,11 +26,11 @@ const CardDeadline = styled.span.attrs((props) => ({
   margin-top: 0.5em;
 `;
 
-export const Content = () => {
+export const CardContent = () => {
   return (
-    <CardContent className="content">
+    <Content className="content">
       <CardH5 className="card_title">Fixa tvätten 🧦</CardH5>
       <CardDeadline>⏱️ 3 okt</CardDeadline>
-    </CardContent>
+    </Content>
   );
 };

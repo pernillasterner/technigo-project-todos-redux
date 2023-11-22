@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { Top } from "./Top";
-import { Content } from "./Content";
-import { Bottom } from "./Bottom";
+import { CardTop } from "./CardTop";
+import { CardContent } from "./CardContent";
+import { CardBottom } from "./CardBottom";
 
-const StyledTaskCard = styled.div.attrs((props) => ({
+const CardWrapper = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   background-color: var(--clr-primary-light);
@@ -19,10 +19,10 @@ const StyledTaskCard = styled.div.attrs((props) => ({
 
 export const TaskCard = () => {
   return (
-    <StyledTaskCard className="card_wrapper">
-      <Top />
-      <Content />
-      <Bottom />
-    </StyledTaskCard>
+    <CardWrapper className="card_wrapper">
+      <CardTop />
+      <CardContent />
+      <CardBottom />
+    </CardWrapper>
   );
 };

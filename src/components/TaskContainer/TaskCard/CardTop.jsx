@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const CardTop = styled.div.attrs((props) => ({
+const Top = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   display: flex;
@@ -27,15 +27,15 @@ const CardEdit = styled.span.attrs((props) => ({
   cursor: pointer;
 `;
 
-export const Top = () => {
+export const CardTop = () => {
   return (
-    <CardTop className="top">
+    <Top className="top">
       {" "}
       <div className="cat">
         <CardCat>hushåll</CardCat>
         <CardCat>tvätt</CardCat>
       </div>
       <CardEdit>🖊️</CardEdit>
-    </CardTop>
+    </Top>
   );
 };
