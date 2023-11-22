@@ -22,10 +22,18 @@ export const taskSlice = createSlice({
       // Removes a specific item from the task list using the id
       state.tasks = state.tasks.filter((task) => task.id !== taskId);
     },
+    markCompleted: (state, action) => {
+      const taskId = action.payload;
+      const taskToToggle = state.tasks.find((task) => task.id === taskId);
+      if (taskToToggle) {
+        taskToToggle.completed = !taskToToggle.completed;
+      }
+    },
   },
 });
 
-export const { clearTasks, addTask, removeTask } = taskSlice.actions;
+export const { clearTasks, addTask, removeTask, markCompleted } =
+  taskSlice.actions;
 
 export default taskSlice.reducer;
 
