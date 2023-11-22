@@ -24,7 +24,9 @@ Variables
   --small-screen-width: 90vw;
   --fixed-width: 50rem; */
 
-  --border-radius: 15px;
+  --border-radius-small: 15px;
+  --border-radius-medium: 20px;
+  --border-radius-large: 30px;
 
   --general-padding: 35px;
   --general-smaller-padding: 20px;

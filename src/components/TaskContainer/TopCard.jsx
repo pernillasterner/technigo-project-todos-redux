@@ -4,7 +4,7 @@ const StyledTopCard = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   background-color: var(--clr-primary-light);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-medium);
   display: flex;
   align-items: center;
   justify-content: space-between;
