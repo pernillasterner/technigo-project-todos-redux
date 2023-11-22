@@ -15,6 +15,8 @@ const StyledTaskContainer = styled.div.attrs((props) => ({
 
 export const TaskContainer = () => {
   const tasks = useSelector((store) => store.task.tasks);
+
+  console.log(tasks);
   const completedTasks = tasks.filter((task) => task.completed);
   const uncompletedTasks = tasks.filter((task) => !task.completed);
 

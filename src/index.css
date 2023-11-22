@@ -16,6 +16,7 @@ Variables
   --clr-white: #fff;
   --clr-uncompleted: #eda989;
   --clr-completed: #85c571;
+  --clr-submit: #2366f2;
   /* --clr-red-dark: hsl(360, 67%, 44%);
   --clr-red-light: hsl(360, 71%, 66%);
   --transition: all 0.3s linear;
@@ -24,7 +25,7 @@ Variables
   --large-screen-width: 1170px;
   --small-screen-width: 90vw;
   --fixed-width: 50rem; */
-
+  --border-radius-mini: 10px;
   --border-radius-small: 15px;
   --border-radius-medium: 20px;
   --border-radius-large: 30px;

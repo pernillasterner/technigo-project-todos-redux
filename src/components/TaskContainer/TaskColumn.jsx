@@ -1,4 +1,4 @@
-import { AddTask } from "./AddTask";
+import { AddTaskCard } from "./AddTask/AddTaskCard";
 import { TaskCard } from "./TaskCard/TaskCard";
 import { TopCard } from "./TopCard";
 import styled from "styled-components";
@@ -17,7 +17,7 @@ export const TaskColumn = ({ title, tasks, total }) => {
     <StyledTaskColumn className="task_column">
       <TopCard title={title} total={total} />
       <TaskCard tasks={tasks} />
-      {!isCompleted && <AddTask />}
+      {!isCompleted && <AddTaskCard tasks={tasks} />}
     </StyledTaskColumn>
   );
 };

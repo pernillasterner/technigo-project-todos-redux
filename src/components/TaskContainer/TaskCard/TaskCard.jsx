@@ -22,14 +22,15 @@ export const TaskCard = ({ tasks }) => {
     <>
       {tasks.map((task) => (
         <CardWrapper key={task.id} className="card_wrapper">
-          <CardTop cats={task.categories} />
+          <CardTop key={`top-${task.id}`} cats={task.categories} />
           <CardContent
+            key={`content-${task.id}`}
             title={task.title}
             due_date={task.due_date}
             completed={task.completed}
             id={task.id}
           />
-          <CardBottom created_at={task.created_at} />
+          <CardBottom key={`bottom-${task.id}`} created_at={task.created_at} />
         </CardWrapper>
       ))}
     </>

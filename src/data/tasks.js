@@ -6,7 +6,6 @@ export const tasks = [
     categories: ["housecleaning", "high"],
     due_date: "",
     completed: false,
-    color: "blue",
   },
   {
     id: 2,
@@ -15,7 +14,6 @@ export const tasks = [
     categories: [],
     due_date: "2023-04-04",
     completed: true,
-    color: "green",
   },
   {
     id: 3,
@@ -24,6 +22,5 @@ export const tasks = [
     categories: ["Studdies", "medium"],
     due_date: "2023-04-04",
     completed: false,
-    color: "blue",
   },
 ];
