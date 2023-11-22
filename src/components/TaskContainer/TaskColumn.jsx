@@ -1,3 +1,4 @@
+import { AddTask } from "./AddTask";
 import { TaskCard } from "./TaskCard/TaskCard";
 import { TopCard } from "./TopCard";
 import styled from "styled-components";
@@ -14,6 +15,7 @@ export const TaskColumn = () => {
     <StyledTaskColumn className="task_column">
       <TopCard />
       <TaskCard />
+      <AddTask />
     </StyledTaskColumn>
   );
 };
