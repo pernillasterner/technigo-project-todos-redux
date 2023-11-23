@@ -1,7 +1,8 @@
 import styled from "styled-components";
-// import { addTask } from "../../../reducers/task/taskSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { closeModal } from "../../../reducers/modal/modalSlice";
+import { addTask } from "../../../reducers/task/taskSlice";
 
 const TaskForm = styled.form.attrs((props) => ({
   className: props.className || "",
@@ -48,18 +49,13 @@ export const AddTaskForm = ({ tasks }) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
-  const [addTaskToggle, setAddTaskToggle] = useState(false);
+  const isOpen = useSelector((store) => store.modal.isOpen);
+
   const created_at = new Date();
   // Get the last id of task array, add id to new task
   const lastTaskId =
     tasks.length > 0 ? Math.max(...tasks.map((task) => task.id)) : 0;
   const newTaskId = lastTaskId + 1;
-
-  const toggleAddSign = (e) => {
-    e.preventDefault();
-    // I should toggle the addItem form
-    console.log(e.target);
-  };
 
   const handleAddTask = () => {
     if (value) {
@@ -72,6 +68,7 @@ export const AddTaskForm = ({ tasks }) => {
           created_at: "2023-02-02",
         })
       );
+      dispatch(closeModal());
       setErrorMessage(false);
       // Clear the input value
       setValue("");
@@ -81,7 +78,7 @@ export const AddTaskForm = ({ tasks }) => {
   };
   return (
     <>
-      {addTaskToggle && (
+      {isOpen && (
         <TaskForm>
           <TaskInput
             type="text"
