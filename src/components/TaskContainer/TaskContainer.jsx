@@ -1,16 +1,15 @@
 import { useSelector } from "react-redux";
 import { TaskColumn } from "./TaskColumn";
 import styled from "styled-components";
+import { NoTasks } from "./ClearTasks/NoTasks";
 
 const StyledTaskContainer = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
-  padding: var(--general-padding);
-  border: 1px solid lightgray;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-}
+  height: 100vh;
 `;
 
 export const TaskContainer = () => {
@@ -21,19 +20,19 @@ export const TaskContainer = () => {
   ];
 
   return (
-    <>
-      {tasks && (
-        <StyledTaskContainer className="task_container">
-          {taskColumns.map((col) => (
-            <TaskColumn
-              key={col.title}
-              title={col.title}
-              tasks={col.tasks}
-              total={col.tasks.length}
-            />
-          ))}
-        </StyledTaskContainer>
+    <StyledTaskContainer className="task_container">
+      {tasks.length !== 0 ? (
+        taskColumns.map((col) => (
+          <TaskColumn
+            key={col.title}
+            title={col.title}
+            tasks={col.tasks}
+            total={col.tasks.length}
+          />
+        ))
+      ) : (
+        <NoTasks />
       )}
-    </>
+    </StyledTaskContainer>
   );
 };
