@@ -53,7 +53,7 @@ export const AddTaskForm = ({ tasks }) => {
           id: newTaskId,
           title: value,
           completed: false,
-          created_at: new Date().toString(),
+          created_at: new Date().toISOString(),
         })
       );
       dispatch(closeModal());
