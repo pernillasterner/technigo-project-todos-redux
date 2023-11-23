@@ -48,10 +48,11 @@ const ErrorMsg = styled.p.attrs((props) => ({
 
 export const AddTaskForm = ({ tasks }) => {
   const dispatch = useDispatch();
+  const isOpen = useSelector((store) => store.modal.isOpen);
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
-  const isOpen = useSelector((store) => store.modal.isOpen);
 
+  // Get curernt date and format it
   const currentDate = new Date();
   const formattedDate = `${currentDate.getDate()}-${
     currentDate.getMonth() + 1

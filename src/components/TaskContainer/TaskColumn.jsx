@@ -1,4 +1,5 @@
 import { AddTaskCard } from "./AddTask/AddTaskCard";
+import { ClearTasks } from "./ClearTasks/ClearTasks";
 import { TaskCard } from "./TaskCard/TaskCard";
 import { TopCard } from "./TopCard";
 import styled from "styled-components";
@@ -17,7 +18,12 @@ export const TaskColumn = ({ title, tasks, total }) => {
     <StyledTaskColumn className="task_column">
       <TopCard title={title} total={total} />
       <TaskCard tasks={tasks} />
-      {title === "uncompleted" && <AddTaskCard tasks={tasks} />}
+      {title === "uncompleted" && (
+        <>
+          <AddTaskCard tasks={tasks} />
+          <ClearTasks />
+        </>
+      )}
     </StyledTaskColumn>
   );
 };
