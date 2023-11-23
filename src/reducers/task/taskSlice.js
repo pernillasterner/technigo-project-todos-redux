@@ -13,13 +13,7 @@ export const taskSlice = createSlice({
       state.tasks = [];
     },
     addTask: (state, action) => {
-      console.log(state.tasks);
-      console.log(action.payload);
-      // state.tasks += action.payload;
-      // const newTask = action.payload;
       state.tasks.push(action.payload);
-      // const newTask = action.payload;
-      // state.tasks[newTask.id] = newTask;
     },
     removeTask: (state, action) => {
       const taskId = action.payload;
