@@ -17,27 +17,18 @@ const CardWrapper = styled.div.attrs((props) => ({
   justify-content: space-between;
 `;
 
-export const TaskCard = ({ tasks }) => {
+export const TaskCard = ({ task }) => {
   return (
-    <>
-      {tasks.map((task) => (
-        <CardWrapper key={task.id} className="card_wrapper">
-          <CardTop key={`top-${task.id}`} cats={task.categories} />
-          <CardContent
-            key={`content-${task.id}`}
-            title={task.title}
-            due_date={task.due_date}
-            text={task.content}
-            completed={task.completed}
-            id={task.id}
-          />
-          <CardBottom
-            key={`bottom-${task.id}`}
-            created_at={task.created_at}
-            id={task.id}
-          />
-        </CardWrapper>
-      ))}
-    </>
+    <CardWrapper key={task.id} className="card_wrapper">
+      <CardTop cats={task.categories} id={task.id} />
+      <CardContent
+        title={task.title}
+        due_date={task.due_date}
+        text={task.content}
+        completed={task.completed}
+        id={task.id}
+      />
+      <CardBottom created_at={task.created_at} id={task.id} />
+    </CardWrapper>
   );
 };
