@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { closeModal } from "../../../reducers/modal/modalSlice";
 import { addTask } from "../../../reducers/task/taskSlice";
+import { compareAsc, format } from "date-fns";
 
 const TaskForm = styled.form.attrs((props) => ({
   className: props.className || "",
@@ -51,7 +52,11 @@ export const AddTaskForm = ({ tasks }) => {
   const [errorMessage, setErrorMessage] = useState(false);
   const isOpen = useSelector((store) => store.modal.isOpen);
 
-  const created_at = new Date();
+  const currentDate = new Date();
+  const formattedDate = `${currentDate.getDate()}-${
+    currentDate.getMonth() + 1
+  }-${currentDate.getFullYear()}`;
+
   // Get the last id of task array, add id to new task
   const lastTaskId =
     tasks.length > 0 ? Math.max(...tasks.map((task) => task.id)) : 0;
@@ -65,7 +70,7 @@ export const AddTaskForm = ({ tasks }) => {
           id: newTaskId,
           title: value,
           completed: false,
-          created_at: "2023-02-02",
+          created_at: formattedDate,
         })
       );
       dispatch(closeModal());

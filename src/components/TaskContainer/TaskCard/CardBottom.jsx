@@ -26,7 +26,6 @@ const RemoveCard = styled.span.attrs((props) => ({
 
 export const CardBottom = ({ created_at, id }) => {
   const dispatch = useDispatch();
-  console.log(id);
 
   return (
     <Bottom className="bottom">
