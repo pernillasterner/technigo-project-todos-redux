@@ -3,7 +3,6 @@ import { TaskColumn } from "./TaskColumn";
 import styled from "styled-components";
 import { NoTasks } from "./ClearTasks/NoTasks";
 import { EditTask } from "./EditTask/EditTask";
-import { openEditModal } from "../../reducers/modal/modalSlice";
 
 const StyledTaskContainer = styled.div.attrs((props) => ({
   className: props.className || "",
@@ -17,7 +16,8 @@ const StyledTaskContainer = styled.div.attrs((props) => ({
 
 export const TaskContainer = () => {
   const tasks = useSelector((store) => store.task.tasks);
-
+  const taskId = useSelector((store) => store.modal.taskId);
+  const isModalOpen = useSelector((store) => store.modal.isModalOpen);
   const taskColumns = [
     { title: "uncompleted", tasks: tasks.filter((task) => !task.completed) },
     { title: "completed", tasks: tasks.filter((task) => task.completed) },
@@ -37,7 +37,7 @@ export const TaskContainer = () => {
       ) : (
         <NoTasks />
       )}
-      {!openEditModal && <EditTask />}
+      {isModalOpen && <EditTask taskId={taskId} />}
     </StyledTaskContainer>
   );
 };
