@@ -5,6 +5,9 @@ import { TaskContainer } from "./components/TaskContainer/TaskContainer";
 
 const MAIN = styled.main`
   padding: var(--general-padding);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const App = () => {
