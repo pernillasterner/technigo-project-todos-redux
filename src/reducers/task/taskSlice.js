@@ -3,6 +3,10 @@ import { tasks } from "../../data/tasks";
 
 const initialState = {
   tasks: tasks,
+  content: "",
+  categories: [],
+  completed: false,
+  created_at: null,
 };
 
 export const taskSlice = createSlice({
@@ -27,10 +31,25 @@ export const taskSlice = createSlice({
         taskToToggle.completed = !taskToToggle.completed;
       }
     },
+    editTask: (state, action) => {
+      // If cat push the new cat to current object
+      const { id, title, category } = action.payload;
+
+      // Check if the task with the given id already exists
+      const taskIndex = state.tasks.findIndex((task) => task.id === id);
+
+      if (taskIndex !== -1) {
+        // If the task exists, update its properties
+        if (category !== undefined) {
+          // Update the categories array with the new category
+          state.tasks[taskIndex].categories.push(category);
+        }
+      }
+    },
   },
 });
 
-export const { clearTasks, addTask, removeTask, markCompleted } =
+export const { clearTasks, addTask, removeTask, markCompleted, editTask } =
   taskSlice.actions;
 
 export default taskSlice.reducer;
