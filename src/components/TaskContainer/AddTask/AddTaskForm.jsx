@@ -1,9 +1,9 @@
 import styled from "styled-components";
+import { SubmitBtn } from "../../../styles/Buttons";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { closeModal } from "../../../reducers/modal/modalSlice";
 import { addTask } from "../../../reducers/task/taskSlice";
-import { compareAsc, format } from "date-fns";
 
 const TaskForm = styled.form.attrs((props) => ({
   className: props.className || "",
@@ -27,18 +27,6 @@ const TaskInput = styled.input.attrs((props) => ({
   height: 70px;
 `;
 
-const SubmitBtn = styled.button.attrs((props) => ({
-  className: props.className || "",
-}))`
-  background-color: var(--clr-submit);
-  color: var(--clr-white);
-  border-radius: var(--border-radius-small);
-  border: none;
-  padding: var(--general-mini-padding);
-  margin-top: 1em;
-  font-weight: 700;
-`;
-
 const ErrorMsg = styled.p.attrs((props) => ({
   className: props.className || "",
 }))`
@@ -51,12 +39,6 @@ export const AddTaskForm = ({ tasks }) => {
   const isOpen = useSelector((store) => store.modal.isOpen);
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
-
-  // Get curernt date and format it
-  const currentDate = new Date();
-  const formattedDate = `${currentDate.getDate()}-${
-    currentDate.getMonth() + 1
-  }-${currentDate.getFullYear()}`;
 
   // Get the last id of task array, add id to new task
   const lastTaskId =
@@ -71,7 +53,7 @@ export const AddTaskForm = ({ tasks }) => {
           id: newTaskId,
           title: value,
           completed: false,
-          created_at: formattedDate,
+          created_at: new Date().toString(),
         })
       );
       dispatch(closeModal());
