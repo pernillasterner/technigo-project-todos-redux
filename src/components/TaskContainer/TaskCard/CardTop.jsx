@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { openEditModal } from "../../../reducers/modal/modalSlice";
 
 const Top = styled.div.attrs((props) => ({
   className: props.className || "",
@@ -29,14 +31,20 @@ const CardEdit = styled.span.attrs((props) => ({
   cursor: pointer;
 `;
 
-export const CardTop = ({ cats }) => {
+export const CardTop = ({ cats, id }) => {
+  const dispatch = useDispatch();
+
+  const handleEditClick = () => {
+    dispatch(openEditModal(id));
+  };
+
   return (
     <Top className="top">
       {" "}
       <div className="cat">
         {cats && cats.map((cat, index) => <CardCat key={index}>{cat}</CardCat>)}
       </div>
-      <CardEdit>🖊️</CardEdit>
+      <CardEdit onClick={handleEditClick}>🖊️</CardEdit>
     </Top>
   );
 };
