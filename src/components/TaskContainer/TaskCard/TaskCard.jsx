@@ -27,6 +27,7 @@ export const TaskCard = ({ tasks }) => {
             key={`content-${task.id}`}
             title={task.title}
             due_date={task.due_date}
+            text={task.content}
             completed={task.completed}
             id={task.id}
           />

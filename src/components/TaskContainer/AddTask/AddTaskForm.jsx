@@ -89,6 +89,7 @@ export const AddTaskForm = ({ tasks }) => {
           <TaskInput
             type="text"
             placeholder="Give this task a name"
+            required
             onChange={(e) => setValue(e.target.value)}
           />
           {errorMessage && (

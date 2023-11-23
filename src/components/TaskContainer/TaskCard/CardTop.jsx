@@ -5,6 +5,8 @@ const Top = styled.div.attrs((props) => ({
 }))`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  min-height: 40px;
 `;
 
 const CardCat = styled.span.attrs((props) => ({

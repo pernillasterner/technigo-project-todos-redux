@@ -14,6 +14,13 @@ const CardH5 = styled.h5.attrs((props) => ({
   className: props.className || "",
 }))`
   font-size: 1.1rem;
+  padding: 0.2rem 0;
+`;
+
+const CardText = styled.p.attrs((props) => ({
+  className: props.className || "",
+}))`
+  font-size: 0.8rem;
 `;
 
 const CardDeadline = styled.span.attrs((props) => ({
@@ -41,7 +48,7 @@ const CompleteButton = styled.span.attrs((props) => ({
   color: ${(props) =>
     props.completed ? "var(--clr-completed)" : "var(--clr-uncompleted)"};
   text-align: center;
-  margin-top: 1.7em;
+  margin: 1.7em 0;
   padding: 0.2em 0;
 
   &:hover {
@@ -51,12 +58,13 @@ const CompleteButton = styled.span.attrs((props) => ({
 // Boolean is not workin without this
 CompleteButton.shouldForwardProp = (prop) => prop !== "completed";
 
-export const CardContent = ({ title, due_date, completed, id }) => {
+export const CardContent = ({ title, due_date, completed, id, text }) => {
   const dispatch = useDispatch();
 
   return (
     <Content className="content">
       <CardH5 className="card_title">{title}</CardH5>
+      <CardText>{text}</CardText>
       {due_date && <CardDeadline>⏱️ {due_date}</CardDeadline>}
       <CompleteButton
         onClick={() => dispatch(markCompleted(id))}
