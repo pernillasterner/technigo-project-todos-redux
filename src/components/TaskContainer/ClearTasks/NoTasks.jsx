@@ -75,7 +75,7 @@ export const NoTasks = () => {
           You've completed all your tasks. <br />
           Ready for a <Colorful className="colorful"></Colorful>?
         </p>
-        <PlusSign src={plusSign} alt="plus_sign" />
+        <PlusSign src={plusSign} alt="plus sign" />
       </Content>
     </NoTaskContainer>
   );
