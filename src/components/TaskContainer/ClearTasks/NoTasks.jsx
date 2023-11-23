@@ -67,8 +67,6 @@ const PlusSign = styled.img.attrs((props) => ({
 `;
 
 export const NoTasks = () => {
-  console.log(plusSign);
-  console.log("test");
   return (
     <NoTaskContainer className="notask_container">
       <Content className="content">
