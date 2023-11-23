@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { removeTask } from "../../../reducers/task/taskSlice";
-import { format } from "date-fns";
+import { parseISO, format } from "date-fns";
 
 const Bottom = styled.div.attrs((props) => ({
   className: props.className || "",
@@ -27,7 +27,8 @@ const RemoveCard = styled.span.attrs((props) => ({
 
 export const CardBottom = ({ created_at, id }) => {
   const dispatch = useDispatch();
-  const formattedDate = format(created_at, "yyyy-MM-dd");
+  const parsedDate = parseISO(created_at);
+  const formattedDate = format(parsedDate, "yyyy-MM-dd");
 
   return (
     <Bottom className="bottom">
