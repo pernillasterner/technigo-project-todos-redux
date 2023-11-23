@@ -15,21 +15,25 @@ const StyledTaskContainer = styled.div.attrs((props) => ({
 
 export const TaskContainer = () => {
   const tasks = useSelector((store) => store.task.tasks);
-  const completedTasks = tasks.filter((task) => task.completed);
-  const uncompletedTasks = tasks.filter((task) => !task.completed);
+  const taskColumns = [
+    { title: "uncompleted", tasks: tasks.filter((task) => !task.completed) },
+    { title: "completed", tasks: tasks.filter((task) => task.completed) },
+  ];
 
   return (
-    <StyledTaskContainer className="task_container">
-      <TaskColumn
-        title="uncompleted"
-        tasks={uncompletedTasks}
-        total={uncompletedTasks.length}
-      />
-      <TaskColumn
-        title="completed"
-        tasks={completedTasks}
-        total={completedTasks.length}
-      />
-    </StyledTaskContainer>
+    <>
+      {tasks && (
+        <StyledTaskContainer className="task_container">
+          {taskColumns.map((col) => (
+            <TaskColumn
+              key={col.title}
+              title={col.title}
+              tasks={col.tasks}
+              total={col.tasks.length}
+            />
+          ))}
+        </StyledTaskContainer>
+      )}
+    </>
   );
 };
