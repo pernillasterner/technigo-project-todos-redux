@@ -30,7 +30,11 @@ export const TaskCard = ({ tasks }) => {
             completed={task.completed}
             id={task.id}
           />
-          <CardBottom key={`bottom-${task.id}`} created_at={task.created_at} />
+          <CardBottom
+            key={`bottom-${task.id}`}
+            created_at={task.created_at}
+            id={task.id}
+          />
         </CardWrapper>
       ))}
     </>

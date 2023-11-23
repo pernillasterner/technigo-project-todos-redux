@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { removeTask } from "../../../reducers/task/taskSlice";
 
 const Bottom = styled.div.attrs((props) => ({
   className: props.className || "",
@@ -22,11 +24,14 @@ const RemoveCard = styled.span.attrs((props) => ({
   cursor: pointer;
 `;
 
-export const CardBottom = ({ created_at }) => {
+export const CardBottom = ({ created_at, id }) => {
+  const dispatch = useDispatch();
+  console.log(id);
+
   return (
     <Bottom className="bottom">
       <CreatedAt className="created_at">Created: {created_at}</CreatedAt>
-      <RemoveCard>🗑️</RemoveCard>
+      <RemoveCard onClick={() => dispatch(removeTask(id))}>🗑️</RemoveCard>
     </Bottom>
   );
 };
