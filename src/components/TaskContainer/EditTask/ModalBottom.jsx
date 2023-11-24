@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { removeTask } from "../../../reducers/task/taskSlice";
+import { closeEditModal } from "../../../reducers/modal/modalSlice";
 import { parseISO, format } from "date-fns";
 
 const Bottom = styled.div.attrs((props) => ({
@@ -30,10 +31,15 @@ export const ModalBottom = ({ created_at, id }) => {
   const parsedDate = parseISO(created_at);
   const formattedDate = format(parsedDate, "yyyy-MM-dd");
 
+  const handleRemoveEditCard = () => {
+    dispatch(removeTask(id));
+    dispatch(closeEditModal());
+  };
+
   return (
     <Bottom className="bottom">
       <CreatedAt className="created_at">Created: {formattedDate}</CreatedAt>
-      <RemoveCard onClick={() => dispatch(removeTask(id))}>🗑️</RemoveCard>
+      <RemoveCard onClick={handleRemoveEditCard}>🗑️</RemoveCard>
     </Bottom>
   );
 };
