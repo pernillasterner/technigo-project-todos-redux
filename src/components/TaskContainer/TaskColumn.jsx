@@ -9,6 +9,7 @@ const StyledTaskColumn = styled.div.attrs((props) => ({
 }))`
   display: flex;
   flex-direction: column;
+  padding-left: var(--general-padding);
 `;
 
 export const TaskColumn = ({ title, tasks, total }) => {
