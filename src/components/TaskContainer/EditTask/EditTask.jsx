@@ -54,6 +54,7 @@ export const EditTask = ({ taskId }) => {
     category: task.category || "",
     title: task.title || "",
     content: task.content || "",
+    due_date: task.due_date || "",
   });
 
   const handleInputChange = (inputValue) => {
@@ -73,20 +74,13 @@ export const EditTask = ({ taskId }) => {
           id: task.id,
           title: formState.title,
           content: formState.content,
-          // completed: false,
           created_at: new Date().toISOString(),
           category: formState.category,
+          due_date: formState.due_date,
         })
       );
-      // dispatch(closeModal());
-      //   setErrorMessage(false);
-      // Clear the input value
-      //   setValue("");
     } else {
-      //   setErrorMessage(true);
-      //   TA BORT
       dispatch(closeEditModal());
-      console.log("else funkar");
     }
   };
   return (
@@ -101,12 +95,14 @@ export const EditTask = ({ taskId }) => {
           <ModalTop onInputChange={handleInputChange} cats={task.categories} />
           <ModalContent
             onInputChange={handleInputChange}
-            // onContentChange={handleContentChange}
             title={formState.title}
             content={formState.content}
           />
 
-          <DatePicker />
+          <DatePicker
+            onInputChange={handleInputChange}
+            due_date={formState.due_date}
+          />
           <SubmitBtn onClick={(e) => handleEditTask(e)} className="submit-btn">
             Save changes
           </SubmitBtn>
