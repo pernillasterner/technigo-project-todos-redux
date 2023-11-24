@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { DatePicker } from "../../../utils/DatePicker";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SubmitBtn } from "../../../styles/Buttons";
 import { ModalBottom } from "./ModalBottom";
-import { tasks } from "../../../data/tasks";
 import { ModalTop } from "./ModalTop";
 import { ModalContent } from "./ModalContent";
 import { useState } from "react";
@@ -50,11 +49,20 @@ const CloseSign = styled.img.attrs((props) => ({
 export const EditTask = ({ taskId }) => {
   const dispatch = useDispatch();
   const [category, setCategory] = useState("");
-
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const tasks = useSelector((store) => store.task.tasks);
   const task = tasks.find((task) => task.id === taskId);
-
   const handleCatChange = (newCat) => {
     setCategory(newCat);
+  };
+
+  const handleTitleChange = (newTitle) => {
+    setTitle(newTitle);
+  };
+
+  const handleContentChange = (newContent) => {
+    setContent(newContent);
   };
 
   const handleEditTask = (e) => {
@@ -64,13 +72,14 @@ export const EditTask = ({ taskId }) => {
       dispatch(
         editTask({
           id: task.id,
-          title: task.title,
+          title: title,
+          content: content,
           completed: false,
           created_at: new Date().toISOString(),
           category: category,
         })
       );
-      dispatch(closeModal());
+      // dispatch(closeModal());
       //   setErrorMessage(false);
       // Clear the input value
       //   setValue("");
@@ -90,13 +99,18 @@ export const EditTask = ({ taskId }) => {
           onClick={() => handleEditTask()}
         />
         <form>
-          <ModalTop
-            onCategoryChange={handleCatChange}
-            categories={task.categories}
+          <ModalTop onCategoryChange={handleCatChange} cats={task.categories} />
+          <ModalContent
+            onTitleChange={handleTitleChange}
+            onContentChange={handleContentChange}
+            title={task.title}
+            content={task.content}
           />
-          <ModalContent title={task.title} content={task.content} />
+
           <DatePicker />
-          <SubmitBtn onClick={(e) => handleEditTask(e)}>Save changes</SubmitBtn>
+          <SubmitBtn onClick={(e) => handleEditTask(e)} className="submit-btn">
+            Save changes
+          </SubmitBtn>
         </form>
         <ModalBottom
           key={`bottom-${task.id}`}
