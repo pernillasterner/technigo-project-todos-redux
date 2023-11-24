@@ -3,10 +3,6 @@ import { tasks } from "../../data/tasks";
 
 const initialState = {
   tasks: tasks,
-  content: "",
-  categories: [],
-  completed: false,
-  created_at: null,
 };
 
 export const taskSlice = createSlice({
@@ -32,21 +28,29 @@ export const taskSlice = createSlice({
       }
     },
     editTask: (state, action) => {
-      // If cat push the new cat to current object
-      const { id, title, category } = action.payload;
-
-      // Check if the task with the given id already exists
-      const taskIndex = state.tasks.find((task) => task.id === id);
+      const { id, title, content, category, due_date } = action.payload;
       const existingTask = state.tasks.find((task) => task.id === id);
-
+      console.log(due_date);
       if (existingTask) {
-        // If the task exists, update its properties
-        if (!existingTask.categories) {
-          // If the cat doesn't exist add that categories array
-          existingTask.categories = [category];
-        } else {
-          // Update the categories array with the new category
-          existingTask.categories.push(category);
+        if (category) {
+          if (!existingTask.categories) {
+            // If the cat doesn't exist add that categories array
+            existingTask.categories = [category];
+          } else if (category !== undefined) {
+            // Update the categories array with the new category
+            existingTask.categories.push(category);
+          }
+        }
+
+        if (title) {
+          existingTask.title = title;
+        }
+
+        if (content) {
+          existingTask.content = content;
+        }
+        if (due_date) {
+          existingTask.due_date = due_date;
         }
       }
     },
