@@ -17,6 +17,7 @@ const EditTaskContainer = styled.div.attrs((props) => ({
   width: 100%;
   height: 100%;
   top: 0;
+  left: 0;
   background: #00000075;
   z-index: 999;
   display: flex;
@@ -47,14 +48,17 @@ const CloseSign = styled.img.attrs((props) => ({
 
 export const EditTask = ({ taskId }) => {
   const dispatch = useDispatch();
+
   const tasks = useSelector((store) => store.task.tasks);
   const task = tasks.find((task) => task.id === taskId);
 
   const [formState, setFormState] = useState({
-    category: task?.category || "",
+    id: task?.id || 0,
+    category: task?.category || [],
     title: task?.title || "",
     content: task?.content || "",
     due_date: task?.due_date || "",
+    created_at: task?.created_at || new Date().toISOString(),
   });
 
   const handleInputChange = (inputValue) => {
@@ -71,7 +75,7 @@ export const EditTask = ({ taskId }) => {
       // Dispatch the addTask action with the new task
       dispatch(
         editTask({
-          id: task.id,
+          id: formState.id,
           title: formState.title,
           content: formState.content,
           created_at: new Date().toISOString(),
@@ -97,17 +101,17 @@ export const EditTask = ({ taskId }) => {
             <form>
               <ModalTop
                 onInputChange={handleInputChange}
-                cats={task.categories}
+                cats={task?.categories}
               />
               <ModalContent
                 onInputChange={handleInputChange}
-                title={formState.title}
-                content={formState.content}
+                title={formState?.title}
+                content={formState?.content}
               />
 
               <DatePicker
                 onInputChange={handleInputChange}
-                due_date={formState.due_date}
+                due_date={formState?.due_date}
               />
               <SubmitBtn
                 onClick={(e) => handleEditTask(e)}
@@ -117,9 +121,9 @@ export const EditTask = ({ taskId }) => {
               </SubmitBtn>
             </form>
             <ModalBottom
-              key={`bottom-${task.id}`}
-              created_at={task.created_at}
-              id={task.id}
+              key={`bottom-${task?.id}`}
+              created_at={formState?.created_at}
+              id={task?.id}
             />
           </EditTaskBox>
         </EditTaskContainer>
