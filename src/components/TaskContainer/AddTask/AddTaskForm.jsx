@@ -79,7 +79,9 @@ export const AddTaskForm = ({ tasks }) => {
               You need to add a task
             </ErrorMsg>
           )}
-          <SubmitBtn onClick={handleAddTask}>Save changes</SubmitBtn>
+          <SubmitBtn onClick={handleAddTask} className="submit-btn">
+            Save changes
+          </SubmitBtn>
         </TaskForm>
       )}
     </>
