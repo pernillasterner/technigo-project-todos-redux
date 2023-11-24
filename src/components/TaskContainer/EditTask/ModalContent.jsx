@@ -6,22 +6,11 @@ const TitleInput = styled.input.attrs((props) => ({
   font-size: 1.4rem;
 `;
 
-export const ModalContent = ({
-  onTitleChange,
-  onContentChange,
-  title,
-  content,
-}) => {
-  const handleTitleInput = (e) => {
+export const ModalContent = ({ onInputChange, title, content }) => {
+  const handleInput = (e) => {
     e.preventDefault();
-    const newTitle = e.target.value;
-    onTitleChange(newTitle);
-  };
-
-  const handleContentInput = (e) => {
-    e.preventDefault();
-    const newContent = e.target.value;
-    onContentChange(newContent);
+    const inputValue = e.target;
+    onInputChange(inputValue);
   };
 
   return (
@@ -33,7 +22,7 @@ export const ModalContent = ({
         type="text"
         name="title"
         placeholder={title}
-        onChange={handleTitleInput}
+        onChange={handleInput}
       />
 
       <label htmlFor="content">Description</label>
@@ -44,7 +33,7 @@ export const ModalContent = ({
         cols="60"
         rows="7"
         placeholder={content}
-        onChange={handleContentInput}
+        onChange={handleInput}
       ></textarea>
     </>
   );
