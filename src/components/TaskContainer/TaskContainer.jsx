@@ -8,7 +8,7 @@ const StyledTaskContainer = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   display: flex;
-  justify-content: space-around;
+  justify-content: start;
   flex-wrap: wrap;
   height: 100vh;
   position: relative;
