@@ -1,16 +1,24 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 
-export const DatePicker = () => {
-  const [date, setDate] = useState("");
+export const DatePicker = ({ onInputChange, due_date }) => {
   const dateInputRef = useRef(null);
 
   const handleChange = (e) => {
-    setDate(e.target.value);
+    e.preventDefault();
+
+    const inputValue = e.target;
+    onInputChange(inputValue);
   };
 
   return (
-    <div>
-      <input type="date" onChange={handleChange} ref={dateInputRef} />
-    </div>
+    <>
+      <label htmlFor="due_date">Due date</label>
+      <input
+        type="date"
+        name="due_date"
+        onChange={handleChange}
+        ref={dateInputRef}
+      />
+    </>
   );
 };
