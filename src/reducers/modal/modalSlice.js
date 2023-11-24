@@ -22,6 +22,7 @@ export const modalSlice = createSlice({
     },
     closeEditModal(state) {
       state.isModalOpen = false;
+      state.taskId = null;
     },
   },
 });
