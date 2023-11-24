@@ -28,20 +28,20 @@ export const taskSlice = createSlice({
       }
     },
     editTask: (state, action) => {
-      const { id, title, content, category, due_date } = action.payload;
+      const { id, title, content, category, due_date, created_at } =
+        action.payload;
       const existingTask = state.tasks.find((task) => task.id === id);
-
       if (existingTask) {
         if (category) {
           if (!existingTask.categories) {
             // If the cat doesn't exist add that categories array
             existingTask.categories = [category];
-          } else if (category !== undefined) {
+          } else {
             // Update the categories array with the new category
             existingTask.categories.push(category);
           }
         }
-
+        // TODO: Write better code here
         if (title) {
           existingTask.title = title;
         }
@@ -52,6 +52,17 @@ export const taskSlice = createSlice({
         if (due_date) {
           existingTask.due_date = due_date;
         }
+      } else {
+        const newTask = {
+          id: id,
+          title: title,
+          created_at: created_at,
+          content: content,
+          categories: category ? [category] : [],
+          due_date: due_date,
+          completed: false,
+        };
+        state.tasks.push(newTask);
       }
     },
   },
