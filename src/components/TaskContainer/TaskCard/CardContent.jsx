@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
 import { markCompleted } from "../../../reducers/task/taskSlice";
 import styled from "styled-components";
 
@@ -27,7 +28,7 @@ const CardDeadline = styled.span.attrs((props) => ({
   className: props.className || "",
 }))`
   font-size: 0.9rem;
-  background-color: #f37272;
+  background-color: ${(props) => props.dueDate};
   width: fit-content;
   font-size: 0.8rem;
   padding: 0.3em 0.8em;
@@ -60,12 +61,23 @@ CompleteButton.shouldForwardProp = (prop) => prop !== "completed";
 
 export const CardContent = ({ title, due_date, completed, id, text }) => {
   const dispatch = useDispatch();
+  const currentData = new Date();
+  const formattedData = currentData.toISOString().split("T")[0];
+  const [dueDate, setDueDate] = useState("var(--clr-grey-5)");
+
+  useEffect(() => {
+    if (formattedData > due_date) {
+      setDueDate("var(--clr-alert)");
+    } else {
+      setDueDate("var(--clr-grey-5)");
+    }
+  }, [formattedData, due_date]);
 
   return (
     <Content className="content">
       <CardH5 className="card_title">{title}</CardH5>
       <CardText>{text}</CardText>
-      {due_date && <CardDeadline>⏱️ {due_date}</CardDeadline>}
+      {due_date && <CardDeadline dueDate={dueDate}>⏱️ {due_date}</CardDeadline>}
       <CompleteButton
         onClick={() => dispatch(markCompleted(id))}
         completed={completed}
