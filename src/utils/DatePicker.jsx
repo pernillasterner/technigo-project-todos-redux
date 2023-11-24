@@ -16,6 +16,7 @@ export const DatePicker = ({ onInputChange, due_date }) => {
       <input
         type="date"
         name="due_date"
+        value={due_date}
         onChange={handleChange}
         ref={dateInputRef}
       />
