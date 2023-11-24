@@ -36,13 +36,17 @@ export const taskSlice = createSlice({
       const { id, title, category } = action.payload;
 
       // Check if the task with the given id already exists
-      const taskIndex = state.tasks.findIndex((task) => task.id === id);
+      const taskIndex = state.tasks.find((task) => task.id === id);
+      const existingTask = state.tasks.find((task) => task.id === id);
 
-      if (taskIndex !== -1) {
+      if (existingTask) {
         // If the task exists, update its properties
-        if (category !== undefined) {
+        if (!existingTask.categories) {
+          // If the cat doesn't exist add that categories array
+          existingTask.categories = [category];
+        } else {
           // Update the categories array with the new category
-          state.tasks[taskIndex].categories.push(category);
+          existingTask.categories.push(category);
         }
       }
     },
@@ -57,11 +61,11 @@ export default taskSlice.reducer;
 // ACTIONS
 /**
  *  {type: 'todos/todoAdded', payload: todoText} ✅
-    {type: 'todos/todoToggled', payload: todoId}
+    {type: 'todos/todoToggled', payload: todoId} ✅
     {type: 'todos/colorSelected', payload: {todoId, color}}
     {type: 'todos/todoDeleted', payload: todoId} ✅
     {type: 'todos/allCompleted'} ✅
-    {type: 'todos/completedCleared'}
+    {type: 'todos/completedCleared'} ✅
     {type: 'filters/statusFilterChanged', payload: filterValue}
     {type: 'filters/colorFilterChanged', payload: {color, changeType}}
  */
