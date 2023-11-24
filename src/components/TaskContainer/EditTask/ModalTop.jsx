@@ -13,11 +13,11 @@ const CatsContainer = styled.div.attrs((props) => ({
   margin-bottom: 0.7rem;
 `;
 
-export const ModalTop = ({ onCategoryChange, cats }) => {
-  const handleCatChange = (e) => {
+export const ModalTop = ({ onInputChange, cats }) => {
+  const handleInput = (e) => {
     e.preventDefault();
-    const newCat = e.target.value;
-    onCategoryChange(newCat);
+    const inputValue = e.target;
+    onInputChange(inputValue);
 
     // TODO: Need to clear the input field
   };
@@ -32,7 +32,7 @@ export const ModalTop = ({ onCategoryChange, cats }) => {
           type="text"
           name="category"
           placeholder="Add category"
-          onChange={handleCatChange}
+          onChange={handleInput}
         />
       </CatInputContainer>
       <CatsContainer className="cats">
