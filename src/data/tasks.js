@@ -1,6 +1,6 @@
 export const tasks = [
   {
-    id: 1,
+    id: 0,
     title: "Fix laundry 🧺",
     created_at: "2023-11-23T17:56:05.455Z",
     content: "Lite merz",
@@ -9,7 +9,7 @@ export const tasks = [
     completed: false,
   },
   {
-    id: 2,
+    id: 1,
     title: "Pay bills 💸",
     created_at: "2023-11-23T17:56:05.455Z",
     categories: [],
@@ -17,7 +17,7 @@ export const tasks = [
     completed: true,
   },
   {
-    id: 3,
+    id: 2,
     title: "Learn Redux",
     created_at: "2023-11-23T17:56:05.455Z",
     categories: ["Studies", "medium"],
