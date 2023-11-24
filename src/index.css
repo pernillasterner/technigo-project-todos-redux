@@ -17,6 +17,7 @@ Variables
   --clr-uncompleted: #eda989;
   --clr-completed: #85c571;
   --clr-submit: #2366f2;
+  --clr-cats: #775ebf;
   /* --clr-red-dark: hsl(360, 67%, 44%);
   --clr-red-light: hsl(360, 71%, 66%);
   --transition: all 0.3s linear;
@@ -79,4 +80,21 @@ h4 {
 }
 p {
   margin-bottom: 1.25rem;
+}
+
+.is-hidden {
+  display: none;
+}
+
+input,
+textarea {
+  border: none;
+  background-color: var(--clr-primary-dark);
+  color: var(--clr-white);
+  border-radius: var(--border-radius-mini);
+  padding: var(--general-mini-padding);
+  outline: none;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  font-weight: 600;
 }
