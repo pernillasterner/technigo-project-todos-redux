@@ -13,14 +13,10 @@ const StyledTaskColumn = styled.div.attrs((props) => ({
 `;
 
 export const TaskColumn = ({ title, tasks, total }) => {
-  const isCompleted = tasks.some((task) => task.completed);
-
   return (
     <StyledTaskColumn className="task_column">
       <TopCard title={title} total={total} />
-      {tasks.map((task) => (
-        <TaskCard key={task.id} task={task} />
-      ))}
+      {tasks && tasks.map((task) => <TaskCard key={task.id} task={task} />)}
       {title === "uncompleted" && (
         <>
           <AddTaskCard tasks={tasks} />
