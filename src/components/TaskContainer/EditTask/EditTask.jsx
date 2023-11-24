@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import { DatePicker } from "../../../utils/DatePicker";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SubmitBtn } from "../../../styles/Buttons";
+import { closeEditModal } from "../../../reducers/modal/modalSlice";
+import { editTask } from "../../../reducers/task/taskSlice";
 import { ModalBottom } from "./ModalBottom";
 import { ModalTop } from "./ModalTop";
 import { ModalContent } from "./ModalContent";
-import { useState } from "react";
-import { editTask } from "../../../reducers/task/taskSlice";
 import closeSign from "../../../../public/icons/close_icon.svg";
-import { closeEditModal } from "../../../reducers/modal/modalSlice";
+import { SubmitBtn } from "../../../styles/Buttons";
+import { DatePicker } from "../../../utils/DatePicker";
 
 const EditTaskContainer = styled.div.attrs((props) => ({
   className: props.className || "",
@@ -28,7 +28,6 @@ const EditTaskBox = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   width: 600px;
-  height: 500px;
   background: var(--clr-primary-light);
   border-radius: var(--border-radius-large);
   padding: var(--general-padding);
@@ -50,11 +49,12 @@ export const EditTask = ({ taskId }) => {
   const dispatch = useDispatch();
   const tasks = useSelector((store) => store.task.tasks);
   const task = tasks.find((task) => task.id === taskId);
+
   const [formState, setFormState] = useState({
-    category: task.category || "",
-    title: task.title || "",
-    content: task.content || "",
-    due_date: task.due_date || "",
+    category: task?.category || "",
+    title: task?.title || "",
+    content: task?.content || "",
+    due_date: task?.due_date || "",
   });
 
   const handleInputChange = (inputValue) => {
@@ -83,36 +83,47 @@ export const EditTask = ({ taskId }) => {
       dispatch(closeEditModal());
     }
   };
-  return (
-    <EditTaskContainer>
-      <EditTaskBox className="edit_box">
-        <CloseSign
-          src={closeSign}
-          alt="close"
-          onClick={() => handleEditTask()}
-        />
-        <form>
-          <ModalTop onInputChange={handleInputChange} cats={task.categories} />
-          <ModalContent
-            onInputChange={handleInputChange}
-            title={formState.title}
-            content={formState.content}
-          />
 
-          <DatePicker
-            onInputChange={handleInputChange}
-            due_date={formState.due_date}
-          />
-          <SubmitBtn onClick={(e) => handleEditTask(e)} className="submit-btn">
-            Save changes
-          </SubmitBtn>
-        </form>
-        <ModalBottom
-          key={`bottom-${task.id}`}
-          created_at={task.created_at}
-          id={task.id}
-        />
-      </EditTaskBox>
-    </EditTaskContainer>
+  return (
+    <>
+      {formState && (
+        <EditTaskContainer>
+          <EditTaskBox className="edit_box">
+            <CloseSign
+              src={closeSign}
+              alt="close"
+              onClick={() => handleEditTask()}
+            />
+            <form>
+              <ModalTop
+                onInputChange={handleInputChange}
+                cats={task.categories}
+              />
+              <ModalContent
+                onInputChange={handleInputChange}
+                title={formState.title}
+                content={formState.content}
+              />
+
+              <DatePicker
+                onInputChange={handleInputChange}
+                due_date={formState.due_date}
+              />
+              <SubmitBtn
+                onClick={(e) => handleEditTask(e)}
+                className="submit-btn"
+              >
+                Save changes
+              </SubmitBtn>
+            </form>
+            <ModalBottom
+              key={`bottom-${task.id}`}
+              created_at={task.created_at}
+              id={task.id}
+            />
+          </EditTaskBox>
+        </EditTaskContainer>
+      )}
+    </>
   );
 };
