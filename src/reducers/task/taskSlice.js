@@ -30,7 +30,7 @@ export const taskSlice = createSlice({
     editTask: (state, action) => {
       const { id, title, content, category, due_date } = action.payload;
       const existingTask = state.tasks.find((task) => task.id === id);
-      console.log(due_date);
+
       if (existingTask) {
         if (category) {
           if (!existingTask.categories) {
