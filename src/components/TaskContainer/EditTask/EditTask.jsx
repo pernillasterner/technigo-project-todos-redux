@@ -48,21 +48,20 @@ const CloseSign = styled.img.attrs((props) => ({
 
 export const EditTask = ({ taskId }) => {
   const dispatch = useDispatch();
-  const [category, setCategory] = useState("");
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
   const tasks = useSelector((store) => store.task.tasks);
   const task = tasks.find((task) => task.id === taskId);
-  const handleCatChange = (newCat) => {
-    setCategory(newCat);
-  };
+  const [formState, setFormState] = useState({
+    category: task.category || "",
+    title: task.title || "",
+    content: task.content || "",
+  });
 
-  const handleTitleChange = (newTitle) => {
-    setTitle(newTitle);
-  };
-
-  const handleContentChange = (newContent) => {
-    setContent(newContent);
+  const handleInputChange = (inputValue) => {
+    const { name, value } = inputValue;
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const handleEditTask = (e) => {
@@ -72,11 +71,11 @@ export const EditTask = ({ taskId }) => {
       dispatch(
         editTask({
           id: task.id,
-          title: title,
-          content: content,
-          completed: false,
+          title: formState.title,
+          content: formState.content,
+          // completed: false,
           created_at: new Date().toISOString(),
-          category: category,
+          category: formState.category,
         })
       );
       // dispatch(closeModal());
@@ -99,12 +98,12 @@ export const EditTask = ({ taskId }) => {
           onClick={() => handleEditTask()}
         />
         <form>
-          <ModalTop onCategoryChange={handleCatChange} cats={task.categories} />
+          <ModalTop onInputChange={handleInputChange} cats={task.categories} />
           <ModalContent
-            onTitleChange={handleTitleChange}
-            onContentChange={handleContentChange}
-            title={task.title}
-            content={task.content}
+            onInputChange={handleInputChange}
+            // onContentChange={handleContentChange}
+            title={formState.title}
+            content={formState.content}
           />
 
           <DatePicker />
