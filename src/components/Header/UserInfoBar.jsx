@@ -2,7 +2,7 @@ import { Avatar } from "./Avatar";
 import { Filter } from "./Filter";
 import styled from "styled-components";
 
-const UserInfo = styled.div`
+const RightSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,10 +14,15 @@ const H2 = styled.h2`
 
 export const UserInfoBar = () => {
   return (
-    <UserInfo>
-      <H2>Hello Pillan 👋</H2>
-      <Filter />
-      <Avatar />
-    </UserInfo>
+    <>
+      <div className="greeting">
+        <H2>Hello Pillan 👋</H2>
+      </div>
+
+      <RightSection className="right-section">
+        <Filter />
+        <Avatar />
+      </RightSection>
+    </>
   );
 };
