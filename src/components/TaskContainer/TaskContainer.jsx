@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 import { TaskColumn } from "./TaskColumn";
 import styled from "styled-components";
 import { NoTasks } from "./ClearTasks/NoTasks";
@@ -15,9 +16,20 @@ const StyledTaskContainer = styled.div.attrs((props) => ({
 `;
 
 export const TaskContainer = () => {
-  const tasks = useSelector((store) => store.task.tasks);
+  const allTasks = useSelector((store) => store.task.tasks);
+  const filterTasks = useSelector((store) => store.task.filterTasks);
   const taskId = useSelector((store) => store.modal.taskId);
   const isModalOpen = useSelector((store) => store.modal.isModalOpen);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    if (filterTasks.length !== 0) {
+      setTasks(filterTasks);
+    } else {
+      setTasks(allTasks);
+    }
+  }, [allTasks, filterTasks]);
+
   const taskColumns = [
     { title: "uncompleted", tasks: tasks.filter((task) => !task.completed) },
     { title: "completed", tasks: tasks.filter((task) => task.completed) },
