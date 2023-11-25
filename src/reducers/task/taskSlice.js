@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { tasks } from "../../data/tasks";
+// import { tasks } from "../../data/tasks";
 
 const initialState = {
-  tasks: tasks,
+  tasks: [],
+  filterTasks: [],
+  option: "all",
 };
 
 export const taskSlice = createSlice({
@@ -66,22 +68,27 @@ export const taskSlice = createSlice({
         state.tasks.push(newTask);
       }
     },
+    filterTasks: (state, action) => {
+      const option = action.payload;
+
+      if (option === "uncompleted") {
+        state.filterTasks = state.tasks.filter((task) => !task.completed);
+      } else if (option === "completed") {
+        state.filterTasks = state.tasks.filter((task) => task.completed);
+      } else if (option === "all") {
+        state.filterTasks = [];
+      }
+    },
   },
 });
 
-export const { clearTasks, addTask, removeTask, markCompleted, editTask } =
-  taskSlice.actions;
+export const {
+  clearTasks,
+  addTask,
+  removeTask,
+  markCompleted,
+  editTask,
+  filterTasks,
+} = taskSlice.actions;
 
 export default taskSlice.reducer;
-
-// ACTIONS
-/**
- *  {type: 'todos/todoAdded', payload: todoText} ✅
-    {type: 'todos/todoToggled', payload: todoId} ✅
-    {type: 'todos/colorSelected', payload: {todoId, color}}
-    {type: 'todos/todoDeleted', payload: todoId} ✅
-    {type: 'todos/allCompleted'} ✅
-    {type: 'todos/completedCleared'} ✅
-    {type: 'filters/statusFilterChanged', payload: filterValue}
-    {type: 'filters/colorFilterChanged', payload: {color, changeType}}
- */
