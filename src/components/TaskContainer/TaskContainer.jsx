@@ -17,18 +17,22 @@ const StyledTaskContainer = styled.div.attrs((props) => ({
 
 export const TaskContainer = () => {
   const allTasks = useSelector((store) => store.task.tasks);
-  const filterTasks = useSelector((store) => store.task.filterTasks);
   const taskId = useSelector((store) => store.modal.taskId);
   const isModalOpen = useSelector((store) => store.modal.isModalOpen);
+  const option = useSelector((store) => store.filter.option);
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    if (filterTasks.length !== 0) {
-      setTasks(filterTasks);
-    } else {
+    if (option === "completed") {
+      const completedTasks = allTasks.filter((task) => task.completed);
+      setTasks(completedTasks);
+    } else if (option === "uncompleted") {
+      const uncompletedTasks = allTasks.filter((task) => !task.completed);
+      setTasks(uncompletedTasks);
+    } else if (option === "all") {
       setTasks(allTasks);
     }
-  }, [allTasks, filterTasks]);
+  }, [option, allTasks]);
 
   const taskColumns = [
     { title: "uncompleted", tasks: tasks.filter((task) => !task.completed) },
