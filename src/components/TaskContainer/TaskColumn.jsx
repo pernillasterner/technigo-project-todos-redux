@@ -20,7 +20,7 @@ export const TaskColumn = ({ title, tasks, total }) => {
       {title === "uncompleted" && (
         <>
           <AddTaskCard tasks={tasks} />
-          <ClearTasks />
+          <ClearTasks tasks={tasks} />
         </>
       )}
     </StyledTaskColumn>
