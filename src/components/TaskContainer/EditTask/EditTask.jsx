@@ -54,7 +54,7 @@ export const EditTask = ({ taskId }) => {
 
   const [formState, setFormState] = useState({
     id: task?.id || 0,
-    category: task?.category || [],
+    category: task?.category || "",
     title: task?.title || "",
     content: task?.content || "",
     due_date: task?.due_date || "",
