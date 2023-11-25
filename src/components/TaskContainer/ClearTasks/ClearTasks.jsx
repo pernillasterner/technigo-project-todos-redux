@@ -1,5 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
-import { tasks } from "../../../data/tasks";
+import { useDispatch } from "react-redux";
 import { clearTasks } from "../../../reducers/task/taskSlice";
 import styled from "styled-components";
 
@@ -23,9 +22,8 @@ const ClearTaskWrapper = styled.div.attrs((props) => ({
   }
 `;
 
-export const ClearTasks = () => {
+export const ClearTasks = ({ tasks }) => {
   const dispatch = useDispatch();
-  const tasks = useSelector((store) => store.task.tasks);
   const uncompletedTasks = tasks.some((task) => !task.completed);
 
   return (
