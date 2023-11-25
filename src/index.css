@@ -99,3 +99,10 @@ textarea {
   width: 100%;
   font-weight: 600;
 }
+
+.filter .css-13cymwt-control {
+  background: var(--clr-primary-dark);
+  color: var(--clr-white);
+  border-radius: var(--border-radius-mini);
+  border: 1px solid var(--clr-grey-5);
+}
