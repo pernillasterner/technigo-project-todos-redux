@@ -31,12 +31,13 @@ export const taskSlice = createSlice({
       const { id, title, content, category, due_date, created_at } =
         action.payload;
       const existingTask = state.tasks.find((task) => task.id === id);
+
       if (existingTask) {
         if (category) {
           if (!existingTask.categories) {
             // If the cat doesn't exist add that categories array
             existingTask.categories = [category];
-          } else {
+          } else if (category.length !== 0) {
             // Update the categories array with the new category
             existingTask.categories.push(category);
           }
