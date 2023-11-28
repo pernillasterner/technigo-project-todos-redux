@@ -6,7 +6,6 @@ import { editTask } from "../../../reducers/task/taskSlice";
 import { ModalBottom } from "./ModalBottom";
 import { ModalTop } from "./ModalTop";
 import { ModalContent } from "./ModalContent";
-import closeSign from "../../../../public/icons/close_icon.svg";
 import { SubmitBtn } from "../../../styles/Buttons";
 import { DatePicker } from "../../../utils/DatePicker";
 
@@ -54,6 +53,7 @@ export const EditTask = ({ taskId }) => {
 
   const [formState, setFormState] = useState({
     id: task?.id || 0,
+    tag: task?.tag || "",
     category: task?.category || "",
     title: task?.title || "",
     content: task?.content || "",
@@ -79,11 +79,11 @@ export const EditTask = ({ taskId }) => {
           title: formState.title,
           content: formState.content,
           created_at: new Date().toISOString(),
-          category: formState.category,
+          tag: formState.tag,
           due_date: formState.due_date,
+          category: formState.category,
         })
       );
-    } else {
       dispatch(closeEditModal());
     }
   };
@@ -93,22 +93,17 @@ export const EditTask = ({ taskId }) => {
       {formState && (
         <EditTaskContainer>
           <EditTaskBox className="edit_box">
-            <CloseSign
-              src={closeSign}
-              alt="close"
-              onClick={() => handleEditTask()}
-            />
             <form>
               <ModalTop
                 onInputChange={handleInputChange}
-                cats={task?.categories}
+                tags={task?.tags}
+                currentCat={task?.category}
               />
               <ModalContent
                 onInputChange={handleInputChange}
                 title={formState?.title}
                 content={formState?.content}
               />
-
               <DatePicker
                 onInputChange={handleInputChange}
                 due_date={formState?.due_date}
