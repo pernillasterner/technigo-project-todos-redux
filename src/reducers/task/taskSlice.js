@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { tasks } from "../../data/tasks";
+import { tasks } from "../../data/tasks";
 
 const initialState = {
-  tasks: [],
-  filterTasks: [],
-  option: "all",
+  tasks: tasks,
 };
 
 export const taskSlice = createSlice({
@@ -30,25 +28,27 @@ export const taskSlice = createSlice({
       }
     },
     editTask: (state, action) => {
-      const { id, title, content, category, due_date, created_at } =
+      const { id, title, content, tag, due_date, created_at, category } =
         action.payload;
       const existingTask = state.tasks.find((task) => task.id === id);
 
       if (existingTask) {
-        if (category) {
-          if (!existingTask.categories) {
-            // If the cat doesn't exist add that categories array
-            existingTask.categories = [category];
-          } else if (category.length !== 0) {
-            // Update the categories array with the new category
-            existingTask.categories.push(category);
+        if (tag) {
+          if (!existingTask.tags) {
+            // If the cat doesn't exist add that tags array
+            existingTask.tags = [tag];
+          } else if (tag.length !== 0) {
+            // Update the tags array with the new tag
+            existingTask.tags.push(tag);
           }
+        }
+        if (category) {
+          existingTask.category = category;
         }
         // TODO: Write better code here
         if (title) {
           existingTask.title = title;
         }
-
         if (content) {
           existingTask.content = content;
         }
@@ -61,34 +61,18 @@ export const taskSlice = createSlice({
           title: title,
           created_at: created_at,
           content: content,
-          categories: category ? [category] : [],
+          tags: tag ? [tag] : [],
+          category: category,
           due_date: due_date,
           completed: false,
         };
         state.tasks.push(newTask);
       }
     },
-    filterTasks: (state, action) => {
-      const option = action.payload;
-
-      if (option === "uncompleted") {
-        state.filterTasks = state.tasks.filter((task) => !task.completed);
-      } else if (option === "completed") {
-        state.filterTasks = state.tasks.filter((task) => task.completed);
-      } else if (option === "all") {
-        state.filterTasks = [];
-      }
-    },
   },
 });
 
-export const {
-  clearTasks,
-  addTask,
-  removeTask,
-  markCompleted,
-  editTask,
-  filterTasks,
-} = taskSlice.actions;
+export const { clearTasks, addTask, removeTask, markCompleted, editTask } =
+  taskSlice.actions;
 
 export default taskSlice.reducer;
