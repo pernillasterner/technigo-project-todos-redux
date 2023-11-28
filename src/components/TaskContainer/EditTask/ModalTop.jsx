@@ -1,19 +1,31 @@
 import styled from "styled-components";
-import { CatBtn } from "../../../styles/Buttons";
+import { useSelector } from "react-redux";
+import { TagBtn } from "../../../styles/Buttons";
+import { Select } from "../../../styles/Select";
 
-const CatInputContainer = styled.div.attrs((props) => ({
+const TagInputContainer = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
-  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  input {
+    margin-right: 0.4rem;
+  }
+  select {
+    margin-right: 0;
+    min-width: 30%;
+  }
 `;
 
-const CatsContainer = styled.div.attrs((props) => ({
+const TagsContainer = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   margin-bottom: 0.7rem;
 `;
 
-export const ModalTop = ({ onInputChange, cats }) => {
+export const ModalTop = ({ onInputChange, tags, currentCat }) => {
+  const categories = useSelector((store) => store.filter.categories);
   const handleInput = (e) => {
     e.preventDefault();
     const inputValue = e.target;
@@ -24,20 +36,33 @@ export const ModalTop = ({ onInputChange, cats }) => {
 
   return (
     <>
-      <CatInputContainer className="cat_input-close">
-        <label htmlFor="category" className="is-hidden">
-          Category
+      <TagInputContainer className="tag_input-close">
+        <label htmlFor="tag" className="is-hidden">
+          Tag
         </label>
         <input
           type="text"
-          name="category"
-          placeholder="Add category"
+          name="tag"
+          placeholder="Add tag"
           onChange={handleInput}
         />
-      </CatInputContainer>
-      <CatsContainer className="cats">
-        {cats && cats.map((cat, index) => <CatBtn key={index}>{cat}</CatBtn>)}
-      </CatsContainer>
+        <Select name="category" onChange={handleInput}>
+          {currentCat ? (
+            <option value={currentCat}>{currentCat}</option>
+          ) : (
+            <option value="all">All</option>
+          )}
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </Select>
+      </TagInputContainer>
+
+      <TagsContainer className="tags">
+        {tags && tags.map((tag, index) => <TagBtn key={index}>{tag}</TagBtn>)}
+      </TagsContainer>
       {/* ... rest of the component */}
     </>
   );
