@@ -6,7 +6,10 @@ export const DatePicker = ({ onInputChange, due_date }) => {
   const handleChange = (e) => {
     e.preventDefault();
 
+    console.log(due_date);
+
     const inputValue = e.target;
+    console.log(inputValue);
     onInputChange(inputValue);
   };
 

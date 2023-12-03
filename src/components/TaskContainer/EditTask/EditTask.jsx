@@ -8,6 +8,7 @@ import { ModalTop } from "./ModalTop";
 import { ModalContent } from "./ModalContent";
 import { SubmitBtn } from "../../../styles/Buttons";
 import { DatePicker } from "../../../utils/DatePicker";
+import closeSign from "../../../../public/icons/close_icon.svg";
 
 const EditTaskContainer = styled.div.attrs((props) => ({
   className: props.className || "",
@@ -61,8 +62,13 @@ export const EditTask = ({ taskId }) => {
     created_at: task?.created_at || new Date().toISOString(),
   });
 
+  const handleIsModalOpen = () => {
+    dispatch(closeEditModal());
+  };
+
   const handleInputChange = (inputValue) => {
     const { name, value } = inputValue;
+
     setFormState((prevState) => ({
       ...prevState,
       [name]: value,
@@ -93,6 +99,11 @@ export const EditTask = ({ taskId }) => {
       {formState && (
         <EditTaskContainer>
           <EditTaskBox className="edit_box">
+            <CloseSign
+              src={closeSign}
+              alt="Close sign"
+              onClick={handleIsModalOpen}
+            />
             <form>
               <ModalTop
                 onInputChange={handleInputChange}

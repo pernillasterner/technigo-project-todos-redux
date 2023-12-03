@@ -9,6 +9,7 @@ const TagInputContainer = styled.div.attrs((props) => ({
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  width: 90%;
   input {
     margin-right: 0.4rem;
   }

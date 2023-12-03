@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { closeModal } from "../../../reducers/modal/modalSlice";
 import { addTask } from "../../../reducers/task/taskSlice";
+import { DatePicker } from "../../../utils/DatePicker";
 
 const TaskForm = styled.form.attrs((props) => ({
   className: props.className || "",
@@ -11,6 +12,8 @@ const TaskForm = styled.form.attrs((props) => ({
   margin-right: 0.6em;
   padding: 0.5em 0;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const TaskInput = styled.input.attrs((props) => ({
@@ -39,13 +42,27 @@ export const AddTaskForm = ({ tasks }) => {
   const isOpen = useSelector((store) => store.modal.isOpen);
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
+  const [formState, setFormState] = useState({
+    title: "",
+    due_date: "",
+  });
 
   // Get the last id of task array, add id to new task
   const lastTaskId =
     tasks.length > 0 ? Math.max(...tasks.map((task) => task.id)) : 0;
   const newTaskId = lastTaskId + 1;
 
-  const handleAddTask = () => {
+  const handleInputChange = (inputValue) => {
+    const { name, value } = inputValue;
+
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleAddTask = (e) => {
+    e.preventDefault();
     if (value) {
       // Dispatch the addTask action with the new task
       dispatch(
@@ -53,6 +70,7 @@ export const AddTaskForm = ({ tasks }) => {
           id: newTaskId,
           title: value,
           completed: false,
+          due_date: formState.due_date,
           created_at: new Date().toISOString(),
         })
       );
@@ -64,6 +82,7 @@ export const AddTaskForm = ({ tasks }) => {
       setErrorMessage(true);
     }
   };
+
   return (
     <>
       {isOpen && (
@@ -79,6 +98,10 @@ export const AddTaskForm = ({ tasks }) => {
               You need to add a task
             </ErrorMsg>
           )}
+          <DatePicker
+            onInputChange={handleInputChange}
+            due_date={formState?.due_date}
+          />
           <SubmitBtn onClick={handleAddTask} className="submit-btn">
             Save changes
           </SubmitBtn>
