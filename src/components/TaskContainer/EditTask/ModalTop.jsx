@@ -13,7 +13,6 @@ const TagInputContainer = styled.div.attrs((props) => ({
     margin-right: 0.4rem;
   }
   select {
-    margin-right: 0;
     min-width: 30%;
   }
 `;
@@ -37,15 +36,6 @@ export const ModalTop = ({ onInputChange, tags, currentCat }) => {
   return (
     <>
       <TagInputContainer className="tag_input-close">
-        <label htmlFor="tag" className="is-hidden">
-          Tag
-        </label>
-        <input
-          type="text"
-          name="tag"
-          placeholder="Add tag"
-          onChange={handleInput}
-        />
         <Select name="category" onChange={handleInput}>
           {currentCat ? (
             <option value={currentCat}>{currentCat}</option>
@@ -58,6 +48,15 @@ export const ModalTop = ({ onInputChange, tags, currentCat }) => {
             </option>
           ))}
         </Select>
+        <label htmlFor="tag" className="is-hidden">
+          Tag
+        </label>
+        <input
+          type="text"
+          name="tag"
+          placeholder="Add tag"
+          onChange={handleInput}
+        />
       </TagInputContainer>
 
       <TagsContainer className="tags">

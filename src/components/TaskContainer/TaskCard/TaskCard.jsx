@@ -15,12 +15,17 @@ const CardWrapper = styled.div.attrs((props) => ({
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  ${({ cat }) =>
+    cat &&
+    `
+    border-left: 2px solid #92eced;
+  `}
 `;
 
 export const TaskCard = ({ task }) => {
   return (
-    <CardWrapper key={task.id} className="card_wrapper">
-      <CardTop cats={task.categories} id={task.id} />
+    <CardWrapper key={task.id} className="card_wrapper" cat={task.category}>
+      <CardTop tags={task.tags} id={task.id} cat={task.category} />
       <CardContent
         title={task.title}
         due_date={task.due_date}
