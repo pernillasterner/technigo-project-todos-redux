@@ -12,16 +12,27 @@ export const SubmitBtn = styled.button.attrs((props) => ({
   font-weight: 700;
 `;
 
-export const CatBtn = styled.span.attrs((props) => ({
+export const TagBtn = styled.span.attrs((props) => ({
   className: props.className || "",
 }))`
   background-color: var(--clr-cats);
   padding: 0.1em 0.8em;
-  margin: 0 5px;
+  margin: 5px;
+
   font-size: 0.8rem;
   border-radius: var(--border-radius-small);
 
   &:first-child {
     margin-left: 0;
   }
+  > *:not(:first-child) {
+    margin-left: 0px;
+  }
+`;
+
+export const CatBtn = styled.span.attrs((props) => ({
+  className: props.className || "",
+}))`
+  color: #92eced;
+  margin-bottom: 0.8em;
 `;
