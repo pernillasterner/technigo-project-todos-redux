@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { categories } from "../../data/categories";
+import { categories } from "../../data/categories";
 
 const initialState = {
+  categories: categories,
+  cat: "all",
   option: "all",
 };
 
@@ -11,19 +13,13 @@ export const filterSlice = createSlice({
   reducers: {
     filterTasks: (state, action) => {
       state.option = action.payload;
-      //   const tasks = useSelector((store) => store.task.tasks);
-      // const { option, tasks } = action.payload;
-      // if (option === "uncompleted") {
-      //   state.filterTasks = tasks.filter((task) => !task.completed);
-      // } else if (option === "completed") {
-      //   state.filterTasks = tasks.filter((task) => task.completed);
-      // } else if (option === "all") {
-      //   state.filterTasks = [];
-      // }
+    },
+    filterCat: (state, action) => {
+      state.cat = action.payload;
     },
   },
 });
 
-export const { filterTasks } = filterSlice.actions;
+export const { filterTasks, filterCat } = filterSlice.actions;
 
 export default filterSlice.reducer;
