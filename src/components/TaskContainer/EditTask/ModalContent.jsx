@@ -21,7 +21,7 @@ export const ModalContent = ({ onInputChange, title, content }) => {
       <TitleInput
         type="text"
         name="title"
-        placeholder={title}
+        placeholder={title || "Enter task title"}
         onChange={handleInput}
       />
 
@@ -32,7 +32,7 @@ export const ModalContent = ({ onInputChange, title, content }) => {
         id=""
         cols="60"
         rows="7"
-        placeholder={content}
+        placeholder={content || "Enter description..."}
         onChange={handleInput}
       ></textarea>
     </>

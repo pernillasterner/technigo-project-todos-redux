@@ -97,7 +97,7 @@ export const AddTaskForm = ({ tasks }) => {
         <TaskForm>
           <TaskInput
             type="text"
-            placeholder="Give this task a name"
+            placeholder="Enter task title"
             required
             onChange={(e) => setValue(e.target.value)}
           />
