@@ -1,0 +1,16 @@
+export const categories = [
+  "health and fitness",
+  "education",
+  "personal development",
+  "entertainment",
+  "home and living",
+  "social",
+  "travel",
+  "work and career",
+  "technology",
+  "creativity",
+  "volunteer",
+  "mindfulness",
+  "shopping",
+  "economy",
+];
