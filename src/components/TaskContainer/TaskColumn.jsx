@@ -16,13 +16,14 @@ export const TaskColumn = ({ title, tasks, total }) => {
   return (
     <StyledTaskColumn className="task_column">
       <TopCard title={title} total={total} />
-      {tasks && tasks.map((task) => <TaskCard key={task.id} task={task} />)}
       {title === "uncompleted" && (
         <>
-          <AddTaskCard tasks={tasks} />
           <ClearTasks tasks={tasks} />
+          <AddTaskCard tasks={tasks} />
         </>
       )}
+
+      {tasks && tasks.map((task) => <TaskCard key={task.id} task={task} />)}
     </StyledTaskColumn>
   );
 };

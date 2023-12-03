@@ -13,7 +13,7 @@ const AddTaskWrapper = styled.div.attrs((props) => ({
   padding: var(--general-smaller-padding);
   border-radius: var(--border-radius-small);
   cursor: pointer;
-  margin: 15px 0;
+  margin: 10px 0;
 `;
 
 const AddTask = styled.div.attrs((props) => ({

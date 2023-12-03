@@ -92,3 +92,7 @@ select {
   width: 100%;
   font-weight: 600;
 }
+
+button {
+  border: none;
+}

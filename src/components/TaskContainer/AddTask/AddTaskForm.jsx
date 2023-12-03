@@ -106,18 +106,18 @@ export const AddTaskForm = ({ tasks }) => {
               You need to add a task
             </ErrorMsg>
           )}
-          <DatePicker
-            onInputChange={handleInputChange}
-            due_date={formState?.due_date}
-          />
           <Select name="category" onChange={(e) => handleInputChange(e.target)}>
-            <option value="all">All</option>
+            <option value="all">Select a category</option>
             {categories.map((cat) => (
               <option key={cat} value={cat}>
                 {cat}
               </option>
             ))}
           </Select>
+          <DatePicker
+            onInputChange={handleInputChange}
+            due_date={formState?.due_date}
+          />
           <SubmitBtn onClick={handleAddTask} className="submit-btn">
             Save changes
           </SubmitBtn>
