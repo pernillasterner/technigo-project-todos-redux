@@ -5,6 +5,7 @@ import { useState } from "react";
 import { closeModal } from "../../../reducers/modal/modalSlice";
 import { addTask } from "../../../reducers/task/taskSlice";
 import { DatePicker } from "../../../utils/DatePicker";
+import { Select } from "../../../styles/Select";
 
 const TaskForm = styled.form.attrs((props) => ({
   className: props.className || "",
@@ -14,6 +15,10 @@ const TaskForm = styled.form.attrs((props) => ({
   width: 100%;
   display: flex;
   flex-direction: column;
+
+  select {
+    width: 100%;
+  }
 `;
 
 const TaskInput = styled.input.attrs((props) => ({
@@ -40,11 +45,13 @@ const ErrorMsg = styled.p.attrs((props) => ({
 export const AddTaskForm = ({ tasks }) => {
   const dispatch = useDispatch();
   const isOpen = useSelector((store) => store.modal.isOpen);
+  const categories = useSelector((store) => store.filter.categories);
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
   const [formState, setFormState] = useState({
     title: "",
     due_date: "",
+    category: "",
   });
 
   // Get the last id of task array, add id to new task
@@ -71,6 +78,7 @@ export const AddTaskForm = ({ tasks }) => {
           title: value,
           completed: false,
           due_date: formState.due_date,
+          category: formState.category,
           created_at: new Date().toISOString(),
         })
       );
@@ -102,6 +110,14 @@ export const AddTaskForm = ({ tasks }) => {
             onInputChange={handleInputChange}
             due_date={formState?.due_date}
           />
+          <Select name="category" onChange={(e) => handleInputChange(e.target)}>
+            <option value="all">All</option>
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </Select>
           <SubmitBtn onClick={handleAddTask} className="submit-btn">
             Save changes
           </SubmitBtn>
