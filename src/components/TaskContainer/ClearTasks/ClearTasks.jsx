@@ -22,6 +22,7 @@ const ClearTaskWrapper = styled.div.attrs((props) => ({
   left: 10px;
   width: 58px
   height: 58px;
+  
 
   &:hover {
     background: linear-gradient(90deg, #c4a0f7, #f59d6f);
@@ -48,6 +49,7 @@ const ConfirmClearAllTasks = styled.div.attrs((props) => ({
   display: ${(props) => (props.show ? "block" : "none")};
   text-align: center;
   transition: 0.5s ease-in-out;
+  z-index: 9999;
 
   p {
     text-align: center;
@@ -92,7 +94,6 @@ export const ClearTasks = ({ tasks }) => {
   const dispatch = useDispatch();
   const uncompletedTasks = tasks.some((task) => !task.completed);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [clicked, setClicked] = useState(false);
 
   const handleClearAllTasks = () => {
     // Display modal
