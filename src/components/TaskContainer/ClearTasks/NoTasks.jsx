@@ -73,7 +73,7 @@ export const NoTasks = () => {
 
   const handleOpenNewTask = (e) => {
     e.preventDefault();
-    dispatch(openEditModal());
+    dispatch(openEditModal({ type: "task" }));
   };
 
   return (
