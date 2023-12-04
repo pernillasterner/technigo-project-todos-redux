@@ -46,12 +46,14 @@ export const AddTaskForm = ({ tasks }) => {
   const dispatch = useDispatch();
   const isOpen = useSelector((store) => store.modal.isOpen);
   const categories = useSelector((store) => store.filter.categories);
+  const projects = useSelector((store) => store.project.projects);
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
   const [formState, setFormState] = useState({
     title: "",
     due_date: "",
     category: "",
+    prodId: "",
   });
 
   // Get the last id of task array, add id to new task
@@ -79,6 +81,7 @@ export const AddTaskForm = ({ tasks }) => {
           completed: false,
           due_date: formState.due_date,
           category: formState.category,
+          prodId: formState.prodId,
           created_at: new Date().toISOString(),
         })
       );
@@ -106,6 +109,14 @@ export const AddTaskForm = ({ tasks }) => {
               You need to add a task
             </ErrorMsg>
           )}
+          <Select name="prodId" onChange={(e) => handleInputChange(e.target)}>
+            <option value="all">Select a project</option>
+            {projects.map((prod) => (
+              <option key={prod.prodId} value={prod.prodId}>
+                {prod.title}
+              </option>
+            ))}
+          </Select>
           <Select name="category" onChange={(e) => handleInputChange(e.target)}>
             <option value="all">Select a category</option>
             {categories.map((cat) => (
