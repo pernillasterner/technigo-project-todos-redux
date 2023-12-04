@@ -5,9 +5,10 @@ export const tasks = [
     created_at: "2023-11-23T17:56:05.455Z",
     content: "Lite merz",
     tags: ["housecleaning", "high"],
-    category: "home and leaving",
+    category: "home and living",
     due_date: "",
     completed: false,
+    prodId: null,
   },
   {
     id: 1,
@@ -16,6 +17,7 @@ export const tasks = [
     tags: [],
     due_date: "",
     completed: true,
+    prodId: 3,
   },
   {
     id: 2,
@@ -24,5 +26,6 @@ export const tasks = [
     tags: ["Studies", "medium"],
     due_date: "",
     completed: false,
+    prodId: null,
   },
 ];
