@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { removeTask } from "../../../reducers/task/taskSlice";
+import { removeProject } from "../../../reducers/project/projectSlice";
 import { parseISO, format } from "date-fns";
 
 const Bottom = styled.div.attrs((props) => ({
@@ -25,15 +26,23 @@ const RemoveCard = styled.span.attrs((props) => ({
   cursor: pointer;
 `;
 
-export const CardBottom = ({ created_at, id }) => {
+export const CardBottom = ({ created_at, id, prodId }) => {
   const dispatch = useDispatch();
   const parsedDate = parseISO(created_at);
   const formattedDate = format(parsedDate, "yyyy-MM-dd");
 
+  const handleRemoveEditCard = () => {
+    if (id) {
+      dispatch(removeTask(id));
+    } else {
+      dispatch(removeProject(prodId));
+    }
+  };
+
   return (
     <Bottom className="bottom">
       <CreatedAt className="created_at">Created: {formattedDate}</CreatedAt>
-      <RemoveCard onClick={() => dispatch(removeTask(id))}>🗑️</RemoveCard>
+      <RemoveCard onClick={handleRemoveEditCard}>🗑️</RemoveCard>
     </Bottom>
   );
 };
