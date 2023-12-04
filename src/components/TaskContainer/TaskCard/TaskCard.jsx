@@ -25,7 +25,12 @@ const CardWrapper = styled.div.attrs((props) => ({
 export const TaskCard = ({ task }) => {
   return (
     <CardWrapper key={task.id} className="card_wrapper" cat={task.category}>
-      <CardTop tags={task.tags} id={task.id} cat={task.category} />
+      <CardTop
+        tags={task.tags}
+        id={task.id}
+        cat={task.category}
+        prodId={task.prodId}
+      />
       <CardContent
         title={task.title}
         due_date={task.due_date}
@@ -33,7 +38,11 @@ export const TaskCard = ({ task }) => {
         completed={task.completed}
         id={task.id}
       />
-      <CardBottom created_at={task.created_at} id={task.id} />
+      <CardBottom
+        created_at={task.created_at}
+        id={task.id}
+        prodId={task.prodId}
+      />
     </CardWrapper>
   );
 };
