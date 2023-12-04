@@ -15,6 +15,7 @@
   --clr-white: #fff;
   --clr-uncompleted: #eda989;
   --clr-completed: #85c571;
+  --clr-projects: #fd9af5;
   --clr-submit: #2366f2;
   --clr-cats: #775ebf;
   --clr-alert: #f37272;
@@ -41,6 +42,8 @@ body {
   font-family: "Poppins", "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
 }
 
 a {
