@@ -16,8 +16,10 @@ const StyledTaskContainer = styled.div.attrs((props) => ({
 `;
 
 export const TaskContainer = () => {
+  const projects = useSelector((store) => store.project.projects);
   const allTasks = useSelector((store) => store.task.tasks);
   const taskId = useSelector((store) => store.modal.taskId);
+  const prodId = useSelector((store) => store.modal.prodId);
   const isModalOpen = useSelector((store) => store.modal.isModalOpen);
   const option = useSelector((store) => store.filter.option);
   const cat = useSelector((store) => store.filter.cat);
@@ -47,12 +49,21 @@ export const TaskContainer = () => {
     { title: "completed", tasks: tasks.filter((task) => task.completed) },
   ];
 
+  const projectColumns = [
+    {
+      title: "projects",
+      tasks: projects.filter((project) => !project.completed),
+    },
+  ];
+
+  const allColumns = [...taskColumns, ...projectColumns];
+
   return (
     <StyledTaskContainer className="task_container">
       {tasks.length !== 0 ? (
-        taskColumns.map((col) => (
+        allColumns.map((col, index) => (
           <TaskColumn
-            key={col.title}
+            key={`column_${index}`}
             title={col.title}
             tasks={col.tasks}
             total={col.tasks.length}
@@ -61,7 +72,12 @@ export const TaskContainer = () => {
       ) : (
         <NoTasks />
       )}
-      {isModalOpen && <EditTask taskId={taskId} />}
+      {isModalOpen && taskId !== null && (
+        <EditTask taskId={taskId} isTask={true} />
+      )}
+      {isModalOpen && prodId !== null && (
+        <EditTask prodId={prodId} isTask={false} />
+      )}
     </StyledTaskContainer>
   );
 };
