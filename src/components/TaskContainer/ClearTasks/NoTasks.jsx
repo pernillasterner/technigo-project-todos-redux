@@ -17,6 +17,7 @@ const NoTaskContainer = styled.div.attrs((props) => ({
   align-items: center;
   display: flex;
   text-align: center;
+  min-width: 1200px;
 
   &::before {
     content: "";
