@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeEditModal } from "../../../reducers/modal/modalSlice";
 import { editTask } from "../../../reducers/task/taskSlice";
+import { editProjectTask } from "../../../reducers/project/projectSlice";
 import { ModalBottom } from "./ModalBottom";
 import { ModalTop } from "./ModalTop";
 import { ModalContent } from "./ModalContent";
@@ -46,20 +47,24 @@ const CloseSign = styled.img.attrs((props) => ({
   cursor: pointer;
 `;
 
-export const EditTask = ({ taskId }) => {
+export const EditTask = ({ taskId, prodId, isTask }) => {
   const dispatch = useDispatch();
-
   const tasks = useSelector((store) => store.task.tasks);
-  const task = tasks.find((task) => task.id === taskId);
+  const projects = useSelector((store) => store.project.projects);
+
+  // Use either task or prod based on isTask === true
+  const taskOrProject = isTask
+    ? tasks.find((task) => task.id === taskId)
+    : projects.find((project) => project.prodId === prodId);
 
   const [formState, setFormState] = useState({
-    id: task?.id || 0,
-    tag: task?.tag || "",
-    category: task?.category || "",
-    title: task?.title || "",
-    content: task?.content || "",
-    due_date: task?.due_date || "",
-    created_at: task?.created_at || new Date().toISOString(),
+    id: taskOrProject?.id || taskOrProject?.prodId || 0,
+    tag: taskOrProject?.tag || "",
+    category: taskOrProject?.category || "",
+    title: taskOrProject?.title || "",
+    content: taskOrProject?.content || "",
+    due_date: taskOrProject?.due_date || "",
+    created_at: taskOrProject?.created_at || new Date().toISOString(),
   });
 
   const handleIsModalOpen = () => {
@@ -79,17 +84,32 @@ export const EditTask = ({ taskId }) => {
     if (e) {
       e.preventDefault();
       // Dispatch the addTask action with the new task
-      dispatch(
-        editTask({
-          id: formState.id,
-          title: formState.title,
-          content: formState.content,
-          created_at: new Date().toISOString(),
-          tag: formState.tag,
-          due_date: formState.due_date,
-          category: formState.category,
-        })
-      );
+      if (isTask) {
+        dispatch(
+          editTask({
+            id: formState.id,
+            title: formState.title,
+            content: formState.content,
+            created_at: new Date().toISOString(),
+            tag: formState.tag,
+            due_date: formState.due_date,
+            category: formState.category,
+          })
+        );
+      } else {
+        dispatch(
+          editProjectTask({
+            prodId: formState.id,
+            title: formState.title,
+            content: formState.content,
+            created_at: new Date().toISOString(),
+            tag: formState.tag,
+            due_date: formState.due_date,
+            category: formState.category,
+          })
+        );
+      }
+
       dispatch(closeEditModal());
     }
   };
@@ -107,8 +127,8 @@ export const EditTask = ({ taskId }) => {
             <form>
               <ModalTop
                 onInputChange={handleInputChange}
-                tags={task?.tags}
-                currentCat={task?.category}
+                tags={taskOrProject?.tags}
+                currentCat={taskOrProject?.category}
               />
               <ModalContent
                 onInputChange={handleInputChange}
@@ -127,9 +147,10 @@ export const EditTask = ({ taskId }) => {
               </SubmitBtn>
             </form>
             <ModalBottom
-              key={`bottom-${task?.id}`}
+              key={`bottom-${taskOrProject?.id}`}
               created_at={formState?.created_at}
-              id={task?.id}
+              id={taskOrProject?.id}
+              prodId={taskOrProject?.prodId}
             />
           </EditTaskBox>
         </EditTaskContainer>
