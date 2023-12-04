@@ -13,7 +13,6 @@ export const taskSlice = createSlice({
       state.tasks = [];
     },
     addTask: (state, action) => {
-      console.log(action.payload);
       state.tasks.push(action.payload);
     },
     removeTask: (state, action) => {
@@ -29,8 +28,16 @@ export const taskSlice = createSlice({
       }
     },
     editTask: (state, action) => {
-      const { id, title, content, tag, due_date, created_at, category } =
-        action.payload;
+      const {
+        id,
+        title,
+        content,
+        tag,
+        due_date,
+        created_at,
+        category,
+        prodId,
+      } = action.payload;
       const existingTask = state.tasks.find((task) => task.id === id);
 
       if (existingTask) {
