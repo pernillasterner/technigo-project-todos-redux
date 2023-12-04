@@ -26,6 +26,7 @@ const TagsContainer = styled.div.attrs((props) => ({
 
 export const ModalTop = ({ onInputChange, tags, currentCat }) => {
   const categories = useSelector((store) => store.filter.categories);
+
   const handleInput = (e) => {
     e.preventDefault();
     const inputValue = e.target;
@@ -63,7 +64,6 @@ export const ModalTop = ({ onInputChange, tags, currentCat }) => {
       <TagsContainer className="tags">
         {tags && tags.map((tag, index) => <TagBtn key={index}>{tag}</TagBtn>)}
       </TagsContainer>
-      {/* ... rest of the component */}
     </>
   );
 };
