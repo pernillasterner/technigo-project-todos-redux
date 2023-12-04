@@ -40,13 +40,16 @@ const Tag = styled.div.attrs((props) => ({
   }
 `;
 
-export const CardTop = ({ tags, id, cat }) => {
+export const CardTop = ({ tags, id, cat, prodId }) => {
   const dispatch = useDispatch();
 
   const handleEditClick = () => {
-    dispatch(openEditModal(id));
+    if (id !== undefined && id !== null) {
+      dispatch(openEditModal({ id, type: "task" }));
+    } else if (prodId !== undefined && prodId !== null) {
+      dispatch(openEditModal({ id: prodId, type: "project" }));
+    }
   };
-
   // TODO: Click on tag and remove it
 
   return (
