@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { removeTask } from "../../../reducers/task/taskSlice";
+import { removeProject } from "../../../reducers/project/projectSlice";
 import { closeEditModal } from "../../../reducers/modal/modalSlice";
 import { parseISO, format } from "date-fns";
 
@@ -26,13 +27,18 @@ const RemoveCard = styled.span.attrs((props) => ({
   cursor: pointer;
 `;
 
-export const ModalBottom = ({ created_at, id }) => {
+export const ModalBottom = ({ created_at, id, prodId }) => {
   const dispatch = useDispatch();
   const parsedDate = parseISO(created_at);
   const formattedDate = format(parsedDate, "yyyy-MM-dd");
 
   const handleRemoveEditCard = () => {
-    dispatch(removeTask(id));
+    if (id) {
+      dispatch(removeTask(id));
+    } else {
+      console.log(prodId);
+      dispatch(removeProject(prodId));
+    }
     dispatch(closeEditModal());
   };
 
