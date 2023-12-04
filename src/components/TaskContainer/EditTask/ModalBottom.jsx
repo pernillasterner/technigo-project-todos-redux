@@ -36,7 +36,6 @@ export const ModalBottom = ({ created_at, id, prodId }) => {
     if (id) {
       dispatch(removeTask(id));
     } else {
-      console.log(prodId);
       dispatch(removeProject(prodId));
     }
     dispatch(closeEditModal());
