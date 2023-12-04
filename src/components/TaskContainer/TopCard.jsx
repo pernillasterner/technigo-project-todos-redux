@@ -10,6 +10,10 @@ const StyledTopCard = styled.div.attrs((props) => ({
   justify-content: space-between;
   min-width: 375px;
   padding: var(--general-mini-padding);
+
+  position: sticky;
+  top: 0;
+  overflow-y: scroll;
 `;
 
 const TotalNum = styled.span.attrs((props) => {
@@ -35,7 +39,6 @@ export const TopCard = ({ title, total }) => {
   return (
     <StyledTopCard className="custom-class">
       <div className="avatar">
-        {" "}
         {title && (
           <img
             src={`./avatars/${title.toLowerCase()}.svg`}
