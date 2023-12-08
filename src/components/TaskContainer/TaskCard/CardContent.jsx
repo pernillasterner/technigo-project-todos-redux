@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { markCompleted } from "../../../reducers/task/taskSlice";
-import { markProjectCompleted } from "../../../reducers/project/projectSlice";
+import { markCompleted, removeTask } from "../../../reducers/task/taskSlice";
+import { removeProject } from "../../../reducers/project/projectSlice";
 import styled from "styled-components";
 
 const Content = styled.div.attrs((props) => ({
@@ -67,13 +67,12 @@ export const CardContent = ({
   id,
   text,
   prodId,
-  task,
 }) => {
   const dispatch = useDispatch();
   const currentData = new Date();
   const formattedData = currentData.toISOString().split("T")[0];
   const [dueDate, setDueDate] = useState("var(--clr-grey-5)");
-  const [isAllTasksCompleted, setIsAllTasksCompleted] = useState(true);
+  const [isAllTasksCompleted, setIsAllTasksCompleted] = useState(false);
   const tasks = useSelector((store) => store.task.tasks);
 
   useEffect(() => {
@@ -84,43 +83,57 @@ export const CardContent = ({
     }
   }, [formattedData, due_date]);
 
+  useEffect(() => {
+    const areAllTasksCompleted = () => {
+      const numericProdId = Number(prodId);
+      const filteredTasks = tasks.filter(
+        (task) => task.prodId === numericProdId
+      );
+
+      if (!filteredTasks.length) {
+        setIsAllTasksCompleted(false);
+      } else {
+        const allCompleted = filteredTasks.every((task) => task.completed);
+        setIsAllTasksCompleted(allCompleted);
+      }
+    };
+
+    if (prodId !== undefined) {
+      areAllTasksCompleted();
+    }
+  }, [tasks, prodId]);
+
   const handleCompleted = () => {
     if (id !== undefined) {
       dispatch(markCompleted(id));
     } else if (prodId !== undefined) {
-      dispatch(markProjectCompleted(prodId));
+      dispatch(removeProject(prodId));
+
+      const tasksToRemove = tasks.filter((task) => task.prodId == prodId);
+      tasksToRemove.map((task) => {
+        dispatch(removeTask(task.id));
+      });
+
+      dispatch(removeProject(prodId));
     }
   };
-
-  const areAllTasksCompleted = (tasks, prodId) => {
-    console.log(tasks, prodId);
-    const filteredTasks = tasks.filter((task) => task.prodId == prodId);
-    if (filteredTasks.length) setIsAllTasksCompleted(true);
-
-    //const allCompleted = filteredTasks.every((task) => task.completed);
-
-    filteredTasks.forEach((task) => {
-      if (!task.completed) {
-        setIsAllTasksCompleted(false);
-      }
-    });
-  };
-
-  areAllTasksCompleted(tasks, prodId);
 
   return (
     <Content className="content">
       <CardH5 className="card_title">{title}</CardH5>
       <CardText>{text}</CardText>
       {due_date && <CardDeadline dueDate={dueDate}>⏱️ {due_date}</CardDeadline>}
-      {id === undefined && !isAllTasksCompleted && (
-        <p>Ska kunna radera alla kort</p>
+
+      {id === undefined && isAllTasksCompleted && (
+        <CompleteButton
+          onClick={() => handleCompleted(prodId)}
+          completed={true}
+        >
+          Complete All Projects
+        </CompleteButton>
       )}
       {id !== undefined && (
-        <CompleteButton
-          onClick={() => dispatch(markCompleted(id))}
-          completed={completed}
-        >
+        <CompleteButton onClick={handleCompleted} completed={completed}>
           {completed ? "completed" : "complete"}
         </CompleteButton>
       )}
