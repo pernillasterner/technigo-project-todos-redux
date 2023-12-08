@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { TagBtn } from "../../../styles/Buttons";
 import { Select } from "../../../styles/Select";
+import { useState, useEffect } from "react";
 
 const TagInputContainer = styled.div.attrs((props) => ({
   className: props.className || "",
@@ -27,7 +28,15 @@ const TagsContainer = styled.div.attrs((props) => ({
 export const ModalTop = ({ onInputChange, tags, currentCat, prodId }) => {
   const categories = useSelector((store) => store.filter.categories);
   const projects = useSelector((store) => store.project.projects);
-  const currentProject = projects[prodId].title;
+  const [currentProject, setCurrentProject] = useState("");
+  useEffect(() => {
+    if (prodId !== undefined && projects[prodId]) {
+      setCurrentProject(projects[prodId].title);
+    } else {
+      // Handle the case when prodId is undefined or not found in projects
+      setCurrentProject("choose a project");
+    }
+  }, [prodId, projects]);
 
   const handleInput = (e) => {
     e.preventDefault();

@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openEditModal } from "../../../reducers/modal/modalSlice";
 import { TagBtn, CatBtn } from "../../../styles/Buttons";
+import { useEffect, useState } from "react";
 
 const Top = styled.div.attrs((props) => ({
   className: props.className || "",
@@ -42,6 +43,17 @@ const Tag = styled.div.attrs((props) => ({
 
 export const CardTop = ({ tags, id, cat, prodId }) => {
   const dispatch = useDispatch();
+  const projects = useSelector((store) => store.project.projects);
+  const [currentProject, setCurrentProject] = useState("");
+
+  useEffect(() => {
+    if (prodId !== undefined && projects[prodId]) {
+      setCurrentProject(projects[prodId].title);
+    } else {
+      // Handle the case when prodId is undefined or not found in projects
+      setCurrentProject("");
+    }
+  }, [prodId, projects]);
 
   const handleEditClick = () => {
     if (id !== undefined && id !== null) {
@@ -54,6 +66,7 @@ export const CardTop = ({ tags, id, cat, prodId }) => {
 
   return (
     <Top className="top" cat={cat}>
+      {id >= 0 && currentProject !== "" && currentProject}
       {cat && <CatBtn className="cat">{cat}</CatBtn>}
       <Tag className="tag">
         {tags && tags.map((tag, index) => <TagBtn key={index}>{tag}</TagBtn>)}
