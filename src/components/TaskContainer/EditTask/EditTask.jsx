@@ -129,6 +129,7 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
                 onInputChange={handleInputChange}
                 tags={taskOrProject?.tags}
                 currentCat={taskOrProject?.category}
+                prodId={taskOrProject?.prodId}
               />
               <ModalContent
                 onInputChange={handleInputChange}

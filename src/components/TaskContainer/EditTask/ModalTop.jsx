@@ -24,10 +24,10 @@ const TagsContainer = styled.div.attrs((props) => ({
   margin-bottom: 0.7rem;
 `;
 
-export const ModalTop = ({ onInputChange, tags, currentCat }) => {
+export const ModalTop = ({ onInputChange, tags, currentCat, prodId }) => {
   const categories = useSelector((store) => store.filter.categories);
   const projects = useSelector((store) => store.project.projects);
-  const currentProject = "projekt titel";
+  const currentProject = projects[prodId].title;
 
   const handleInput = (e) => {
     e.preventDefault();
