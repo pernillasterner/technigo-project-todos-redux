@@ -58,7 +58,7 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
     : projects.find((project) => project.prodId === prodId);
 
   const [formState, setFormState] = useState({
-    id: taskOrProject?.id || taskOrProject?.prodId || 0,
+    id: taskOrProject?.id || taskOrProject?.prodId || 1,
     tag: taskOrProject?.tag || "",
     category: taskOrProject?.category || "",
     title: taskOrProject?.title || "",

@@ -50,9 +50,9 @@ export const AddProjectForm = () => {
   const projects = useSelector((store) => store.project.projects);
   const [value, setValue] = useState("");
   const [formState, setFormState] = useState({
-    title: "",
-    due_date: "",
-    category: "",
+    title: String,
+    due_date: String,
+    category: String,
   });
 
   const lastProdId =

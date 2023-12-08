@@ -37,6 +37,8 @@ export const TaskCard = ({ task }) => {
         text={task.content}
         completed={task.completed}
         id={task.id}
+        prodId={task.prodId}
+        task={task}
       />
       <CardBottom
         created_at={task.created_at}
