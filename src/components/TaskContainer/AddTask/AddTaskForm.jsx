@@ -50,9 +50,9 @@ export const AddTaskForm = ({ tasks }) => {
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
   const [formState, setFormState] = useState({
-    title: String,
+    title: "",
     due_date: "",
-    category: String,
+    category: "",
     prodId: Number,
   });
 
@@ -62,7 +62,10 @@ export const AddTaskForm = ({ tasks }) => {
   const newTaskId = lastTaskId + 1;
 
   const handleInputChange = (inputValue) => {
-    const { name, value } = inputValue;
+    let { name, value } = inputValue;
+    if (name === "prodId") {
+      value = Number(value);
+    }
 
     setFormState((prevState) => ({
       ...prevState,

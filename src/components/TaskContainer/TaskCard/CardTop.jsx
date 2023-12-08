@@ -45,12 +45,11 @@ export const CardTop = ({ tags, id, cat, prodId }) => {
   const dispatch = useDispatch();
   const projects = useSelector((store) => store.project.projects);
   const [currentProject, setCurrentProject] = useState("");
-  // console.log(prodId);
 
   useEffect(() => {
     if (prodId !== undefined) {
       const findProject = projects.find((project) => project.prodId == prodId);
-      // console.log(findProject);
+
       if (findProject) {
         setCurrentProject(findProject.title);
       }
@@ -60,10 +59,6 @@ export const CardTop = ({ tags, id, cat, prodId }) => {
     }
   }, [prodId, projects]);
 
-  // const projectWithProdId = projects.find(
-  //   (project) => project.prodId === prodIdToFind
-  // );
-  // console.log(currentProject);
   const handleEditClick = () => {
     if (id !== undefined && id !== null) {
       dispatch(openEditModal({ id, type: "task" }));

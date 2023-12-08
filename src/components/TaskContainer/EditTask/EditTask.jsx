@@ -72,7 +72,11 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
   };
 
   const handleInputChange = (inputValue) => {
-    const { name, value } = inputValue;
+    let { name, value } = inputValue;
+
+    if (name === "prodId") {
+      value = Number(value);
+    }
     setFormState((prevState) => ({
       ...prevState,
       [name]: value,

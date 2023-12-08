@@ -29,6 +29,7 @@ export const ModalTop = ({ onInputChange, tags, currentCat, prodId }) => {
   const categories = useSelector((store) => store.filter.categories);
   const projects = useSelector((store) => store.project.projects);
   const [currentProject, setCurrentProject] = useState("");
+
   useEffect(() => {
     if (prodId !== undefined && projects[prodId]) {
       setCurrentProject(projects[prodId].title);
