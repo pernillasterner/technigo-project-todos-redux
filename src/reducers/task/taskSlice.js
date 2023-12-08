@@ -63,6 +63,9 @@ export const taskSlice = createSlice({
         if (due_date) {
           existingTask.due_date = due_date;
         }
+        if (prodId) {
+          existingTask.prodId = prodId;
+        }
       } else {
         const newTask = {
           id: id,
@@ -73,6 +76,7 @@ export const taskSlice = createSlice({
           category: category,
           due_date: due_date,
           completed: false,
+          prodId: prodId,
         };
         state.tasks.push(newTask);
       }

@@ -26,6 +26,8 @@ const TagsContainer = styled.div.attrs((props) => ({
 
 export const ModalTop = ({ onInputChange, tags, currentCat }) => {
   const categories = useSelector((store) => store.filter.categories);
+  const projects = useSelector((store) => store.project.projects);
+  const currentProject = "projekt titel";
 
   const handleInput = (e) => {
     e.preventDefault();
@@ -42,7 +44,7 @@ export const ModalTop = ({ onInputChange, tags, currentCat }) => {
           {currentCat ? (
             <option value={currentCat}>{currentCat}</option>
           ) : (
-            <option value="all">All</option>
+            <option value="all">All categories</option>
           )}
           {categories.map((cat) => (
             <option key={cat} value={cat}>
@@ -62,6 +64,18 @@ export const ModalTop = ({ onInputChange, tags, currentCat }) => {
       </TagInputContainer>
 
       <TagsContainer className="tags">
+        <Select name="prodId" onChange={handleInput}>
+          {currentProject ? (
+            <option value={currentProject}>{currentProject}</option>
+          ) : (
+            <option value="all">All projects</option>
+          )}
+          {projects.map((project) => (
+            <option key={project.title} value={project.prodId}>
+              {project.title}
+            </option>
+          ))}
+        </Select>
         {tags && tags.map((tag, index) => <TagBtn key={index}>{tag}</TagBtn>)}
       </TagsContainer>
     </>

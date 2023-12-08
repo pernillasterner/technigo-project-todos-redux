@@ -11,6 +11,15 @@ const initialState = {
       category: "home and living",
       tags: ["renovating"],
     },
+    {
+      prodId: 1,
+      title: "This is second project",
+      created_at: "2023-11-23T17:56:05.455Z",
+      completed: false,
+      content: "Second project",
+      category: "economic",
+      tags: ["bills"],
+    },
   ],
 };
 

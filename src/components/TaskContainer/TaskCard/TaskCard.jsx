@@ -18,7 +18,7 @@ const CardWrapper = styled.div.attrs((props) => ({
   ${({ cat }) =>
     cat &&
     `
-    border-left: 2px solid #92eced;
+    // border-left: 2px solid #92eced;
   `}
 `;
 

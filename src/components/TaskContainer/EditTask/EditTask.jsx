@@ -73,7 +73,6 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
 
   const handleInputChange = (inputValue) => {
     const { name, value } = inputValue;
-
     setFormState((prevState) => ({
       ...prevState,
       [name]: value,
@@ -94,6 +93,7 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
             tag: formState.tag,
             due_date: formState.due_date,
             category: formState.category,
+            prodId: formState.prodId,
           })
         );
       } else {
