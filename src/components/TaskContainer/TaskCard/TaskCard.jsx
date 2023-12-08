@@ -18,7 +18,7 @@ const CardWrapper = styled.div.attrs((props) => ({
   ${({ cat }) =>
     cat &&
     `
-    border-left: 2px solid #92eced;
+    // border-left: 2px solid #92eced;
   `}
 `;
 
@@ -37,6 +37,8 @@ export const TaskCard = ({ task }) => {
         text={task.content}
         completed={task.completed}
         id={task.id}
+        prodId={task.prodId}
+        task={task}
       />
       <CardBottom
         created_at={task.created_at}

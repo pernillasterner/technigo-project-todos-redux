@@ -1,6 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { markCompleted } from "../../../reducers/task/taskSlice";
+import { markProjectCompleted } from "../../../reducers/project/projectSlice";
 import styled from "styled-components";
 
 const Content = styled.div.attrs((props) => ({
@@ -59,11 +60,21 @@ const CompleteButton = styled.span.attrs((props) => ({
 // Boolean is not workin without this
 CompleteButton.shouldForwardProp = (prop) => prop !== "completed";
 
-export const CardContent = ({ title, due_date, completed, id, text }) => {
+export const CardContent = ({
+  title,
+  due_date,
+  completed,
+  id,
+  text,
+  prodId,
+  task,
+}) => {
   const dispatch = useDispatch();
   const currentData = new Date();
   const formattedData = currentData.toISOString().split("T")[0];
   const [dueDate, setDueDate] = useState("var(--clr-grey-5)");
+  const [isAllTasksCompleted, setIsAllTasksCompleted] = useState(true);
+  const tasks = useSelector((store) => store.task.tasks);
 
   useEffect(() => {
     if (formattedData > due_date) {
@@ -73,17 +84,46 @@ export const CardContent = ({ title, due_date, completed, id, text }) => {
     }
   }, [formattedData, due_date]);
 
+  const handleCompleted = () => {
+    if (id !== undefined) {
+      dispatch(markCompleted(id));
+    } else if (prodId !== undefined) {
+      dispatch(markProjectCompleted(prodId));
+    }
+  };
+
+  const areAllTasksCompleted = (tasks, prodId) => {
+    console.log(tasks, prodId);
+    const filteredTasks = tasks.filter((task) => task.prodId == prodId);
+    if (filteredTasks.length) setIsAllTasksCompleted(true);
+
+    //const allCompleted = filteredTasks.every((task) => task.completed);
+
+    filteredTasks.forEach((task) => {
+      if (!task.completed) {
+        setIsAllTasksCompleted(false);
+      }
+    });
+  };
+
+  areAllTasksCompleted(tasks, prodId);
+
   return (
     <Content className="content">
       <CardH5 className="card_title">{title}</CardH5>
       <CardText>{text}</CardText>
       {due_date && <CardDeadline dueDate={dueDate}>⏱️ {due_date}</CardDeadline>}
-      <CompleteButton
-        onClick={() => dispatch(markCompleted(id))}
-        completed={completed}
-      >
-        {completed ? "completed" : "complete"}
-      </CompleteButton>
+      {id === undefined && !isAllTasksCompleted && (
+        <p>Ska kunna radera alla kort</p>
+      )}
+      {id !== undefined && (
+        <CompleteButton
+          onClick={() => dispatch(markCompleted(id))}
+          completed={completed}
+        >
+          {completed ? "completed" : "complete"}
+        </CompleteButton>
+      )}
     </Content>
   );
 };

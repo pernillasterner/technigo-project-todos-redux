@@ -58,7 +58,7 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
     : projects.find((project) => project.prodId === prodId);
 
   const [formState, setFormState] = useState({
-    id: taskOrProject?.id || taskOrProject?.prodId || 0,
+    id: taskOrProject?.id || taskOrProject?.prodId || 1,
     tag: taskOrProject?.tag || "",
     category: taskOrProject?.category || "",
     title: taskOrProject?.title || "",
@@ -73,7 +73,6 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
 
   const handleInputChange = (inputValue) => {
     const { name, value } = inputValue;
-
     setFormState((prevState) => ({
       ...prevState,
       [name]: value,
@@ -94,6 +93,7 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
             tag: formState.tag,
             due_date: formState.due_date,
             category: formState.category,
+            prodId: formState.prodId,
           })
         );
       } else {
@@ -129,6 +129,7 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
                 onInputChange={handleInputChange}
                 tags={taskOrProject?.tags}
                 currentCat={taskOrProject?.category}
+                prodId={taskOrProject?.prodId}
               />
               <ModalContent
                 onInputChange={handleInputChange}

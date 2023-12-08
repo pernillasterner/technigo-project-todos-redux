@@ -50,10 +50,10 @@ export const AddTaskForm = ({ tasks }) => {
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
   const [formState, setFormState] = useState({
-    title: "",
+    title: String,
     due_date: "",
-    category: "",
-    prodId: "",
+    category: String,
+    prodId: Number,
   });
 
   // Get the last id of task array, add id to new task

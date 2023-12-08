@@ -2,20 +2,30 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   projects: [
-    {
-      prodId: 0,
-      title: "This is a project",
-      created_at: "2023-11-23T17:56:05.455Z",
-      completed: false,
-      content: "I want to create a new project",
-      category: "home and living",
-      tags: ["renovating"],
-    },
+    // {
+    //   prodId: 1,
+    //   title: "This is a project",
+    //   created_at: "2023-11-23T17:56:05.455Z",
+    //   completed: false,
+    //   content: "I want to create a new project",
+    //   category: "home and living",
+    //   tags: ["renovating"],
+    // },
+    // {
+    //   prodId: 2,
+    //   title: "This is second project",
+    //   created_at: "2023-11-23T17:56:05.455Z",
+    //   completed: false,
+    //   content: "Second project",
+    //   category: "economic",
+    //   tags: ["bills"],
+    // },
   ],
 };
 
 export const projectSlice = createSlice({
   name: "projects",
+
   initialState,
   reducers: {
     clearProjects: (state) => {
@@ -29,6 +39,19 @@ export const projectSlice = createSlice({
       const prodId = action.payload;
       // Removes a specific item from the task list using the id
       state.projects = state.projects.filter((prod) => prod.prodId !== prodId);
+    },
+    markProjectCompleted: (state, action) => {
+      /** I need to display if all the tasks are completed and if so remove all tasks */
+
+      const prodId = action.payload;
+
+      const projectToToggle = state.projects.find(
+        (project) => project.prodId === prodId
+      );
+
+      if (projectToToggle) {
+        projectToToggle.completed = !projectToToggle.completed;
+      }
     },
     editProjectTask: (state, action) => {
       const { prodId, title, content, tag, due_date, created_at, category } =
@@ -78,7 +101,12 @@ export const projectSlice = createSlice({
   },
 });
 
-export const { clearProjects, addProject, editProjectTask, removeProject } =
-  projectSlice.actions;
+export const {
+  clearProjects,
+  addProject,
+  editProjectTask,
+  removeProject,
+  markProjectCompleted,
+} = projectSlice.actions;
 
 export default projectSlice.reducer;
