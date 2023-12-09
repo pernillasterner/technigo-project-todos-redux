@@ -24,6 +24,10 @@ const EditTaskContainer = styled.div.attrs((props) => ({
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 567px) {
+    padding: var(--general-padding);
+  }
 `;
 
 const EditTaskBox = styled.div.attrs((props) => ({
