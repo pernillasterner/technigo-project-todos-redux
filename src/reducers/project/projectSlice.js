@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   projects: [
     {
-      prodId: 0,
+      prodId: 1,
       title: "This is a project",
       created_at: "2023-11-23T17:56:05.455Z",
       completed: false,
@@ -12,7 +12,7 @@ const initialState = {
       tags: ["renovating"],
     },
     {
-      prodId: 1,
+      prodId: 2,
       title: "This is second project",
       created_at: "2023-11-23T17:56:05.455Z",
       completed: false,
@@ -25,6 +25,7 @@ const initialState = {
 
 export const projectSlice = createSlice({
   name: "projects",
+
   initialState,
   reducers: {
     clearProjects: (state) => {
@@ -87,7 +88,12 @@ export const projectSlice = createSlice({
   },
 });
 
-export const { clearProjects, addProject, editProjectTask, removeProject } =
-  projectSlice.actions;
+export const {
+  clearProjects,
+  addProject,
+  editProjectTask,
+  removeProject,
+  markProjectCompleted,
+} = projectSlice.actions;
 
 export default projectSlice.reducer;

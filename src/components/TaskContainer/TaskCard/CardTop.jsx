@@ -47,8 +47,12 @@ export const CardTop = ({ tags, id, cat, prodId }) => {
   const [currentProject, setCurrentProject] = useState("");
 
   useEffect(() => {
-    if (prodId !== undefined && projects[prodId]) {
-      setCurrentProject(projects[prodId].title);
+    if (prodId !== undefined) {
+      const findProject = projects.find((project) => project.prodId == prodId);
+
+      if (findProject) {
+        setCurrentProject(findProject.title);
+      }
     } else {
       // Handle the case when prodId is undefined or not found in projects
       setCurrentProject("");

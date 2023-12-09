@@ -1,6 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { markCompleted } from "../../../reducers/task/taskSlice";
+import { markCompleted, removeTask } from "../../../reducers/task/taskSlice";
+import { removeProject } from "../../../reducers/project/projectSlice";
 import styled from "styled-components";
 
 const Content = styled.div.attrs((props) => ({
@@ -59,11 +60,20 @@ const CompleteButton = styled.span.attrs((props) => ({
 // Boolean is not workin without this
 CompleteButton.shouldForwardProp = (prop) => prop !== "completed";
 
-export const CardContent = ({ title, due_date, completed, id, text }) => {
+export const CardContent = ({
+  title,
+  due_date,
+  completed,
+  id,
+  text,
+  prodId,
+}) => {
   const dispatch = useDispatch();
   const currentData = new Date();
   const formattedData = currentData.toISOString().split("T")[0];
   const [dueDate, setDueDate] = useState("var(--clr-grey-5)");
+  const [isAllTasksCompleted, setIsAllTasksCompleted] = useState(false);
+  const tasks = useSelector((store) => store.task.tasks);
 
   useEffect(() => {
     if (formattedData > due_date) {
@@ -73,17 +83,60 @@ export const CardContent = ({ title, due_date, completed, id, text }) => {
     }
   }, [formattedData, due_date]);
 
+  useEffect(() => {
+    const areAllTasksCompleted = () => {
+      const numericProdId = Number(prodId);
+      const filteredTasks = tasks.filter(
+        (task) => task.prodId === numericProdId
+      );
+
+      if (!filteredTasks.length) {
+        setIsAllTasksCompleted(false);
+      } else {
+        const allCompleted = filteredTasks.every((task) => task.completed);
+        setIsAllTasksCompleted(allCompleted);
+      }
+    };
+
+    if (prodId !== undefined) {
+      areAllTasksCompleted();
+    }
+  }, [tasks, prodId]);
+
+  const handleCompleted = () => {
+    if (id !== undefined) {
+      dispatch(markCompleted(id));
+    } else if (prodId !== undefined) {
+      dispatch(removeProject(prodId));
+
+      const tasksToRemove = tasks.filter((task) => task.prodId == prodId);
+      tasksToRemove.map((task) => {
+        dispatch(removeTask(task.id));
+      });
+
+      dispatch(removeProject(prodId));
+    }
+  };
+
   return (
     <Content className="content">
       <CardH5 className="card_title">{title}</CardH5>
       <CardText>{text}</CardText>
       {due_date && <CardDeadline dueDate={dueDate}>⏱️ {due_date}</CardDeadline>}
-      <CompleteButton
-        onClick={() => dispatch(markCompleted(id))}
-        completed={completed}
-      >
-        {completed ? "completed" : "complete"}
-      </CompleteButton>
+
+      {id === undefined && isAllTasksCompleted && (
+        <CompleteButton
+          onClick={() => handleCompleted(prodId)}
+          completed={true}
+        >
+          Complete All Projects
+        </CompleteButton>
+      )}
+      {id !== undefined && (
+        <CompleteButton onClick={handleCompleted} completed={completed}>
+          {completed ? "completed" : "complete"}
+        </CompleteButton>
+      )}
     </Content>
   );
 };

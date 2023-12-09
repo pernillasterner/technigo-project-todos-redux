@@ -53,7 +53,7 @@ export const AddTaskForm = ({ tasks }) => {
     title: "",
     due_date: "",
     category: "",
-    prodId: "",
+    prodId: Number,
   });
 
   // Get the last id of task array, add id to new task
@@ -62,7 +62,10 @@ export const AddTaskForm = ({ tasks }) => {
   const newTaskId = lastTaskId + 1;
 
   const handleInputChange = (inputValue) => {
-    const { name, value } = inputValue;
+    let { name, value } = inputValue;
+    if (name === "prodId") {
+      value = Number(value);
+    }
 
     setFormState((prevState) => ({
       ...prevState,
