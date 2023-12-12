@@ -57,3 +57,45 @@ export const IconClose = () => {
     </svg>
   );
 };
+
+export const IconCompleted = () => {
+  return (
+    <svg
+      width="58"
+      height="58"
+      viewBox="0 0 58 58"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="58" height="58" rx="15" fill="#85C571" />
+    </svg>
+  );
+};
+
+export const IconUncompleted = () => {
+  return (
+    <svg
+      width="58"
+      height="58"
+      viewBox="0 0 58 58"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="58" height="58" rx="15" fill="#EDA989" />
+    </svg>
+  );
+};
+
+export const IconProjects = () => {
+  return (
+    <svg
+      width="58"
+      height="58"
+      viewBox="0 0 58 58"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="58" height="58" rx="15" fill="#FD9AF5" />
+    </svg>
+  );
+};
