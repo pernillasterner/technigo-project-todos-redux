@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { openEditModal } from "../../../reducers/modal/modalSlice";
-import plusSign from "../../../../public/icons/plus_icon.svg";
+import { IconPlus } from "../../../assets/Icons";
 
 const NoTaskContainer = styled.div.attrs((props) => ({
   className: props.className || "",
@@ -86,7 +86,7 @@ export const NoTasks = () => {
           Ready for a <Colorful className="colorful"></Colorful>?
         </p>
         <PlusSign
-          src={plusSign}
+          src={IconPlus}
           alt="plus sign"
           onClick={(e) => handleOpenNewTask(e)}
         />
