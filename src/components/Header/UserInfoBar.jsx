@@ -9,8 +9,9 @@ const RightSection = styled.div`
   align-items: center;
 `;
 
-const Greeting = styled.h2`
+const Greeting = styled.p`
   font-size: 1.5rem;
+  font-weight: bold;
 `;
 
 export const UserInfoBar = () => {
