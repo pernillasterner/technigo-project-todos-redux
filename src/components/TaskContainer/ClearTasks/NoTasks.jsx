@@ -52,7 +52,7 @@ const Colorful = styled.span.attrs((props) => ({
   }
 `;
 
-const PlusSign = styled.img.attrs((props) => ({
+const PlusSign = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   width: 100px;
@@ -85,11 +85,9 @@ export const NoTasks = () => {
           You've completed all your tasks. <br />
           Ready for a <Colorful className="colorful"></Colorful>?
         </p>
-        <PlusSign
-          src={IconPlus}
-          alt="plus sign"
-          onClick={(e) => handleOpenNewTask(e)}
-        />
+        <PlusSign onClick={(e) => handleOpenNewTask(e)}>
+          <IconPlus />
+        </PlusSign>
       </Content>
     </NoTaskContainer>
   );

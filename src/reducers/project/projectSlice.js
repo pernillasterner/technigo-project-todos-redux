@@ -4,21 +4,23 @@ const initialState = {
   projects: [
     {
       prodId: 1,
-      title: "This is a project",
+      title: "Task Manager App",
       created_at: "2023-11-23T17:56:05.455Z",
       completed: false,
-      content: "I want to create a new project",
-      category: "home and living",
-      tags: ["renovating"],
+      content:
+        "Develop a comprehensive task management application to help users organize, prioritize, and track their tasks efficiently.",
+      category: "development",
+      tags: ["UI/UX", "Backend", "Frontend"],
     },
     {
       prodId: 2,
-      title: "This is second project",
+      title: "Blog Redesign",
       created_at: "2023-11-23T17:56:05.455Z",
       completed: false,
-      content: "Second project",
-      category: "economic",
-      tags: ["bills"],
+      content:
+        "Redesign the company blog for an improved user experience and a modern look.",
+      category: "design",
+      tags: ["UI/UX", "Responsive Design", "Content Strategy"],
     },
   ],
 };

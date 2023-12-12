@@ -40,7 +40,7 @@ const EditTaskBox = styled.div.attrs((props) => ({
   position: relative;
 `;
 
-const CloseSign = styled.img.attrs((props) => ({
+const CloseSign = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   width: 30px;
@@ -48,6 +48,7 @@ const CloseSign = styled.img.attrs((props) => ({
     brightness(100%) contrast(100%);
   position: absolute;
   right: 35px;
+  top: 15px;
   cursor: pointer;
 `;
 
@@ -127,11 +128,9 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
       {formState && (
         <EditTaskContainer>
           <EditTaskBox className="edit_box">
-            <CloseSign
-              src={IconClose}
-              alt="Close sign"
-              onClick={handleIsModalOpen}
-            />
+            <CloseSign onClick={handleIsModalOpen}>
+              <IconClose />
+            </CloseSign>
             <form>
               <ModalTop
                 onInputChange={handleInputChange}

@@ -15,8 +15,10 @@ export const Category = () => {
   return (
     <>
       {tasks.length !== 0 && (
-        <label htmlFor="Category" className="is-hidden">
-          Category
+        <>
+          <label htmlFor="Category" className="is-hidden">
+            Category
+          </label>
           <Select name="filter" onChange={handleCat}>
             <option value="all">all categories</option>
             {cats.map((cat) => (
@@ -25,7 +27,7 @@ export const Category = () => {
               </option>
             ))}
           </Select>
-        </label>
+        </>
       )}
     </>
   );

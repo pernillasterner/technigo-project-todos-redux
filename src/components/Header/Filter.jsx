@@ -14,14 +14,16 @@ export const Filter = () => {
   return (
     <>
       {tasks.length !== 0 && (
-        <label htmlFor="Task" className="is-hidden">
-          Task
+        <>
+          <label htmlFor="Task" className="is-hidden">
+            Task
+          </label>
           <Select name="filter" onChange={handleFilter}>
             <option value="all">all tasks</option>
             <option value="uncompleted">uncompleted</option>
             <option value="completed">completed</option>
           </Select>
-        </label>
+        </>
       )}
     </>
   );

@@ -20,7 +20,7 @@ const StyledTopCard = styled.div.attrs((props) => ({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 375px;
+  max-width: 375px;
   padding: var(--general-mini-padding);
 
   position: sticky;

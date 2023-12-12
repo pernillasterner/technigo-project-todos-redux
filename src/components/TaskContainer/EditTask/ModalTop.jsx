@@ -50,48 +50,48 @@ export const ModalTop = ({ onInputChange, tags, currentCat, prodId }) => {
   return (
     <>
       <TagInputContainer className="tag_input-close">
-        <Select name="category" onChange={handleInput}>
-          <label htmlFor="category" className="is-hidden">
+        <label htmlFor="category" className="is-hidden">
+          <Select name="category" onChange={handleInput}>
             Categories
-          </label>
-          {currentCat ? (
-            <option value={currentCat}>{currentCat}</option>
-          ) : (
-            <option value="all">All categories</option>
-          )}
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </Select>
+            {currentCat ? (
+              <option value={currentCat}>{currentCat}</option>
+            ) : (
+              <option value="all">All categories</option>
+            )}
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </Select>
+        </label>
         <label htmlFor="tag" className="is-hidden">
           Tag
+          <input
+            type="text"
+            name="tag"
+            placeholder="Add tag"
+            onChange={handleInput}
+          />
         </label>
-        <input
-          type="text"
-          name="tag"
-          placeholder="Add tag"
-          onChange={handleInput}
-        />
       </TagInputContainer>
 
       <TagsContainer className="tags">
-        <Select name="prodId" onChange={handleInput}>
-          <label htmlFor="prodId" className="is-hidden">
-            Projects
-          </label>
-          {currentProject ? (
-            <option value={currentProject}>{currentProject}</option>
-          ) : (
-            <option value="all">All projects</option>
-          )}
-          {projects.map((project) => (
-            <option key={project.title} value={project.prodId}>
-              {project.title}
-            </option>
-          ))}
-        </Select>
+        <label htmlFor="prodId" className="is-hidden">
+          Projects
+          <Select name="prodId" onChange={handleInput}>
+            {currentProject ? (
+              <option value={currentProject}>{currentProject}</option>
+            ) : (
+              <option value="all">All projects</option>
+            )}
+            {projects.map((project) => (
+              <option key={project.title} value={project.prodId}>
+                {project.title}
+              </option>
+            ))}
+          </Select>
+        </label>
         {tags && tags.map((tag, index) => <TagBtn key={index}>{tag}</TagBtn>)}
       </TagsContainer>
     </>
