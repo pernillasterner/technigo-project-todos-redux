@@ -5,6 +5,13 @@ import {
   IconProjects,
 } from "../../assets/Icons";
 
+// Select icon depending on title
+const iconSelection = {
+  completed: IconCompleted,
+  uncompleted: IconUncompleted,
+  projects: IconProjects,
+};
+
 const StyledTopCard = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
@@ -41,18 +48,11 @@ const H2 = styled.h2.attrs((props) => ({
 `;
 
 export const TopCard = ({ title, total }) => {
+  const IconComponent = iconSelection[title.toLowerCase()];
+
   return (
     <StyledTopCard className="custom-class">
-      <div className="avatar">
-        {title && (
-          <img
-            src={`./icons/${title.toLowerCase()}.svg`}
-            alt={`${title || "Avatar"} tasks`}
-            width={60}
-            height={60}
-          />
-        )}
-      </div>
+      <div className="avatar">{IconComponent && <IconComponent />}</div>
       <H2>{title} tasks</H2>
       <TotalNum className="totalnum" title={title}>
         {total}
