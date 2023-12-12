@@ -15,10 +15,10 @@ export const Filter = () => {
     <>
       {tasks.length !== 0 && (
         <>
-          <label htmlFor="Task" className="is-hidden">
+          <label htmlFor="task" className="is-hidden" aria-label>
             Task
           </label>
-          <Select name="filter" onChange={handleFilter}>
+          <Select id="task" name="filter" onChange={handleFilter}>
             <option value="all">all tasks</option>
             <option value="uncompleted">uncompleted</option>
             <option value="completed">completed</option>
