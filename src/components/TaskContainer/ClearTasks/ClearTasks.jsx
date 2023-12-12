@@ -88,9 +88,7 @@ const ConfirmClearBtn = styled.button.attrs((props) => ({
 `;
 
 export const ClearTasks = ({ tasks }) => {
-  console.log("this is clear tasks");
   const dispatch = useDispatch();
-  const uncompletedTasks = tasks.some((task) => !task.completed);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const handleClearAllTasks = () => {
@@ -112,26 +110,19 @@ export const ClearTasks = ({ tasks }) => {
 
   return (
     <>
-      {/* {uncompletedTasks && ( */}
-      <>
-        <ClearTaskWrapper onClick={() => handleClearAllTasks()}>
-          Clear All Tasks
-        </ClearTaskWrapper>
-        <ConfirmClearAllTasks show={showConfirmModal}>
-          <p>Are you sure you want to clear all tasks?</p>
+      <ClearTaskWrapper onClick={() => handleClearAllTasks()}>
+        Clear All Tasks
+      </ClearTaskWrapper>
+      <ConfirmClearAllTasks show={showConfirmModal}>
+        <p>Are you sure you want to clear all tasks?</p>
 
-          <ConfirmClearBtn className="confirm" onClick={confirmClearAllTasks}>
-            Yes
-          </ConfirmClearBtn>
-          <ConfirmClearBtn
-            className="not-confirm"
-            onClick={cancelClearAllTasks}
-          >
-            No
-          </ConfirmClearBtn>
-        </ConfirmClearAllTasks>
-      </>
-      {/* // )} */}
+        <ConfirmClearBtn className="confirm" onClick={confirmClearAllTasks}>
+          Yes
+        </ConfirmClearBtn>
+        <ConfirmClearBtn className="not-confirm" onClick={cancelClearAllTasks}>
+          No
+        </ConfirmClearBtn>
+      </ConfirmClearAllTasks>
     </>
   );
 };

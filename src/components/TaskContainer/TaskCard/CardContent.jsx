@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import { openEditModal } from "../../../reducers/modal/modalSlice";
 import { markCompleted, removeTask } from "../../../reducers/task/taskSlice";
 import { removeProject } from "../../../reducers/project/projectSlice";
 import styled from "styled-components";
@@ -17,12 +18,15 @@ const CardTitle = styled.p.attrs((props) => ({
 }))`
   font-size: 1.1rem;
   padding: 0.2rem 0;
+  width: 90%;
+  font-weight: 600;
 `;
 
 const CardText = styled.p.attrs((props) => ({
   className: props.className || "",
 }))`
   font-size: 0.8rem;
+  color: var(--clr-text);
 `;
 
 const CardDeadline = styled.span.attrs((props) => ({
@@ -35,6 +39,14 @@ const CardDeadline = styled.span.attrs((props) => ({
   padding: 0.3em 0.8em;
   border-radius: var(--border-radius-small);
   margin-top: 0.5em;
+`;
+
+const CardEdit = styled.span.attrs((props) => ({
+  className: props.className || "",
+}))`
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
 `;
 
 const CompleteButton = styled.span.attrs((props) => ({
@@ -103,6 +115,14 @@ export const CardContent = ({
     }
   }, [tasks, prodId]);
 
+  const handleEditClick = () => {
+    if (id !== undefined && id !== null) {
+      dispatch(openEditModal({ id, type: "task" }));
+    } else if (prodId !== undefined && prodId !== null) {
+      dispatch(openEditModal({ id: prodId, type: "project" }));
+    }
+  };
+
   const handleCompleted = () => {
     if (id !== undefined) {
       dispatch(markCompleted(id));
@@ -137,6 +157,7 @@ export const CardContent = ({
           {completed ? "completed" : "complete"}
         </CompleteButton>
       )}
+      <CardEdit onClick={handleEditClick}>🖊️</CardEdit>
     </Content>
   );
 };
