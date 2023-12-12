@@ -18,7 +18,7 @@ const CreatedAt = styled.p.attrs((props) => ({
   className: props.className || "",
 }))`
   margin-bottom: 0;
-  color: var(--clr-grey-5);
+  color: var(--clr-text);
   font-size: 0.8em;
 `;
 
