@@ -52,7 +52,7 @@ export const TopCard = ({ title, total }) => {
       <TotalNum className="totalnum" title={title}>
         {total}
       </TotalNum>
-      <img src="./icons/arrow.svg" alt="arrow" style={{ width: "10px" }} />
+      <img src="./icons/arrow.svg" alt="arrow" width={10} height={10} />
     </StyledTopCard>
   );
 };
