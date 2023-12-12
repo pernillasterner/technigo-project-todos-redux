@@ -46,7 +46,7 @@ export const TopCard = ({ title, total }) => {
       <div className="avatar">
         {title && (
           <img
-            src={`./${title.toLowerCase()}.svg`}
+            src={`./icons/${title.toLowerCase()}.svg`}
             alt={`${title || "Avatar"} tasks`}
             width={60}
             height={60}
