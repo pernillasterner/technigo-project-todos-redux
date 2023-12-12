@@ -7,7 +7,7 @@ const CardWrapper = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   background-color: var(--clr-primary-light);
-  max-width: 375px;
+  width: 375px;
   min-height: 228px;
   border-radius: var(--border-radius-large);
   margin: 15px 0;

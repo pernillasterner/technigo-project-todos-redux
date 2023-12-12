@@ -20,7 +20,7 @@ const StyledTopCard = styled.div.attrs((props) => ({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 375px;
+  width: 375px;
   padding: var(--general-mini-padding);
 
   position: sticky;
@@ -52,7 +52,7 @@ export const TopCard = ({ title, total }) => {
 
   return (
     <StyledTopCard className="custom-class">
-      <div className="avatar">{IconComponent && <IconComponent />}</div>
+      {IconComponent && <IconComponent />}
       <H2>{title} tasks</H2>
       <TotalNum className="totalnum" title={title}>
         {total}

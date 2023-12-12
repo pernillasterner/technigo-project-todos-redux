@@ -9,11 +9,15 @@ const StyledTaskColumn = styled.div.attrs((props) => ({
 }))`
   display: flex;
   flex-direction: column;
-  padding-left: var(--general-padding);
+  // padding-left: var(--general-padding);
 
   position: relative;
   //max-height: 1500px; /* Set a max height to enable scrolling */
   overflow-y: auto;
+
+  &:nth-child(2) {
+    padding: 0 var(--general-padding);
+  }
 `;
 
 export const TaskColumn = ({ title, tasks, total }) => {

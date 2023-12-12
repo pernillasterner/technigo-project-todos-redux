@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { openEditModal } from "../../../reducers/modal/modalSlice";
 import styled from "styled-components";
+import { IconContent } from "../../../assets/Icons";
 
 const Content = styled.div.attrs((props) => ({
   className: props.className || "",
@@ -15,7 +16,7 @@ const CardTitle = styled.p.attrs((props) => ({
   className: props.className || "",
 }))`
   font-size: 1.1rem;
-  padding: 0.2rem 0;
+  padding: 0;
   width: 90%;
   font-weight: 600;
   margin-top: 0.9em;
@@ -26,6 +27,11 @@ const CardText = styled.p.attrs((props) => ({
 }))`
   font-size: 0.8rem;
   color: var(--clr-text);
+  display: ${(props) => (props.isVisible ? "block" : "none")};
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  max-height: ${(props) => (props.isVisible ? "100px" : "0")};
+  margin-bottom: 1em;
 `;
 
 const CardEdit = styled.span.attrs((props) => ({
@@ -50,10 +56,16 @@ const ProjectItem = styled.div.attrs((props) => ({
   font-size: 0.9rem;
 `;
 
-export const CardContent = ({ title, due_date, id, text, prodId }) => {
+const ShowContentIcon = styled.span`
+  cursor: pointer;
+  margin-bottom: 0.5em;
+`;
+
+export const CardContent = ({ title, id, text, prodId }) => {
   const dispatch = useDispatch();
   const projects = useSelector((store) => store.project.projects);
   const [currentProject, setCurrentProject] = useState("");
+  const [isContentVisible, setIsContentVisible] = useState(false);
 
   const handleEditClick = () => {
     if (id !== undefined && id !== null) {
@@ -76,17 +88,26 @@ export const CardContent = ({ title, due_date, id, text, prodId }) => {
     }
   }, [prodId, projects]);
 
+  const handleShowContent = () => {
+    setIsContentVisible(!isContentVisible);
+  };
+
   return (
     <Content className="content">
       {/* Display project */}
-      {/* {id >= 0 && currentProject !== "" && currentProject} */}
       {id >= 0 && currentProject !== "" && (
         <ProjectItem classname="project_item">
           <p>☍ {currentProject}</p>
         </ProjectItem>
       )}
       <CardTitle className="card_title">{title}</CardTitle>
-      <CardText>{text}</CardText>
+      {text && (
+        <ShowContentIcon onClick={handleShowContent}>
+          <IconContent />
+        </ShowContentIcon>
+      )}
+
+      <CardText isVisible={isContentVisible}>{text}</CardText>
 
       <CardEdit onClick={handleEditClick}>🖊️</CardEdit>
     </Content>

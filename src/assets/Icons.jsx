@@ -85,3 +85,20 @@ export const IconProjects = () => {
     </svg>
   );
 };
+
+export const IconContent = () => {
+  return (
+    <svg
+      width="12"
+      height="10.5"
+      viewBox="0 0 83 72"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M0 0V10.2819H82.2551V0H0ZM0 20.5638V30.8457H61.6914V20.5638H0ZM0 41.1276V51.4095H82.2551V41.1276H0ZM0 61.6914V71.9732H61.6914V61.6914H0Z"
+        fill="white"
+      />
+    </svg>
+  );
+};
