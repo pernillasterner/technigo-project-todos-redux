@@ -9,7 +9,7 @@ const ClearTaskWrapper = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   background: linear-gradient(90deg, #f59d6f, #c4a0f7);
-  // background: #85c571;
+  background: var(--clr-primary-light);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,9 +23,11 @@ const ClearTaskWrapper = styled.div.attrs((props) => ({
     background: linear-gradient(90deg, #c4a0f7, #f59d6f);
   }
 
-  // &::before {
-  //   content: url(${ClearAllIcon});
-  // }
+  &::before {
+    content: url(${ClearAllIcon});
+    margin-right: 0.6em;
+    display: flex;
+  }
 `;
 
 const ConfirmClearAllTasks = styled.div.attrs((props) => ({
@@ -113,7 +115,7 @@ export const ClearTasks = ({ tasks }) => {
       {/* {uncompletedTasks && ( */}
       <>
         <ClearTaskWrapper onClick={() => handleClearAllTasks()}>
-          CLEAR ALL TASKS
+          Clear All Tasks
         </ClearTaskWrapper>
         <ConfirmClearAllTasks show={showConfirmModal}>
           <p>Are you sure you want to clear all tasks?</p>
