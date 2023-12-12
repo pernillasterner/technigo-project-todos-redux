@@ -9,7 +9,7 @@ import { ModalTop } from "./ModalTop";
 import { ModalContent } from "./ModalContent";
 import { SubmitBtn } from "../../../styles/Buttons";
 import { DatePicker } from "../../../utils/DatePicker";
-import closeSign from "../../../../public/icons/close_icon.svg";
+import { IconClose } from "../../../assets/Icons";
 
 const EditTaskContainer = styled.div.attrs((props) => ({
   className: props.className || "",
@@ -128,7 +128,7 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
         <EditTaskContainer>
           <EditTaskBox className="edit_box">
             <CloseSign
-              src={closeSign}
+              src={IconClose}
               alt="Close sign"
               onClick={handleIsModalOpen}
             />
