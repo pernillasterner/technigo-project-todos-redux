@@ -29,6 +29,7 @@ export const ModalTop = ({ onInputChange, tags, currentCat, prodId }) => {
   const categories = useSelector((store) => store.filter.categories);
   const projects = useSelector((store) => store.project.projects);
   const [currentProject, setCurrentProject] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     if (prodId !== undefined && projects[prodId]) {
@@ -41,10 +42,9 @@ export const ModalTop = ({ onInputChange, tags, currentCat, prodId }) => {
 
   const handleInput = (e) => {
     e.preventDefault();
-    const inputValue = e.target;
-    onInputChange(inputValue);
-
-    // TODO: Need to clear the input field
+    const value = e.target.value;
+    setInputValue(value);
+    onInputChange(value);
   };
 
   return (
