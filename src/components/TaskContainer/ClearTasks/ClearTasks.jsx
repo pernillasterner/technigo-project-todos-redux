@@ -9,29 +9,23 @@ const ClearTaskWrapper = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   background: linear-gradient(90deg, #f59d6f, #c4a0f7);
+  // background: #85c571;
   display: flex;
-  flex-direction: column;
-  align-items: start;
+  flex-direction: row;
+  align-items: center;
   padding: var(--general-mini-padding);
   border-radius: var(--border-radius-small);
   cursor: pointer;
-  margin: 10px 0;
+  margin: 15px 0;
   font-weight: 600;
-  position: fixed;
-  bottom: 0;
-  left: 10px;
-  width: 58px
-  height: 58px;
-  
 
   &:hover {
     background: linear-gradient(90deg, #c4a0f7, #f59d6f);
   }
 
-  &::before {
-    content: url(${ClearAllIcon});
-  }
-
+  // &::before {
+  //   content: url(${ClearAllIcon});
+  // }
 `;
 
 const ConfirmClearAllTasks = styled.div.attrs((props) => ({
@@ -65,6 +59,7 @@ const ConfirmClearBtn = styled.button.attrs((props) => ({
 }))`
   width: 100px;
   padding: 10px;
+  background: red;
 
   margin-right: 10px;
   transition: 0.5s ease-in-out;
@@ -91,6 +86,7 @@ const ConfirmClearBtn = styled.button.attrs((props) => ({
 `;
 
 export const ClearTasks = ({ tasks }) => {
+  console.log("this is clear tasks");
   const dispatch = useDispatch();
   const uncompletedTasks = tasks.some((task) => !task.completed);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -114,26 +110,26 @@ export const ClearTasks = ({ tasks }) => {
 
   return (
     <>
-      {uncompletedTasks && (
-        <>
-          <ClearTaskWrapper
-            onClick={() => handleClearAllTasks()}
-          ></ClearTaskWrapper>
-          <ConfirmClearAllTasks show={showConfirmModal}>
-            <p>Are you sure you want to clear all tasks?</p>
+      {/* {uncompletedTasks && ( */}
+      <>
+        <ClearTaskWrapper onClick={() => handleClearAllTasks()}>
+          CLEAR ALL TASKS
+        </ClearTaskWrapper>
+        <ConfirmClearAllTasks show={showConfirmModal}>
+          <p>Are you sure you want to clear all tasks?</p>
 
-            <ConfirmClearBtn className="confirm" onClick={confirmClearAllTasks}>
-              Yes
-            </ConfirmClearBtn>
-            <ConfirmClearBtn
-              className="not-confirm"
-              onClick={cancelClearAllTasks}
-            >
-              No
-            </ConfirmClearBtn>
-          </ConfirmClearAllTasks>
-        </>
-      )}
+          <ConfirmClearBtn className="confirm" onClick={confirmClearAllTasks}>
+            Yes
+          </ConfirmClearBtn>
+          <ConfirmClearBtn
+            className="not-confirm"
+            onClick={cancelClearAllTasks}
+          >
+            No
+          </ConfirmClearBtn>
+        </ConfirmClearAllTasks>
+      </>
+      {/* // )} */}
     </>
   );
 };

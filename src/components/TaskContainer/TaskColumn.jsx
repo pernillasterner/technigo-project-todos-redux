@@ -20,11 +20,13 @@ export const TaskColumn = ({ title, tasks, total }) => {
   return (
     <StyledTaskColumn className="task_column">
       <TopCard title={title} total={total} />
-      {title !== "completed" && (
+
+      {title !== "completed" ? (
         <>
-          <ClearTasks tasks={tasks} />
           <AddTaskCard tasks={tasks} title={title} />
         </>
+      ) : (
+        <ClearTasks tasks={tasks} />
       )}
 
       {tasks &&
