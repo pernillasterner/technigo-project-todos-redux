@@ -27,18 +27,6 @@ const CardText = styled.p.attrs((props) => ({
   color: var(--clr-text);
 `;
 
-const CardDeadline = styled.span.attrs((props) => ({
-  className: props.className || "",
-}))`
-  font-size: 0.9rem;
-  background-color: ${(props) => props.dueDate};
-  width: fit-content;
-  font-size: 0.8rem;
-  padding: 0.3em 0.8em;
-  border-radius: var(--border-radius-small);
-  margin-top: 0.5em;
-`;
-
 const CardEdit = styled.span.attrs((props) => ({
   className: props.className || "",
 }))`
@@ -49,19 +37,8 @@ const CardEdit = styled.span.attrs((props) => ({
 
 export const CardContent = ({ title, due_date, id, text, prodId }) => {
   const dispatch = useDispatch();
-  const currentData = new Date();
-  const formattedData = currentData.toISOString().split("T")[0];
-  const [dueDate, setDueDate] = useState("var(--clr-grey-5)");
   const projects = useSelector((store) => store.project.projects);
   const [currentProject, setCurrentProject] = useState("");
-
-  useEffect(() => {
-    if (formattedData > due_date) {
-      setDueDate("var(--clr-alert)");
-    } else {
-      setDueDate("var(--clr-grey-5)");
-    }
-  }, [formattedData, due_date]);
 
   const handleEditClick = () => {
     if (id !== undefined && id !== null) {
@@ -90,7 +67,6 @@ export const CardContent = ({ title, due_date, id, text, prodId }) => {
       {id >= 0 && currentProject !== "" && currentProject}
       <CardTitle className="card_title">{title}</CardTitle>
       <CardText>{text}</CardText>
-      {due_date && <CardDeadline dueDate={dueDate}>⏱️ {due_date}</CardDeadline>}
 
       <CardEdit onClick={handleEditClick}>🖊️</CardEdit>
     </Content>

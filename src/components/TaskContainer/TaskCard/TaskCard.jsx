@@ -27,7 +27,6 @@ export const TaskCard = ({ task }) => {
     <CardWrapper key={task.id} className="card_wrapper" cat={task.category}>
       <CardContent
         title={task.title}
-        due_date={task.due_date}
         text={task.content}
         id={task.id}
         prodId={task.prodId}
@@ -41,6 +40,7 @@ export const TaskCard = ({ task }) => {
       />
 
       <CardBottom
+        due_date={task.due_date}
         created_at={task.created_at}
         id={task.id}
         prodId={task.prodId}
