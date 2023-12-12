@@ -46,7 +46,7 @@ export const CardBottom = ({ created_at, id, prodId, due_date }) => {
   const parsedDate = parseISO(created_at);
   const formattedDueData = currentData.toISOString().split("T")[0];
   const formattedDate = format(parsedDate, "yyyy-MM-dd");
-  const [dueDate, setDueDate] = useState("var(--clr-grey-5)");
+  const [dueDate, setDueDate] = useState("var(--clr-grey-3)");
 
   const handleRemoveEditCard = () => {
     if (id) {
@@ -60,7 +60,7 @@ export const CardBottom = ({ created_at, id, prodId, due_date }) => {
     if (formattedDueData > due_date) {
       setDueDate("var(--clr-alert)");
     } else {
-      setDueDate("var(--clr-grey-5)");
+      setDueDate("var(--clr-grey-3)");
     }
   }, [formattedDueData, due_date]);
 
