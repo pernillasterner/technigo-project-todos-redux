@@ -27,6 +27,9 @@ const AddTask = styled.div.attrs((props) => ({
 }))`
   display: flex;
   align-items: center;
+  h4 {
+    margin-bottom: 0;
+  }
 `;
 
 const AddSign = styled.span.attrs((props) => ({
@@ -64,7 +67,7 @@ export const AddTaskCard = ({ tasks, title }) => {
         <>
           <AddTask onClick={(e) => toggleTaskAddSign(e)}>
             <AddSign>{!isOpen ? "+" : "-"}</AddSign>
-            <h5> Add Task</h5>
+            <h4> Add Task</h4>
           </AddTask>
           <AddTaskForm tasks={tasks} />
         </>
@@ -72,7 +75,7 @@ export const AddTaskCard = ({ tasks, title }) => {
         <>
           <AddTask onClick={(e) => toggleProjectAddSign(e)}>
             <AddSign>{!isProjectOpen ? "+" : "-"}</AddSign>
-            <h5>Add Project</h5>
+            <h4>Add Project</h4>
           </AddTask>
           <AddProjectForm />
         </>
