@@ -16,10 +16,10 @@ export const Category = () => {
     <>
       {tasks.length !== 0 && (
         <>
-          <label htmlFor="Category" className="is-hidden">
+          <label htmlFor="category" className="is-hidden">
             Category
           </label>
-          <Select name="filter" onChange={handleCat}>
+          <Select id="category" name="filter" onChange={handleCat}>
             <option value="all">all categories</option>
             {cats.map((cat) => (
               <option key={cat} value={cat}>
