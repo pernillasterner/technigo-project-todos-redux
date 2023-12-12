@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { openEditModal } from "../../../reducers/modal/modalSlice";
-import { markCompleted, removeTask } from "../../../reducers/task/taskSlice";
-import { removeProject } from "../../../reducers/project/projectSlice";
 import styled from "styled-components";
 
 const Content = styled.div.attrs((props) => ({
@@ -49,43 +47,13 @@ const CardEdit = styled.span.attrs((props) => ({
   right: 15px;
 `;
 
-const CompleteButton = styled.span.attrs((props) => ({
-  className: props.className || "",
-  "data-completed": props.completed,
-}))`
-  cursor: pointer;
-  width: 100%;
-  border-radius: var(--border-radius-small);
-  border: 1px solid
-    ${(props) =>
-      props.completed ? "var(--clr-completed)" : "var(--clr-uncompleted)"};
-  color: ${(props) =>
-    props.completed ? "var(--clr-completed)" : "var(--clr-uncompleted)"};
-  text-align: center;
-  margin: 1.7em 0;
-  padding: 0.2em 0;
-
-  &:hover {
-    background-color: #ffffff40;
-  }
-`;
-// Boolean is not workin without this
-CompleteButton.shouldForwardProp = (prop) => prop !== "completed";
-
-export const CardContent = ({
-  title,
-  due_date,
-  completed,
-  id,
-  text,
-  prodId,
-}) => {
+export const CardContent = ({ title, due_date, id, text, prodId }) => {
   const dispatch = useDispatch();
   const currentData = new Date();
   const formattedData = currentData.toISOString().split("T")[0];
   const [dueDate, setDueDate] = useState("var(--clr-grey-5)");
-  const [isAllTasksCompleted, setIsAllTasksCompleted] = useState(false);
-  const tasks = useSelector((store) => store.task.tasks);
+  const projects = useSelector((store) => store.project.projects);
+  const [currentProject, setCurrentProject] = useState("");
 
   useEffect(() => {
     if (formattedData > due_date) {
@@ -95,26 +63,6 @@ export const CardContent = ({
     }
   }, [formattedData, due_date]);
 
-  useEffect(() => {
-    const areAllTasksCompleted = () => {
-      const numericProdId = Number(prodId);
-      const filteredTasks = tasks.filter(
-        (task) => task.prodId === numericProdId
-      );
-
-      if (!filteredTasks.length) {
-        setIsAllTasksCompleted(false);
-      } else {
-        const allCompleted = filteredTasks.every((task) => task.completed);
-        setIsAllTasksCompleted(allCompleted);
-      }
-    };
-
-    if (prodId !== undefined) {
-      areAllTasksCompleted();
-    }
-  }, [tasks, prodId]);
-
   const handleEditClick = () => {
     if (id !== undefined && id !== null) {
       dispatch(openEditModal({ id, type: "task" }));
@@ -123,40 +71,27 @@ export const CardContent = ({
     }
   };
 
-  const handleCompleted = () => {
-    if (id !== undefined) {
-      dispatch(markCompleted(id));
-    } else if (prodId !== undefined) {
-      dispatch(removeProject(prodId));
+  useEffect(() => {
+    if (prodId !== undefined) {
+      const findProject = projects.find((project) => project.prodId == prodId);
 
-      const tasksToRemove = tasks.filter((task) => task.prodId == prodId);
-      tasksToRemove.map((task) => {
-        dispatch(removeTask(task.id));
-      });
-
-      dispatch(removeProject(prodId));
+      if (findProject) {
+        setCurrentProject(findProject.title);
+      }
+    } else {
+      // Handle the case when prodId is undefined or not found in projects
+      setCurrentProject("");
     }
-  };
+  }, [prodId, projects]);
 
   return (
     <Content className="content">
+      {/* Display project */}
+      {id >= 0 && currentProject !== "" && currentProject}
       <CardTitle className="card_title">{title}</CardTitle>
       <CardText>{text}</CardText>
       {due_date && <CardDeadline dueDate={dueDate}>⏱️ {due_date}</CardDeadline>}
 
-      {id === undefined && isAllTasksCompleted && (
-        <CompleteButton
-          onClick={() => handleCompleted(prodId)}
-          completed={true}
-        >
-          Complete All Projects
-        </CompleteButton>
-      )}
-      {id !== undefined && (
-        <CompleteButton onClick={handleCompleted} completed={completed}>
-          {completed ? "completed" : "complete"}
-        </CompleteButton>
-      )}
       <CardEdit onClick={handleEditClick}>🖊️</CardEdit>
     </Content>
   );

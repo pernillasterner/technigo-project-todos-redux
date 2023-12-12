@@ -33,6 +33,11 @@ export const TagBtn = styled.span.attrs((props) => ({
 export const CatBtn = styled.span.attrs((props) => ({
   className: props.className || "",
 }))`
-  color: #92eced;
+  color: #fff;
   margin-bottom: 0.8em;
+  background-color: var(--clr-cats);
+  border-radius: 30px;
+  padding: 0 15px;
+  font-weight: 700;
+  font-size: 0.8rem;
 `;

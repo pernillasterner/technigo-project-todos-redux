@@ -29,16 +29,15 @@ export const TaskCard = ({ task }) => {
         title={task.title}
         due_date={task.due_date}
         text={task.content}
-        completed={task.completed}
         id={task.id}
         prodId={task.prodId}
-        task={task}
       />
       <CardTop
         tags={task.tags}
         id={task.id}
         cat={task.category}
         prodId={task.prodId}
+        completed={task.completed}
       />
 
       <CardBottom
