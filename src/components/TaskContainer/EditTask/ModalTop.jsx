@@ -51,6 +51,9 @@ export const ModalTop = ({ onInputChange, tags, currentCat, prodId }) => {
     <>
       <TagInputContainer className="tag_input-close">
         <Select name="category" onChange={handleInput}>
+          <label htmlFor="category" className="is-hidden">
+            Categories
+          </label>
           {currentCat ? (
             <option value={currentCat}>{currentCat}</option>
           ) : (
@@ -75,6 +78,9 @@ export const ModalTop = ({ onInputChange, tags, currentCat, prodId }) => {
 
       <TagsContainer className="tags">
         <Select name="prodId" onChange={handleInput}>
+          <label htmlFor="prodId" className="is-hidden">
+            Projects
+          </label>
           {currentProject ? (
             <option value={currentProject}>{currentProject}</option>
           ) : (
