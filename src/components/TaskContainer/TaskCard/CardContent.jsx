@@ -12,7 +12,7 @@ const Content = styled.div.attrs((props) => ({
   flex-direction: column;
 `;
 
-const CardH5 = styled.h5.attrs((props) => ({
+const CardTitle = styled.p.attrs((props) => ({
   className: props.className || "",
 }))`
   font-size: 1.1rem;
@@ -120,7 +120,7 @@ export const CardContent = ({
 
   return (
     <Content className="content">
-      <CardH5 className="card_title">{title}</CardH5>
+      <CardTitle className="card_title">{title}</CardTitle>
       <CardText>{text}</CardText>
       {due_date && <CardDeadline dueDate={dueDate}>⏱️ {due_date}</CardDeadline>}
 
