@@ -15,6 +15,8 @@ const CardWrapper = styled.div.attrs((props) => ({
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+
   ${({ cat }) =>
     cat &&
     `

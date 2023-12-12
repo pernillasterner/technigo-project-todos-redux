@@ -12,7 +12,7 @@ const StyledTaskColumn = styled.div.attrs((props) => ({
   padding-left: var(--general-padding);
 
   position: relative;
-  max-height: 1500px; /* Set a max height to enable scrolling */
+  //max-height: 1500px; /* Set a max height to enable scrolling */
   overflow-y: auto;
 `;
 

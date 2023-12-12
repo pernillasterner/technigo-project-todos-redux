@@ -18,6 +18,7 @@ const CardTitle = styled.p.attrs((props) => ({
   padding: 0.2rem 0;
   width: 90%;
   font-weight: 600;
+  margin-top: 0.9em;
 `;
 
 const CardText = styled.p.attrs((props) => ({
@@ -33,6 +34,20 @@ const CardEdit = styled.span.attrs((props) => ({
   cursor: pointer;
   position: absolute;
   right: 15px;
+`;
+
+const ProjectItem = styled.div.attrs((props) => ({
+  className: props.className || "",
+}))`
+  height: 25px;
+  background: #65797f;
+  position: absolute;
+  top: 0;
+  right: 47px;
+  border-radius: 0px 0 10px 10px;
+  width: fit-content;
+  padding: 0 15px;
+  font-size: 0.9rem;
 `;
 
 export const CardContent = ({ title, due_date, id, text, prodId }) => {
@@ -64,7 +79,12 @@ export const CardContent = ({ title, due_date, id, text, prodId }) => {
   return (
     <Content className="content">
       {/* Display project */}
-      {id >= 0 && currentProject !== "" && currentProject}
+      {/* {id >= 0 && currentProject !== "" && currentProject} */}
+      {id >= 0 && currentProject !== "" && (
+        <ProjectItem classname="project_item">
+          <p>☍ {currentProject}</p>
+        </ProjectItem>
+      )}
       <CardTitle className="card_title">{title}</CardTitle>
       <CardText>{text}</CardText>
 
