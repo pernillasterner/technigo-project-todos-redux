@@ -9,16 +9,14 @@ const RightSection = styled.div`
   align-items: center;
 `;
 
-const H2 = styled.h2`
+const Greeting = styled.h2`
   font-size: 1.5rem;
 `;
 
 export const UserInfoBar = () => {
   return (
     <>
-      <div className="greeting">
-        <H2>Hello Pillan 👋</H2>
-      </div>
+      <Greeting>Hello Pillan 👋</Greeting>
 
       <RightSection className="right-section">
         <Category />
