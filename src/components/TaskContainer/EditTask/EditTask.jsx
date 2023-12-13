@@ -78,7 +78,6 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
 
   const handleInputChange = (inputValue) => {
     let { name, value } = inputValue;
-    console.log(name, value);
     if (name === "prodId") {
       value = Number(value);
     }
@@ -138,9 +137,9 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
               />
               <ModalTop
                 onInputChange={handleInputChange}
-                tags={taskOrProject?.tags}
                 currentCat={taskOrProject?.category}
                 prodId={taskOrProject?.prodId}
+                id={taskOrProject?.id}
               />
               <DatePicker
                 onInputChange={handleInputChange}

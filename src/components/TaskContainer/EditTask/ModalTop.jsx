@@ -34,7 +34,7 @@ const CategoryContainer = styled.div.attrs((props) => ({
   width: 50%;
 `;
 
-export const ModalTop = ({ onInputChange, tags, currentCat, prodId }) => {
+export const ModalTop = ({ onInputChange, currentCat, prodId, id }) => {
   const categories = useSelector((store) => store.filter.categories);
   const projects = useSelector((store) => store.project.projects);
   const [currentProject, setCurrentProject] = useState("");
@@ -59,22 +59,25 @@ export const ModalTop = ({ onInputChange, tags, currentCat, prodId }) => {
   return (
     <>
       <ProjectCategoryContainer className="project_category_container">
-        <ProjectContainer className="project_dropdown">
-          <label htmlFor="prodId">Projects</label>
-          <Select id="project" name="prodId" onChange={handleInput}>
-            {currentProject ? (
-              <option value={currentProject}>{currentProject}</option>
-            ) : (
+        {id !== undefined && (
+          <ProjectContainer className="project_dropdown">
+            <label htmlFor="prodId">Projects</label>
+            <Select id="project" name="prodId" onChange={handleInput}>
+              {currentProject ? (
+                <option value={currentProject}>{currentProject}</option>
+              ) : (
+                <option value="">Choose a project</option>
+              )}
               <option value="">Choose a project</option>
-            )}
-            <option value="">Choose a project</option>
-            {projects.map((project) => (
-              <option key={project.title} value={project.prodId}>
-                {project.title}
-              </option>
-            ))}
-          </Select>
-        </ProjectContainer>
+              {projects.map((project) => (
+                <option key={project.title} value={project.prodId}>
+                  {project.title}
+                </option>
+              ))}
+            </Select>
+          </ProjectContainer>
+        )}
+
         <CategoryContainer className="category_dropdown">
           <label htmlFor="category">Categories</label>
           <Select name="category" onChange={handleInput}>
