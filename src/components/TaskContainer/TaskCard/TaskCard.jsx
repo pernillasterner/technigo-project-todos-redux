@@ -2,11 +2,13 @@ import styled from "styled-components";
 import { CardTop } from "./CardTop";
 import { CardContent } from "./CardContent";
 import { CardBottom } from "./CardBottom";
+import projectColors from "../../../data/projectColors";
 
 const CardWrapper = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
-  background-color: var(--clr-primary-light);
+  background: ${(props) =>
+    props.isProject ? "var(--clr-primary-light)" : props.projectColor};
   width: 375px;
   border-radius: var(--border-radius-large);
   margin: 15px 0;
@@ -15,6 +17,8 @@ const CardWrapper = styled.div.attrs((props) => ({
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  color: ${(props) =>
+    props.isProject ? "var(--clr-text)" : "var(--clr-primary-dark)"};
 
   ${({ cat }) =>
     cat &&
@@ -24,15 +28,26 @@ const CardWrapper = styled.div.attrs((props) => ({
 `;
 
 export const TaskCard = ({ task }) => {
+  const isProject = task.id !== undefined && task.id !== null;
+  const projectColor = projectColors[task.prodId - 1];
+
   return (
-    <CardWrapper key={task.id} className="card_wrapper" cat={task.category}>
+    <CardWrapper
+      key={task.id}
+      className="card_wrapper"
+      cat={task.category}
+      isProject={isProject}
+      projectColor={projectColor}
+    >
       <CardContent
         title={task.title}
         text={task.content}
         id={task.id}
         prodId={task.prodId}
         cat={task.category}
+        projectColor={projectColor}
       />
+
       <CardTop
         tags={task.tags}
         id={task.id}

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { markCompleted, removeTask } from "../../../reducers/task/taskSlice";
 import { removeProject } from "../../../reducers/project/projectSlice";
-import { TagBtn, CatBtn } from "../../../styles/Buttons";
 import { useState, useEffect } from "react";
 
 const Top = styled.div.attrs((props) => ({
@@ -41,11 +40,7 @@ const CompleteButton = styled.span.attrs((props) => ({
   cursor: pointer;
   width: 100%;
   border-radius: var(--border-radius-small);
-  border: 1px solid
-    ${(props) =>
-      props.completed ? "var(--clr-completed)" : "var(--clr-uncompleted)"};
-  color: ${(props) =>
-    props.completed ? "var(--clr-completed)" : "var(--clr-uncompleted)"};
+  background: #00000042;
   text-align: center;
   margin: 1.7em 0;
   padding: 0.2em 0;
@@ -99,9 +94,7 @@ export const CardTop = ({ tags, cat, id, prodId, completed }) => {
   // TODO: Click on tag and remove it
 
   return (
-    <Top className="top" cat={cat}>
-      {/* {cat && <CatBtn className="cat">{cat}</CatBtn>} */}
-
+    <Top className="top">
       {id === undefined && isAllTasksCompleted && (
         <CompleteButton
           onClick={() => handleCompleted(prodId)}

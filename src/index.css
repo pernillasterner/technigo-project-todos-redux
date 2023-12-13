@@ -12,6 +12,7 @@
   --clr-grey-1: #102a42;
   --clr-grey-3: #6c6c6d;
   --clr-grey-5: #919192;
+  --clr-grey-6: #a1a1a1;
   /* --clr-grey-5: #7c7c7c; */
 
   --clr-grey-10: #f1f5f8;
@@ -22,7 +23,7 @@
   --clr-projects: #fd9af5;
   --clr-submit: #2366f2;
   --clr-cats: #775ebf;
-  --clr-alert: #de2f1b;
+  --clr-alert: #ff7d78;
   /* #a74786 */
 
   --border-radius-mini: 10px;

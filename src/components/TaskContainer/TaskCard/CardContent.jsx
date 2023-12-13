@@ -27,7 +27,6 @@ const CardText = styled.p.attrs((props) => ({
   className: props.className || "",
 }))`
   font-size: 0.8rem;
-  color: var(--clr-text);
   display: ${(props) => (props.isVisible ? "block" : "none")};
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
@@ -47,7 +46,8 @@ const ProjectItem = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   height: 25px;
-  background: #65797f;
+  background: ${(props) =>
+    props.isProject ? "var(--clr-primary-light)" : props.projectColor};
   position: absolute;
   top: 0;
   right: 47px;
@@ -55,6 +55,7 @@ const ProjectItem = styled.div.attrs((props) => ({
   width: fit-content;
   padding: 0 15px;
   font-size: 0.9rem;
+  color: var(--clr-primary-dark);
 `;
 
 const ShowContentIcon = styled.span`
@@ -62,7 +63,7 @@ const ShowContentIcon = styled.span`
   margin-bottom: 0.5em;
 `;
 
-export const CardContent = ({ title, id, text, prodId, cat }) => {
+export const CardContent = ({ title, id, text, prodId, cat, projectColor }) => {
   const dispatch = useDispatch();
   const projects = useSelector((store) => store.project.projects);
   const [currentProject, setCurrentProject] = useState("");
@@ -95,16 +96,15 @@ export const CardContent = ({ title, id, text, prodId, cat }) => {
     setIsCatBtnVisible(!isCatBtnVisible);
   };
 
-  console.log(projects);
-
   return (
     <Content className="content" cat={cat}>
       {/* Display project */}
       {id >= 0 && currentProject !== "" && (
-        <ProjectItem classname="project_item">
-          <p>☍ {currentProject}</p>
+        <ProjectItem classname="project_item" projectColor={projectColor}>
+          <p>{currentProject}</p>
         </ProjectItem>
       )}
+
       <CardTitle className="card_title">{title}</CardTitle>
       {text && (
         <ShowContentIcon onClick={handleShowContent}>

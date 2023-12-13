@@ -18,7 +18,6 @@ const CreatedAt = styled.p.attrs((props) => ({
   className: props.className || "",
 }))`
   margin-bottom: 0;
-  color: var(--clr-text);
   font-size: 0.8em;
 `;
 
@@ -38,6 +37,7 @@ const CardDeadline = styled.span.attrs((props) => ({
   padding: 0.3em 0.8em;
   border-radius: var(--border-radius-small);
   margin-top: 0.5em;
+  color: var(--clr-primary-dark);
 `;
 
 export const CardBottom = ({ created_at, id, prodId, due_date }) => {
@@ -46,7 +46,7 @@ export const CardBottom = ({ created_at, id, prodId, due_date }) => {
   const parsedDate = parseISO(created_at);
   const formattedDueData = currentData.toISOString().split("T")[0];
   const formattedDate = format(parsedDate, "yyyy-MM-dd");
-  const [dueDate, setDueDate] = useState("var(--clr-grey-3)");
+  const [dueDate, setDueDate] = useState("var(--clr-grey-6)");
 
   const handleRemoveEditCard = () => {
     if (id) {
@@ -60,7 +60,7 @@ export const CardBottom = ({ created_at, id, prodId, due_date }) => {
     if (formattedDueData > due_date) {
       setDueDate("var(--clr-alert)");
     } else {
-      setDueDate("var(--clr-grey-3)");
+      setDueDate("var(--clr-grey-6)");
     }
   }, [formattedDueData, due_date]);
 
