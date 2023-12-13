@@ -22,7 +22,8 @@ export const TaskContainer = () => {
   const prodId = useSelector((store) => store.modal.prodId);
   const isModalOpen = useSelector((store) => store.modal.isModalOpen);
   const option = useSelector((store) => store.filter.option);
-  const cat = useSelector((store) => store.filter.cat);
+  const catFilter = useSelector((store) => store.filter.cat);
+  const projectFilter = useSelector((store) => store.filter.projects);
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
@@ -32,17 +33,32 @@ export const TaskContainer = () => {
     } else if (option === "uncompleted") {
       const uncompletedTasks = allTasks.filter((task) => !task.completed);
       setTasks(uncompletedTasks);
-    } else if (cat !== "all") {
-      const catTasks = allTasks.filter((task) => task.category === cat);
+    } else if (catFilter !== "all") {
+      const catTasks = allTasks.filter((task) => task.category === catFilter);
       if (catTasks.length > 0) {
         setTasks(catTasks);
       } else {
         console.log("Could find task with chosen category");
       }
-    } else if (option === "all" || cat === "all") {
+    } else if (projectFilter !== "all") {
+      const projectFilterId = parseInt(projectFilter, 10);
+      const projectTasks = allTasks.filter(
+        (task) => task.prodId === projectFilterId
+      );
+      if (projectTasks.length > 0) {
+        console.log("more than 0");
+        setTasks(projectTasks);
+      } else {
+        console.log("Could find task with chosen project");
+      }
+    } else if (
+      option === "all" ||
+      catFilter === "all" ||
+      projectFilter === "all"
+    ) {
       setTasks(allTasks);
     }
-  }, [option, allTasks, cat]);
+  }, [option, allTasks, catFilter, projectFilter]);
 
   const taskColumns = [
     { title: "uncompleted", tasks: tasks.filter((task) => !task.completed) },

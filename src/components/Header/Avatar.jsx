@@ -6,6 +6,7 @@ const StyledAvatar = styled.div`
   height: 50px;
   border-radius: 100%;
   background-color: #92eced;
+  margin-bottom: 1.25rem;
 `;
 
 export const Avatar = () => {

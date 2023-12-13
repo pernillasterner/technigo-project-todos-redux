@@ -9,8 +9,8 @@ export const Category = () => {
 
   const handleCat = (e) => {
     e.preventDefault();
-    const selectedCat = e.target.value;
-    dispatch(filterCat(selectedCat));
+    const option = e.target.value;
+    dispatch(filterCat(option));
   };
   return (
     <>
