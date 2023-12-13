@@ -7,8 +7,17 @@ const StyledAvatar = styled.div`
   border-radius: 100%;
   background-color: #92eced;
   margin-bottom: 1.25rem;
+  @media screen and (max-width: 767px) {
+    position: absolute;
+    right: 0;
+    top: -19px;
+  }
 `;
 
 export const Avatar = () => {
-  return <IconAvatar />;
+  return (
+    <StyledAvatar>
+      <IconAvatar />
+    </StyledAvatar>
+  );
 };

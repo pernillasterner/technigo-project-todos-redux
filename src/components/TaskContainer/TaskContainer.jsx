@@ -13,6 +13,15 @@ const StyledTaskContainer = styled.div.attrs((props) => ({
   flex-wrap: wrap;
   height: 100vh;
   position: relative;
+
+  @media screen and (max-width: 767px) {
+    justify-content: center;
+    align-content: start;
+    margin-top: 1em;
+  }
+  @media screen and (max-width: 567px) {
+    align-content: baseline;
+  }
 `;
 
 export const TaskContainer = () => {

@@ -9,7 +9,7 @@ const CardWrapper = styled.div.attrs((props) => ({
 }))`
   background: ${(props) =>
     props.isProject ? "var(--clr-primary-light)" : props.projectColor};
-  width: 375px;
+  // width: 375px;
   border-radius: var(--border-radius-large);
   margin: 15px 0;
   padding: var(--general-smaller-padding);
@@ -25,6 +25,10 @@ const CardWrapper = styled.div.attrs((props) => ({
     `
     // border-left: 2px solid #92eced;
   `}
+
+  @media screen and (max-width: 767px) {
+    margin: 10px 0;
+  }
 `;
 
 export const TaskCard = ({ task }) => {

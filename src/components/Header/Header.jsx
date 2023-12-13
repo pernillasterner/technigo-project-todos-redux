@@ -7,6 +7,10 @@ const HeaderContainer = styled.header`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  @media screen and (max-width: 767px) {
+    padding: var(--general-mini-padding) 0;
+  }
 `;
 
 export const Header = () => {

@@ -9,6 +9,9 @@ const MAIN = styled.main`
   display: flex;
   flex-direction: column;
   max-width: 1728px;
+  @media screen and (max-width: 767px) {
+    padding: var(--general-smaller-padding) 10px;
+  }
 `;
 
 export const App = () => {

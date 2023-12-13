@@ -17,10 +17,10 @@ export const Project = () => {
     <>
       {tasks.length !== 0 && (
         <>
-          <label htmlFor="projects" className="is-hidden">
+          <label htmlFor="project" className="is-hidden">
             Projects
           </label>
-          <Select id="projects" name="filter" onChange={handleProject}>
+          <Select id="project" name="filter" onChange={handleProject}>
             <option value="all">all projects</option>
             {projects.map((project) => (
               <option key={project.id} value={project.prodId}>

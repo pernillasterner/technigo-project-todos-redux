@@ -48,6 +48,10 @@ const CompleteButton = styled.span.attrs((props) => ({
   &:hover {
     background-color: #ffffff40;
   }
+
+  @media screen and (max-width: 767px) {
+    margin: 0.7em 0;
+  }
 `;
 // Boolean is not workin without this
 CompleteButton.shouldForwardProp = (prop) => prop !== "completed";

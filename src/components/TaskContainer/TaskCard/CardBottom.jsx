@@ -19,6 +19,9 @@ const CreatedAt = styled.p.attrs((props) => ({
 }))`
   margin-bottom: 0;
   font-size: 0.8em;
+  @media screen and (max-width: 767px) {
+    font-size: 0.7em;
+  }
 `;
 
 const RemoveCard = styled.span.attrs((props) => ({
