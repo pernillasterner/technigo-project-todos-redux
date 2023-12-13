@@ -5,7 +5,7 @@ export const tasks = [
     created_at: "2023-11-23T17:56:05.455Z",
     content:
       "Create wireframes for the landing page, focusing on a clean and user-friendly design. Incorporate the company's branding elements, including the logo and color palette.",
-    tags: ["UI", "UX", "Wireframes"],
+    // tags: ["UI", "UX", "Wireframes"],
     category: "design",
     due_date: "2023-12-14",
     completed: false,
@@ -17,7 +17,7 @@ export const tasks = [
     created_at: "2023-11-23T17:56:05.455Z",
     content:
       "Develop user authentication functionality using secure authentication methods.",
-    tags: ["Authentication", "Security"],
+    // tags: ["Authentication", "Security"],
     category: "development",
     due_date: "",
     completed: true,
@@ -30,7 +30,7 @@ export const tasks = [
     content:
       "Conduct thorough testing of the application to identify and fix any bugs or issues. Perform unit testing, integration testing, and user acceptance testing.",
     category: "testing",
-    tags: ["QA", "Testing"],
+    // tags: ["QA", "Testing"],
     due_date: "2023-12-11",
     completed: false,
     prodId: 1,
@@ -41,7 +41,7 @@ export const tasks = [
     created_at: "2023-11-23T17:56:05.455Z",
     content:
       "Create wireframes for the landing page, focusing on a clean and user-friendly design. Consider incorporating the company's branding elements.",
-    tags: ["UI", "UX", "Wireframes"],
+    // tags: ["UI", "UX", "Wireframes"],
     category: "design",
     due_date: "",
     completed: true,
@@ -54,7 +54,7 @@ export const tasks = [
     content:
       " Develop user authentication functionality using secure authentication methods. Implement password hashing and encryption for enhanced security.",
     category: "development",
-    tags: ["Responsive Design", "CSS", "Mobile"],
+    // tags: ["Responsive Design", "CSS", "Mobile"],
     due_date: "",
     completed: false,
     prodId: 2,

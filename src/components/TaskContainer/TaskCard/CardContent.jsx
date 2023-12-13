@@ -99,7 +99,7 @@ export const CardContent = ({ title, id, text, prodId, cat, projectColor }) => {
   return (
     <Content className="content" cat={cat}>
       {/* Display project */}
-      {id >= 0 && currentProject !== "" && (
+      {id >= 0 && currentProject !== "none" && (
         <ProjectItem classname="project_item" projectColor={projectColor}>
           <p>{currentProject}</p>
         </ProjectItem>
@@ -113,7 +113,8 @@ export const CardContent = ({ title, id, text, prodId, cat, projectColor }) => {
       )}
 
       <CardText isVisible={isContentVisible}>{text}</CardText>
-      {isCatBtnVisible && cat && <CatBtn className="cat">{cat}</CatBtn>}
+      {/* {isCatBtnVisible && cat && <CatBtn className="cat">{cat}</CatBtn>} */}
+      {cat && cat !== "none" && <CatBtn className="cat">{cat}</CatBtn>}
       <CardEdit onClick={handleEditClick}>🖊️</CardEdit>
     </Content>
   );

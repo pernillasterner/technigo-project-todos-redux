@@ -78,7 +78,7 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
 
   const handleInputChange = (inputValue) => {
     let { name, value } = inputValue;
-
+    console.log(name, value);
     if (name === "prodId") {
       value = Number(value);
     }
@@ -122,7 +122,6 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
       dispatch(closeEditModal());
     }
   };
-
   return (
     <>
       {formState && (
@@ -132,16 +131,16 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
               <IconClose />
             </CloseSign>
             <form>
+              <ModalContent
+                onInputChange={handleInputChange}
+                title={formState?.title}
+                content={formState?.content}
+              />
               <ModalTop
                 onInputChange={handleInputChange}
                 tags={taskOrProject?.tags}
                 currentCat={taskOrProject?.category}
                 prodId={taskOrProject?.prodId}
-              />
-              <ModalContent
-                onInputChange={handleInputChange}
-                title={formState?.title}
-                content={formState?.content}
               />
               <DatePicker
                 onInputChange={handleInputChange}

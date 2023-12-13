@@ -4,25 +4,34 @@ import { TagBtn } from "../../../styles/Buttons";
 import { Select } from "../../../styles/Select";
 import { useState, useEffect } from "react";
 
-const TagInputContainer = styled.div.attrs((props) => ({
+const ProjectCategoryContainer = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  width: 90%;
+  justify-content: start-flex;
+  width: 100%;
   input {
     margin-right: 0.4rem;
   }
   select {
-    min-width: 30%;
+    width: 100%;
   }
 `;
 
-const TagsContainer = styled.div.attrs((props) => ({
+const ProjectContainer = styled.div.attrs((props) => ({
   className: props.className || "",
 }))`
   margin-bottom: 0.7rem;
+  width: 50%;
+  margin-right: 0.4em;
+`;
+
+const CategoryContainer = styled.div.attrs((props) => ({
+  className: props.className || "",
+}))`
+  margin-bottom: 0.7rem;
+  width: 50%;
 `;
 
 export const ModalTop = ({ onInputChange, tags, currentCat, prodId }) => {
@@ -42,30 +51,48 @@ export const ModalTop = ({ onInputChange, tags, currentCat, prodId }) => {
 
   const handleInput = (e) => {
     e.preventDefault();
-    const value = e.target.value;
+    const value = e.target;
     setInputValue(value);
     onInputChange(value);
   };
 
   return (
     <>
-      <TagInputContainer className="tag_input-close">
-        <label htmlFor="category" className="is-hidden">
+      <ProjectCategoryContainer className="project_category_container">
+        <ProjectContainer className="project_dropdown">
+          <label htmlFor="prodId">Projects</label>
+          <Select id="project" name="prodId" onChange={handleInput}>
+            {currentProject ? (
+              <option value={currentProject}>{currentProject}</option>
+            ) : (
+              <option value="">Choose a project</option>
+            )}
+            <option value="">Choose a project</option>
+            {projects.map((project) => (
+              <option key={project.title} value={project.prodId}>
+                {project.title}
+              </option>
+            ))}
+          </Select>
+        </ProjectContainer>
+        <CategoryContainer className="category_dropdown">
+          <label htmlFor="category">Categories</label>
           <Select name="category" onChange={handleInput}>
-            Categories
             {currentCat ? (
               <option value={currentCat}>{currentCat}</option>
             ) : (
-              <option value="all">All categories</option>
+              <option value="none">all categories</option>
             )}
+            <option value="none">all categories</option>
             {categories.map((cat) => (
               <option key={cat} value={cat}>
                 {cat}
               </option>
             ))}
           </Select>
-        </label>
-        <label htmlFor="tag" className="is-hidden">
+        </CategoryContainer>
+
+        {/* <label htmlFor="tag" className="is-hidden">
           Tag
           <input
             type="text"
@@ -73,27 +100,8 @@ export const ModalTop = ({ onInputChange, tags, currentCat, prodId }) => {
             placeholder="Add tag"
             onChange={handleInput}
           />
-        </label>
-      </TagInputContainer>
-
-      <TagsContainer className="tags">
-        <label htmlFor="prodId" className="is-hidden">
-          Projects
-          <Select name="prodId" onChange={handleInput}>
-            {currentProject ? (
-              <option value={currentProject}>{currentProject}</option>
-            ) : (
-              <option value="all">All projects</option>
-            )}
-            {projects.map((project) => (
-              <option key={project.title} value={project.prodId}>
-                {project.title}
-              </option>
-            ))}
-          </Select>
-        </label>
-        {tags && tags.map((tag, index) => <TagBtn key={index}>{tag}</TagBtn>)}
-      </TagsContainer>
+        </label> */}
+      </ProjectCategoryContainer>
     </>
   );
 };
