@@ -40,4 +40,5 @@ export const CatBtn = styled.span.attrs((props) => ({
   padding: 0 15px;
   font-weight: 700;
   font-size: 0.8rem;
+  width: fit-content;
 `;

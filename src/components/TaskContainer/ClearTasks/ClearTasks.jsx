@@ -17,7 +17,6 @@ const ClearTaskWrapper = styled.div.attrs((props) => ({
   border-radius: var(--border-radius-small);
   cursor: pointer;
   margin: 15px 0;
-  font-weight: 600;
 
   &:hover {
     background: linear-gradient(90deg, #c4a0f7, #f59d6f);
@@ -27,6 +26,12 @@ const ClearTaskWrapper = styled.div.attrs((props) => ({
     content: url(${ClearAllIcon});
     margin-right: 0.6em;
     display: flex;
+    height: 26px;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 0.8rem;
   }
 `;
 
@@ -111,7 +116,7 @@ export const ClearTasks = ({ tasks }) => {
   return (
     <>
       <ClearTaskWrapper onClick={() => handleClearAllTasks()}>
-        Clear All Tasks
+        <p>Clear All Tasks</p>
       </ClearTaskWrapper>
       <ConfirmClearAllTasks show={showConfirmModal}>
         <p>Are you sure you want to clear all tasks?</p>

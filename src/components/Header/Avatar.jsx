@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IconAvatar } from "../../assets/Icons";
 
 const StyledAvatar = styled.div`
   width: 50px;
@@ -8,5 +9,5 @@ const StyledAvatar = styled.div`
 `;
 
 export const Avatar = () => {
-  return <StyledAvatar></StyledAvatar>;
+  return <IconAvatar />;
 };

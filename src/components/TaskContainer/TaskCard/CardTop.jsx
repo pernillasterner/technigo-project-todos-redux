@@ -99,8 +99,8 @@ export const CardTop = ({ tags, cat, id, prodId, completed }) => {
   // TODO: Click on tag and remove it
 
   return (
-    <Top className="top" cat={cat}>
-      {cat && <CatBtn className="cat">{cat}</CatBtn>}
+    <Top className="top">
+      {/* {cat && <CatBtn className="cat">{cat}</CatBtn>} */}
 
       {id === undefined && isAllTasksCompleted && (
         <CompleteButton

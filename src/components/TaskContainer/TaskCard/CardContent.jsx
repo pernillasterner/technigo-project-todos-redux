@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { openEditModal } from "../../../reducers/modal/modalSlice";
 import styled from "styled-components";
 import { IconContent } from "../../../assets/Icons";
+import { TagBtn, CatBtn } from "../../../styles/Buttons";
 
 const Content = styled.div.attrs((props) => ({
   className: props.className || "",
@@ -16,7 +17,7 @@ const CardTitle = styled.p.attrs((props) => ({
   className: props.className || "",
 }))`
   font-size: 1.1rem;
-  padding: 0;
+  margin-bottom: 0;
   width: 90%;
   font-weight: 600;
   margin-top: 0.9em;
@@ -61,11 +62,12 @@ const ShowContentIcon = styled.span`
   margin-bottom: 0.5em;
 `;
 
-export const CardContent = ({ title, id, text, prodId }) => {
+export const CardContent = ({ title, id, text, prodId, cat }) => {
   const dispatch = useDispatch();
   const projects = useSelector((store) => store.project.projects);
   const [currentProject, setCurrentProject] = useState("");
   const [isContentVisible, setIsContentVisible] = useState(false);
+  const [isCatBtnVisible, setIsCatBtnVisible] = useState(false);
 
   const handleEditClick = () => {
     if (id !== undefined && id !== null) {
@@ -90,10 +92,13 @@ export const CardContent = ({ title, id, text, prodId }) => {
 
   const handleShowContent = () => {
     setIsContentVisible(!isContentVisible);
+    setIsCatBtnVisible(!isCatBtnVisible);
   };
 
+  console.log(projects);
+
   return (
-    <Content className="content">
+    <Content className="content" cat={cat}>
       {/* Display project */}
       {id >= 0 && currentProject !== "" && (
         <ProjectItem classname="project_item">
@@ -108,7 +113,7 @@ export const CardContent = ({ title, id, text, prodId }) => {
       )}
 
       <CardText isVisible={isContentVisible}>{text}</CardText>
-
+      {isCatBtnVisible && cat && <CatBtn className="cat">{cat}</CatBtn>}
       <CardEdit onClick={handleEditClick}>🖊️</CardEdit>
     </Content>
   );

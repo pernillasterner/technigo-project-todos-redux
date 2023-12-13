@@ -8,7 +8,6 @@ const CardWrapper = styled.div.attrs((props) => ({
 }))`
   background-color: var(--clr-primary-light);
   width: 375px;
-  min-height: 228px;
   border-radius: var(--border-radius-large);
   margin: 15px 0;
   padding: var(--general-smaller-padding);
@@ -32,11 +31,11 @@ export const TaskCard = ({ task }) => {
         text={task.content}
         id={task.id}
         prodId={task.prodId}
+        cat={task.category}
       />
       <CardTop
         tags={task.tags}
         id={task.id}
-        cat={task.category}
         prodId={task.prodId}
         completed={task.completed}
       />

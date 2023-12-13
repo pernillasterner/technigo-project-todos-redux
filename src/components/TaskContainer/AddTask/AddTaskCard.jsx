@@ -28,7 +28,7 @@ const AddTask = styled.div.attrs((props) => ({
   display: flex;
   align-items: center;
   p {
-    font-weight: 700;
+    font-size: 0.8rem;
     margin-bottom: 0;
   }
 `;
