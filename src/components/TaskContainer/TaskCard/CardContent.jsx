@@ -80,13 +80,18 @@ export const CardContent = ({ title, id, text, prodId, cat, projectColor }) => {
 
   useEffect(() => {
     if (prodId !== undefined) {
-      const findProject = projects.find((project) => project.prodId == prodId);
+      const foundProject = projects.find(
+        (project) => project.prodId === prodId
+      );
 
-      if (findProject) {
-        setCurrentProject(findProject.title);
+      if (foundProject) {
+        setCurrentProject(foundProject.title);
+      } else {
+        // when project not found
+        setCurrentProject("");
       }
     } else {
-      // Handle the case when prodId is undefined or not found in projects
+      // when prodId is undefined
       setCurrentProject("");
     }
   }, [prodId, projects]);
@@ -99,7 +104,7 @@ export const CardContent = ({ title, id, text, prodId, cat, projectColor }) => {
   return (
     <Content className="content" cat={cat}>
       {/* Display project */}
-      {id >= 0 && currentProject !== "none" && (
+      {id >= 0 && currentProject !== "" && (
         <ProjectItem classname="project_item" projectColor={projectColor}>
           <p>{currentProject}</p>
         </ProjectItem>

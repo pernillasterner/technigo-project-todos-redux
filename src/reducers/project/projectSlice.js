@@ -73,6 +73,10 @@ export const projectSlice = createSlice({
         if (due_date) {
           existingProject.due_date = due_date;
         }
+
+        if (prodId) {
+          existingProject.prodId = prodId;
+        }
       } else {
         const newProject = {
           prodId: prodId,

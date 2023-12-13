@@ -65,6 +65,8 @@ export const taskSlice = createSlice({
         }
         if (prodId) {
           existingTask.prodId = prodId;
+        } else {
+          existingTask.prodId = "";
         }
       } else {
         const newTask = {

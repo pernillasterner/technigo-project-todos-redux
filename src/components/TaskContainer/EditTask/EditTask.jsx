@@ -38,6 +38,10 @@ const EditTaskBox = styled.div.attrs((props) => ({
   border-radius: var(--border-radius-large);
   padding: var(--general-padding);
   position: relative;
+
+  form {
+    margin-top: 0.9em;
+  }
 `;
 
 const CloseSign = styled.div.attrs((props) => ({
@@ -48,7 +52,7 @@ const CloseSign = styled.div.attrs((props) => ({
     brightness(100%) contrast(100%);
   position: absolute;
   right: 35px;
-  top: 15px;
+  top: 20px;
   cursor: pointer;
 `;
 
@@ -78,6 +82,7 @@ export const EditTask = ({ taskId, prodId, isTask }) => {
 
   const handleInputChange = (inputValue) => {
     let { name, value } = inputValue;
+
     if (name === "prodId") {
       value = Number(value);
     }

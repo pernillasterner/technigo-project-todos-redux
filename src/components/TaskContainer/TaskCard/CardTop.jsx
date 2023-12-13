@@ -105,7 +105,7 @@ export const CardTop = ({ tags, cat, id, prodId, completed }) => {
       )}
       {id !== undefined && (
         <CompleteButton onClick={handleCompleted} completed={completed}>
-          {completed ? "completed" : "incomplete task"}
+          {completed ? "completed" : "complete"}
         </CompleteButton>
       )}
 

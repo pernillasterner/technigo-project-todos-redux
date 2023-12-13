@@ -41,11 +41,20 @@ export const ModalTop = ({ onInputChange, currentCat, prodId, id }) => {
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
-    if (prodId !== undefined && projects[prodId]) {
-      setCurrentProject(projects[prodId].title);
+    if (prodId !== undefined) {
+      const foundProject = projects.find(
+        (project) => project.prodId === prodId
+      );
+
+      if (foundProject) {
+        setCurrentProject(foundProject.title);
+      } else {
+        // Handle the case when prodId is not found in projects
+        setCurrentProject("Choose a project");
+      }
     } else {
-      // Handle the case when prodId is undefined or not found in projects
-      setCurrentProject("choose a project");
+      // Handle the case when prodId is undefined
+      setCurrentProject("Choose a project");
     }
   }, [prodId, projects]);
 
@@ -61,19 +70,21 @@ export const ModalTop = ({ onInputChange, currentCat, prodId, id }) => {
       <ProjectCategoryContainer className="project_category_container">
         {id !== undefined && (
           <ProjectContainer className="project_dropdown">
-            <label htmlFor="prodId">Projects</label>
+            <label htmlFor="project">Projects</label>
             <Select id="project" name="prodId" onChange={handleInput}>
               {currentProject ? (
                 <option value={currentProject}>{currentProject}</option>
               ) : (
-                <option value="">Choose a project</option>
+                <option value="">Choose a test</option>
               )}
               <option value="">Choose a project</option>
-              {projects.map((project) => (
-                <option key={project.title} value={project.prodId}>
-                  {project.title}
-                </option>
-              ))}
+              {projects
+                .filter((project) => project.title !== currentProject)
+                .map((project) => (
+                  <option key={project.title} value={project.prodId}>
+                    {project.title}
+                  </option>
+                ))}
             </Select>
           </ProjectContainer>
         )}
@@ -84,9 +95,9 @@ export const ModalTop = ({ onInputChange, currentCat, prodId, id }) => {
             {currentCat ? (
               <option value={currentCat}>{currentCat}</option>
             ) : (
-              <option value="none">all categories</option>
+              <option value="">Choose a category</option>
             )}
-            <option value="none">all categories</option>
+            <option value="">Choose a category</option>
             {categories.map((cat) => (
               <option key={cat} value={cat}>
                 {cat}
