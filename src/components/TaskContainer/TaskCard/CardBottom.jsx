@@ -41,6 +41,10 @@ const CardDeadline = styled.span.attrs((props) => ({
   border-radius: var(--border-radius-small);
   margin-top: 0.5em;
   color: var(--clr-primary-dark);
+  @media screen and (max-width: 767px) {
+    padding: 0.1em 0.2em;
+    font-size: 0.7rem;
+  }
 `;
 
 export const CardBottom = ({ created_at, id, prodId, due_date }) => {

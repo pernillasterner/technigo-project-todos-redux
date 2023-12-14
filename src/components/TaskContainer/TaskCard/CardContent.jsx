@@ -21,6 +21,9 @@ const CardTitle = styled.p.attrs((props) => ({
   width: 90%;
   font-weight: 600;
   margin-top: 0.9em;
+  @media screen and (max-width: 767px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const CardText = styled.p.attrs((props) => ({

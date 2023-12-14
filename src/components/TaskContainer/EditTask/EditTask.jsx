@@ -26,7 +26,8 @@ const EditTaskContainer = styled.div.attrs((props) => ({
   justify-content: center;
 
   @media screen and (max-width: 567px) {
-    padding: var(--general-padding);
+    width: 100%;
+    padding: var(--general-smaller-padding) 10px;
   }
 `;
 
@@ -42,6 +43,11 @@ const EditTaskBox = styled.div.attrs((props) => ({
   form {
     margin-top: 0.9em;
   }
+
+  @media screen and (max-width: 567px) {
+    width: 100%;
+    padding: var(--general-smaller-padding) var(--general-mini-padding);
+  }
 `;
 
 const CloseSign = styled.div.attrs((props) => ({
@@ -54,6 +60,10 @@ const CloseSign = styled.div.attrs((props) => ({
   right: 35px;
   top: 20px;
   cursor: pointer;
+  @media screen and (max-width: 567px) {
+    right: 15px;
+    top: 7px;
+  }
 `;
 
 export const EditTask = ({ taskId, prodId, isTask }) => {
