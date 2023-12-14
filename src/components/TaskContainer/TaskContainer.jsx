@@ -62,7 +62,6 @@ export const TaskContainer = () => {
         (task) => task.prodId === projectFilterId
       );
       if (projectTasks.length > 0) {
-        console.log("more than 0");
         setTasks(projectTasks);
       } else {
         console.log("Could find task with chosen project");

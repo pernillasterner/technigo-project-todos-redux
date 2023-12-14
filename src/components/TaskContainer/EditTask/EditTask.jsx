@@ -26,7 +26,6 @@ const EditTaskContainer = styled.div.attrs((props) => ({
   justify-content: center;
 
   @media screen and (max-width: 567px) {
-    width: 100%;
     padding: var(--general-smaller-padding) 10px;
   }
 `;
