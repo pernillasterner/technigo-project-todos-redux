@@ -12,6 +12,9 @@ const MAIN = styled.main`
   @media screen and (max-width: 767px) {
     padding: var(--general-smaller-padding) 10px;
   }
+  @media screen and (max-width: 820px) and (max-height: 1180px) {
+    padding: var(--general-smaller-padding) 25px;
+  }
 `;
 
 export const App = () => {

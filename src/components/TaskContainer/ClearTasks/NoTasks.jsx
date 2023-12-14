@@ -18,6 +18,9 @@ const NoTaskContainer = styled.div.attrs((props) => ({
   display: flex;
   text-align: center;
   min-width: 1200px;
+  @media screen and (max-width: 1200px) {
+    min-width: 100%;
+  }
 
   &::before {
     content: "";

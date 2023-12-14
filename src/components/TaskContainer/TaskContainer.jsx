@@ -22,6 +22,13 @@ const StyledTaskContainer = styled.div.attrs((props) => ({
   @media screen and (max-width: 567px) {
     align-content: baseline;
   }
+
+  @media screen and (max-width: 820px) and (max-height: 1180px) {
+    justify-content: space-around;
+    & > :last-child {
+      flex: min-content;
+    }
+  }
 `;
 
 export const TaskContainer = () => {

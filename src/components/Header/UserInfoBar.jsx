@@ -22,7 +22,7 @@ const Greeting = styled.p`
 export const UserInfoBar = () => {
   return (
     <>
-      <Greeting>Hello Pillan 👋</Greeting>
+      <Greeting>Hello Guest 👋</Greeting>
 
       <RightSection className="right-section">
         <Project />
